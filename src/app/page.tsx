@@ -205,28 +205,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mx-auto w-full max-w-6xl px-6 py-6">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5e34]">
-            Neighborhood Moments
-          </p>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {[
-              { label: "Porch sets", place: "Congress Park blocks" },
-              { label: "Street hangs", place: "Cheesman-side sidewalks" },
-              { label: "Local food", place: "Nearby cafes & vendors" },
-            ].map((card) => (
-              <div
-                key={card.label}
-                className="rounded-xl border border-[#e6dccb] bg-[#fffaf1] p-4"
-              >
-                <div className="mb-3 h-24 rounded-lg bg-gradient-to-br from-[#d8c4a8] via-[#c4d8c7] to-[#b8c8dd]" />
-                <p className="font-semibold text-[#374151]">{card.label}</p>
-                <p className="text-sm text-[#6b7280]">{card.place}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
         <section id="volunteer" className="border-y border-[#e3d8c5] bg-[#f2eadf]">
           <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-14 md:grid-cols-2">
             <div>

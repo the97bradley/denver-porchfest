@@ -1,12 +1,36 @@
 import Image from "next/image";
+import { groq } from "next-sanity";
 import EventSnapshotMap from "@/components/EventSnapshotMap";
 import NeighborhoodCarousel from "@/components/NeighborhoodCarousel";
 import VolunteerSignupForm from "@/components/VolunteerSignupForm";
+import { hasSanityConfig } from "@/sanity/env";
+import { sanityClient } from "@/sanity/lib/client";
 
 const hostApplicationUrl =
   "https://forms.gle/REPLACE_WITH_HOST_APPLICATION_FORM";
 const bandApplicationUrl =
   "https://forms.gle/REPLACE_WITH_BAND_APPLICATION_FORM";
+
+type EventSettings = {
+  eventName?: string;
+  eventDateLabel?: string;
+  heroHeadline?: string;
+  heroBody?: string;
+  estimatedActs?: string;
+  porchesStages?: string;
+  areaLabel?: string;
+};
+
+const defaultEventSettings: Required<EventSettings> = {
+  eventName: "Denver Porchfest",
+  eventDateLabel: "Saturday, October 10 · Denver, CO",
+  heroHeadline: "A front-porch music day for Denver neighbors.",
+  heroBody:
+    "Walk the blocks, meet your neighbors, discover local artists, and spend the day outside. Denver Porchfest is community-first, family-friendly, and free for everyone.",
+  estimatedActs: "100+ artists",
+  porchesStages: "15+ neighborhood sites",
+  areaLabel: "Inside 1st–5th, Broadway to Santa Fe",
+};
 
 const eventJsonLd = {
   "@context": "https://schema.org",
@@ -37,13 +61,35 @@ const eventJsonLd = {
   url: "https://denverporchfest.com",
 };
 
-export default function Home() {
+export default async function Home() {
+  let cmsSettings: EventSettings | null = null;
+
+  if (hasSanityConfig && sanityClient) {
+    try {
+      cmsSettings = await sanityClient.fetch<EventSettings | null>(
+        groq`*[_type == "eventSettings"][0]{
+          eventName,
+          eventDateLabel,
+          heroHeadline,
+          heroBody,
+          estimatedActs,
+          porchesStages,
+          areaLabel
+        }`,
+      );
+    } catch {
+      cmsSettings = null;
+    }
+  }
+
+  const s = { ...defaultEventSettings, ...(cmsSettings || {}) };
+
   return (
     <div className="min-h-screen bg-[#f8f5ef] text-[#1f2937]">
       <header className="border-b border-[#d7cdbd] bg-[#fffaf1]/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
           <p className="text-base font-bold tracking-[0.08em] text-[#8b5e34]">
-            DENVER PORCHFEST
+            {s.eventName.toUpperCase()}
           </p>
           <nav className="hidden items-center gap-4 text-sm text-[#4b5563] md:flex">
             <a href="/lineup" className="hover:text-[#1f2937]">Lineup</a>
@@ -80,15 +126,13 @@ export default function Home() {
         <section className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:py-20">
           <div className="space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#8b5e34]">
-              Saturday, October 10 · Denver, CO
+              {s.eventDateLabel}
             </p>
             <h1 className="text-4xl font-extrabold leading-tight text-[#1f2937] sm:text-5xl">
-              A front-porch music day for Denver neighbors.
+              {s.heroHeadline}
             </h1>
             <p className="max-w-xl text-lg text-[#4b5563]">
-              Walk the blocks, meet your neighbors, discover local artists, and
-              spend the day outside. Denver Porchfest is community-first,
-              family-friendly, and free for everyone.
+              {s.heroBody}
             </p>
             <div className="flex flex-wrap gap-3">
               <a
@@ -120,15 +164,15 @@ export default function Home() {
               </li>
               <li className="flex justify-between border-b border-[#eee4d3] pb-2">
                 <span>Estimated Acts</span>
-                <span className="font-semibold">100+ artists</span>
+                <span className="font-semibold">{s.estimatedActs}</span>
               </li>
               <li className="flex justify-between border-b border-[#eee4d3] pb-2">
                 <span>Porches / Stages</span>
-                <span className="font-semibold">15+ neighborhood sites</span>
+                <span className="font-semibold">{s.porchesStages}</span>
               </li>
               <li className="flex justify-between border-b border-[#eee4d3] pb-2">
                 <span>Area</span>
-                <span className="font-semibold">Inside 1st–5th, Broadway to Santa Fe</span>
+                <span className="font-semibold">{s.areaLabel}</span>
               </li>
               <li className="flex justify-between">
                 <span>Admission</span>

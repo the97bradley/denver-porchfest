@@ -253,8 +253,8 @@ export default function Home() {
             <h2 className="text-2xl font-bold text-[#1f2937]">The Neighborhood</h2>
             <p className="mt-3 max-w-3xl text-[#4b5563]">
               Bars, restaurants, and local gathering spots in the event area.
-              We&apos;ll feature partners and favorites between Broadway and Santa
-              Fe, from 1st to 5th.
+              Featured spots are within the event footprint (1st–5th, Broadway
+              to Santa Fe) or within about a two-block buffer.
             </p>
 
             <div className="mt-6">

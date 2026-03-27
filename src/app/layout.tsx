@@ -39,12 +39,21 @@ export const metadata: Metadata = {
     siteName: "Denver Porchfest",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og-image",
+        width: 1200,
+        height: 630,
+        alt: "Denver Porchfest",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Denver Porchfest | Official Site",
     description:
       "A front-porch music day for Denver neighbors. Explore lineup, neighborhood footprint, and how to get involved.",
+    images: ["/og-image"],
   },
   alternates: {
     canonical: "/",

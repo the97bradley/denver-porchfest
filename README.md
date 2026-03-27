@@ -41,5 +41,18 @@ Replace those placeholders with your real Google Form URLs.
 
 1. Push to GitHub
 2. Import repo into Vercel
-3. Add `VOLUNTEER_APPS_SCRIPT_URL` in Vercel project environment variables
+3. Add `VOLUNTEER_APPS_SCRIPT_URL` and `GOOGLE_MAPS_API_KEY` in Vercel project environment variables
 4. Deploy
+
+## Google Search Console setup
+
+1. Go to Google Search Console → Add property
+2. Use **Domain** property for `denverporchfest.com`
+3. Add the DNS TXT verification record in Cloudflare
+4. After verification, submit sitemap URL:
+   - `https://denverporchfest.com/sitemap.xml`
+5. Request indexing for key pages:
+   - `/`
+   - `/lineup`
+   - `/volunteer`
+   - `/sponsors`

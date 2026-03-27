@@ -93,11 +93,6 @@ export default async function Home() {
           <p className="text-base font-bold tracking-[0.08em] text-[#8b5e34]">
             {s.eventName.toUpperCase()}
           </p>
-          <nav className="hidden items-center gap-4 text-sm text-[#4b5563] md:flex">
-            <a href="/lineup" className="hover:text-[#1f2937]">Lineup</a>
-            <a href="/volunteer" className="hover:text-[#1f2937]">Volunteer</a>
-            <a href="/sponsors" className="hover:text-[#1f2937]">Sponsors</a>
-          </nav>
           <a
             href="/volunteer"
             className="rounded-full bg-[#3b7a57] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#2f6447]"

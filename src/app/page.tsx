@@ -79,6 +79,18 @@ export default function Home() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
         />
+
+        <section className="mx-auto w-full max-w-6xl px-6 pt-8">
+          <div className="overflow-hidden rounded-2xl border border-[#d8cab3] bg-white shadow-sm">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/9/94/Sunrise_Over_Denver_Skyline.jpg"
+              alt="Denver skyline at sunrise"
+              className="h-52 w-full object-cover md:h-72"
+              loading="eager"
+            />
+          </div>
+        </section>
+
         <section className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:py-20">
           <div className="space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#8b5e34]">

@@ -16,12 +16,20 @@ export default function SponsorsPage() {
         Sponsorship includes web placement, day-of visibility, and support for
         local artists.
       </p>
-      <a
-        href="mailto:sponsors@denverporchfest.com"
-        className="mt-6 inline-block rounded-full border border-[#c9b69d] bg-white px-5 py-3 text-sm font-bold text-[#374151] transition hover:bg-[#f3eee4]"
-      >
-        Request Sponsorship Deck
-      </a>
+      <div className="mt-6 flex flex-wrap gap-3">
+        <a
+          href="mailto:sponsors@denverporchfest.com"
+          className="inline-block rounded-full border border-[#bfdbfe] bg-white px-5 py-3 text-sm font-bold text-[#374151] transition hover:bg-[#eef5ff]"
+        >
+          Request Sponsorship Deck
+        </a>
+        <a
+          href="/host-family-sponsorship"
+          className="inline-block rounded-full bg-[#2563eb] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#1d4ed8]"
+        >
+          View Host/Family Sponsorship Sheet
+        </a>
+      </div>
     </main>
   );
 }

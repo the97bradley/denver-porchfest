@@ -1,3 +1,4 @@
+import Image from "next/image";
 import VolunteerSignupForm from "@/components/VolunteerSignupForm";
 
 const lineup = [
@@ -96,6 +97,15 @@ export default function Home() {
           </div>
         </section>
 
+        <div className="mx-auto flex w-full max-w-6xl justify-center px-6 py-6">
+          <Image
+            src="/divider-porch.svg"
+            alt="porch divider"
+            width={120}
+            height={20}
+          />
+        </div>
+
         <section id="lineup" className="border-y border-[#e3d8c5] bg-[#fffdf8]">
           <div className="mx-auto w-full max-w-6xl px-6 py-14">
             <h2 className="mb-2 text-2xl font-bold text-[#1f2937]">Lineup Preview</h2>
@@ -130,11 +140,41 @@ export default function Home() {
                 key={venue.name}
                 className="rounded-xl border border-[#e6dccb] bg-white p-5"
               >
-                <h3 className="font-semibold text-[#1f2937]">{venue.name}</h3>
+                <div className="mb-2 flex items-center gap-2">
+                  <Image
+                    src="/icon-map-pin.svg"
+                    alt="map pin"
+                    width={18}
+                    height={18}
+                  />
+                  <h3 className="font-semibold text-[#1f2937]">{venue.name}</h3>
+                </div>
                 <p className="mt-1 text-sm text-[#4b5563]">{venue.area}</p>
                 <p className="mt-2 text-sm text-[#3b7a57]">
                   {venue.acts} scheduled acts
                 </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-6xl px-6 py-6">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5e34]">
+            Neighborhood Moments
+          </p>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              { label: "Porch sets", place: "Congress Park blocks" },
+              { label: "Street hangs", place: "Cheesman-side sidewalks" },
+              { label: "Local food", place: "Nearby cafes & vendors" },
+            ].map((card) => (
+              <div
+                key={card.label}
+                className="rounded-xl border border-[#e6dccb] bg-[#fffaf1] p-4"
+              >
+                <div className="mb-3 h-24 rounded-lg bg-gradient-to-br from-[#d8c4a8] via-[#c4d8c7] to-[#b8c8dd]" />
+                <p className="font-semibold text-[#374151]">{card.label}</p>
+                <p className="text-sm text-[#6b7280]">{card.place}</p>
               </div>
             ))}
           </div>

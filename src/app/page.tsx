@@ -69,15 +69,15 @@ export default function Home() {
             <ul className="space-y-3 text-sm text-neutral-200">
               <li className="flex justify-between border-b border-white/10 pb-2">
                 <span>Date</span>
-                <span className="font-semibold">Saturday, October 17</span>
+                <span className="font-semibold">Saturday, October 10</span>
               </li>
               <li className="flex justify-between border-b border-white/10 pb-2">
                 <span>Estimated Acts</span>
-                <span className="font-semibold">24+ artists</span>
+                <span className="font-semibold">100+ artists</span>
               </li>
               <li className="flex justify-between border-b border-white/10 pb-2">
                 <span>Porches / Stages</span>
-                <span className="font-semibold">10 neighborhood sites</span>
+                <span className="font-semibold">15+ neighborhood sites</span>
               </li>
               <li className="flex justify-between">
                 <span>Admission</span>

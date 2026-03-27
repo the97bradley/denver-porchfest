@@ -15,13 +15,18 @@ Open http://localhost:3000
 
 The volunteer form posts to `/api/volunteer`, which forwards to a Google Apps Script webhook URL.
 
-Set this env var in `.env.local`:
+Set these env vars in `.env.local`:
 
 ```bash
 VOLUNTEER_APPS_SCRIPT_URL="https://script.google.com/macros/s/REPLACE_ME/exec"
+GOOGLE_MAPS_API_KEY="YOUR_GOOGLE_MAPS_PLATFORM_KEY"
 ```
 
-If this is not set, volunteer submissions will return a backend-not-configured error.
+If `VOLUNTEER_APPS_SCRIPT_URL` is not set, volunteer submissions will return a backend-not-configured error.
+
+If `GOOGLE_MAPS_API_KEY` is not set, business cover images in "The Neighborhood" section will fall back to gradient placeholders.
+
+For Google Maps photos, enable the **Places API (New)** in Google Cloud and use an API key with proper restrictions.
 
 ## Application forms
 

@@ -20,8 +20,7 @@ const spots: Spot[] = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Town+Hall+Collaborative+Denver",
     photoQuery: "Town Hall Collaborative Denver",
-    imageUrl:
-      "https://lh3.googleusercontent.com/p/AF1QipPXfGtjDvvRoPxouO4LQ4Tt6SzTLz7KKd7-uctk=s1360-w1360-h1020-rw",
+    imageUrl: "/businesses/town-hall-collaborative.webp",
   },
   {
     name: "Black Sky Brewery",
@@ -30,6 +29,7 @@ const spots: Spot[] = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Black+Sky+Brewery+Denver",
     photoQuery: "Black Sky Brewery Denver",
+    imageUrl: "/businesses/black-sky-brewery.webp",
   },
   {
     name: "Baker Market",

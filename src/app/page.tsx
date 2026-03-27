@@ -85,7 +85,8 @@ export default function Home() {
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/9/94/Sunrise_Over_Denver_Skyline.jpg"
               alt="Denver skyline at sunrise"
-              className="h-52 w-full object-cover object-bottom md:h-72"
+              className="h-52 w-full object-cover md:h-72"
+              style={{ objectPosition: "50% calc(100% - 15px)" }}
               loading="eager"
             />
           </div>

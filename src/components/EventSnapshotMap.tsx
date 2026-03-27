@@ -40,10 +40,10 @@ export default function EventSnapshotMap() {
       });
 
       const eventBoundary = [
-        { lat: 39.7183, lng: -104.9872 }, // 1st & Broadway (approx)
-        { lat: 39.7183, lng: -104.9988 }, // 1st & Santa Fe (approx)
-        { lat: 39.7271, lng: -104.9988 }, // 6th & Santa Fe (approx)
-        { lat: 39.7271, lng: -104.9872 }, // 6th & Broadway (approx)
+        { lat: 39.7189, lng: -104.9882 }, // just north/west of 1st & Broadway
+        { lat: 39.7189, lng: -104.9978 }, // just north/east of 1st & Santa Fe
+        { lat: 39.7248, lng: -104.9978 }, // just south/east of 5th & Santa Fe
+        { lat: 39.7248, lng: -104.9882 }, // just south/west of 5th & Broadway
       ];
 
       const polygon = new window.google.maps.Polygon({

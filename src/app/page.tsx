@@ -144,7 +144,7 @@ export default function Home() {
               </li>
               <li className="flex justify-between border-b border-[#eee4d3] pb-2">
                 <span>Area</span>
-                <span className="font-semibold">1st–6th, Broadway to Santa Fe</span>
+                <span className="font-semibold">Inside 1st–5th, Broadway to Santa Fe</span>
               </li>
               <li className="flex justify-between">
                 <span>Admission</span>

@@ -324,9 +324,6 @@ export default async function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-[#d7cdbd] bg-[#fffaf1] py-8 text-center text-sm text-[#6b7280]">
-        Denver Porchfest · Built with Next.js · Free-hosting ready
-      </footer>
     </div>
   );
 }

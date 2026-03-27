@@ -24,3 +24,13 @@ h3 {
   font-family: var(--font-merriweather), Georgia, serif;
   letter-spacing: -0.01em;
 }
+
+.hero-banner-image {
+  object-position: 50% 72%;
+}
+
+@media (min-width: 768px) {
+  .hero-banner-image {
+    object-position: 50% calc(100% + 25px);
+  }
+}

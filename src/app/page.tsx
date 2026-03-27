@@ -113,8 +113,7 @@ export default async function Home() {
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/9/94/Sunrise_Over_Denver_Skyline.jpg"
               alt="Denver skyline at sunrise"
-              className="h-52 w-full object-cover md:h-72"
-              style={{ objectPosition: "50% calc(100% + 25px)" }}
+              className="hero-banner-image h-52 w-full object-cover md:h-72"
               loading="eager"
             />
           </div>

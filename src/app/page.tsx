@@ -23,10 +23,10 @@ const bandApplicationUrl =
 
 export default function Home() {
   return (
-    <div className="bg-neutral-950 text-neutral-100">
-      <header className="border-b border-white/10 bg-neutral-950/90 backdrop-blur">
+    <div className="bg-[radial-gradient(circle_at_top,_#3b0764_0%,_#0f172a_35%,_#0b1020_70%,_#070b14_100%)] text-neutral-100">
+      <header className="border-b border-fuchsia-300/20 bg-[#120a2a]/70 backdrop-blur-xl">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-          <p className="text-sm font-semibold tracking-[0.18em] text-emerald-300">
+          <p className="bg-gradient-to-r from-cyan-300 via-fuchsia-300 to-emerald-300 bg-clip-text text-sm font-bold tracking-[0.2em] text-transparent">
             DENVER PORCHFEST
           </p>
           <a
@@ -41,7 +41,7 @@ export default function Home() {
       <main>
         <section className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:py-24">
           <div className="space-y-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
               October 2026 · Denver, CO
             </p>
             <h1 className="text-4xl font-black leading-tight sm:text-5xl">
@@ -69,8 +69,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-neutral-900 p-6 shadow-2xl shadow-emerald-400/10">
-            <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+          <div className="rounded-2xl border border-fuchsia-300/20 bg-gradient-to-br from-fuchsia-950/60 via-indigo-950/50 to-cyan-950/50 p-6 shadow-2xl shadow-fuchsia-500/20">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-fuchsia-300">
               Event Snapshot
             </h2>
             <ul className="space-y-3 text-sm text-neutral-200">
@@ -94,16 +94,16 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="lineup" className="border-y border-white/10 bg-neutral-900/60">
+        <section id="lineup" className="border-y border-cyan-300/20 bg-gradient-to-r from-indigo-950/60 via-fuchsia-950/40 to-cyan-950/50">
           <div className="mx-auto w-full max-w-6xl px-6 py-14">
             <h2 className="mb-6 text-2xl font-bold">Sample Lineup</h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {lineup.map((act) => (
                 <article
                   key={act.name}
-                  className="rounded-xl border border-white/10 bg-neutral-950 p-4"
+                  className="rounded-xl border border-fuchsia-300/20 bg-gradient-to-br from-[#221138] to-[#111a33] p-4"
                 >
-                  <p className="text-sm text-emerald-300">{act.time}</p>
+                  <p className="text-sm text-cyan-300">{act.time}</p>
                   <h3 className="mt-1 font-semibold">{act.name}</h3>
                   <p className="text-sm text-neutral-400">{act.genre}</p>
                 </article>
@@ -118,11 +118,11 @@ export default function Home() {
             {venues.map((venue) => (
               <div
                 key={venue.name}
-                className="rounded-xl border border-white/10 bg-neutral-900 p-5"
+                className="rounded-xl border border-cyan-300/20 bg-gradient-to-br from-[#10243d] to-[#152035] p-5"
               >
                 <h3 className="font-semibold">{venue.name}</h3>
                 <p className="mt-1 text-sm text-neutral-300">{venue.area}</p>
-                <p className="mt-2 text-sm text-emerald-300">
+                <p className="mt-2 text-sm text-fuchsia-300">
                   {venue.acts} scheduled acts
                 </p>
               </div>

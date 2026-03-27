@@ -188,7 +188,7 @@ export default function NeighborhoodCarousel() {
       ) : (
         <div
           ref={trackRef}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pt-1 pb-2"
         >
           {visibleSpots.map((spot, index) => (
             <a

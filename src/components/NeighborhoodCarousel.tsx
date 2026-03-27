@@ -21,7 +21,7 @@ const spots: Spot[] = [
       "https://www.google.com/maps/search/?api=1&query=Town+Hall+Collaborative+Denver",
     photoQuery: "Town Hall Collaborative Denver",
     imageUrl:
-      "https://lh3.googleusercontent.com/p/AF1QipNPdmB8G51ntX6NbF40ccmrQ7mcEM4irrIrVsVU=s1360-w1360-h1020-rw",
+      "https://lh3.googleusercontent.com/p/AF1QipPXfGtjDvvRoPxouO4LQ4Tt6SzTLz7KKd7-uctk=s1360-w1360-h1020-rw",
   },
   {
     name: "Black Sky Brewery",

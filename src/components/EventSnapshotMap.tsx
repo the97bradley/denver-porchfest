@@ -90,7 +90,7 @@ export default function EventSnapshotMap() {
 
   return (
     <div className="mt-4 overflow-hidden rounded-xl border border-[#e6dccb] bg-white">
-      <div ref={mapRef} className="h-44 w-full" />
+      <div ref={mapRef} className="h-56 w-full" />
     </div>
   );
 }

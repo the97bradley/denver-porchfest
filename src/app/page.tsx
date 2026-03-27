@@ -3,22 +3,6 @@ import EventSnapshotMap from "@/components/EventSnapshotMap";
 import NeighborhoodCarousel from "@/components/NeighborhoodCarousel";
 import VolunteerSignupForm from "@/components/VolunteerSignupForm";
 
-const lineup = [
-  { name: "The Sidewalk Saints", genre: "Indie Folk", time: "12:00 PM" },
-  { name: "Mile High Brass", genre: "Brass Funk", time: "1:15 PM" },
-  { name: "Cherry Creek Revival", genre: "Alt Country", time: "2:30 PM" },
-  { name: "Capitol Groove Co.", genre: "Soul / R&B", time: "3:45 PM" },
-  { name: "Sunset on Colfax", genre: "Dream Pop", time: "5:00 PM" },
-  { name: "Front Porch Finale", genre: "Community Jam", time: "6:30 PM" },
-];
-
-const venues = [
-  { name: "Porch A", area: "Congress Park", acts: 3 },
-  { name: "Porch B", area: "City Park West", acts: 4 },
-  { name: "Porch C", area: "Capitol Hill", acts: 3 },
-  { name: "Porch D", area: "Cheesman Park", acts: 4 },
-];
-
 const hostApplicationUrl =
   "https://forms.gle/REPLACE_WITH_HOST_APPLICATION_FORM";
 const bandApplicationUrl =
@@ -171,17 +155,11 @@ export default function Home() {
               Expect a mix of neighborhood favorites, new local artists, and
               community collaborations across the day.
             </p>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {lineup.map((act) => (
-                <article
-                  key={act.name}
-                  className="rounded-xl border border-[#e6dccb] bg-white p-4"
-                >
-                  <p className="text-sm font-medium text-[#8b5e34]">{act.time}</p>
-                  <h3 className="mt-1 font-semibold text-[#1f2937]">{act.name}</h3>
-                  <p className="text-sm text-[#6b7280]">{act.genre}</p>
-                </article>
-              ))}
+            <div className="rounded-xl border border-[#e6dccb] bg-white p-6 text-center">
+              <p className="text-lg font-semibold text-[#1f2937]">TBA</p>
+              <p className="mt-1 text-sm text-[#6b7280]">
+                Full lineup and set times coming soon.
+              </p>
             </div>
           </div>
         </section>
@@ -193,27 +171,11 @@ export default function Home() {
             across the footprint between 1st & 5th Ave from Broadway to Santa
             Fe. Full map and timing will be posted closer to event day.
           </p>
-          <div className="grid gap-4 md:grid-cols-2">
-            {venues.map((venue) => (
-              <div
-                key={venue.name}
-                className="rounded-xl border border-[#e6dccb] bg-white p-5"
-              >
-                <div className="mb-2 flex items-center gap-2">
-                  <Image
-                    src="/icon-map-pin.svg"
-                    alt="map pin"
-                    width={18}
-                    height={18}
-                  />
-                  <h3 className="font-semibold text-[#1f2937]">{venue.name}</h3>
-                </div>
-                <p className="mt-1 text-sm text-[#4b5563]">{venue.area}</p>
-                <p className="mt-2 text-sm text-[#3b7a57]">
-                  {venue.acts} scheduled acts
-                </p>
-              </div>
-            ))}
+          <div className="rounded-xl border border-[#e6dccb] bg-white p-6 text-center">
+            <p className="text-lg font-semibold text-[#1f2937]">TBA</p>
+            <p className="mt-1 text-sm text-[#6b7280]">
+              Porch locations and neighborhood stage details coming soon.
+            </p>
           </div>
         </section>
 

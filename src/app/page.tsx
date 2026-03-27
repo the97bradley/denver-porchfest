@@ -208,8 +208,8 @@ export default async function Home() {
           <h2 className="mb-2 text-2xl font-bold text-[#1f2937]">Neighborhood Porches</h2>
           <p className="mb-6 text-[#6b7280]">
             Think of each porch as a mini stage hosted by your neighbors,
-            across the footprint between 1st & 5th Ave from Broadway to Santa
-            Fe. Full map and timing will be posted closer to event day.
+            across the Baker neighborhood. Full map and timing will be posted
+            closer to event day.
           </p>
           <div className="rounded-xl border border-[#dbe7ff] bg-white p-6 text-center">
             <p className="text-lg font-semibold text-[#1f2937]">TBA</p>

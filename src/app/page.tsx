@@ -10,6 +10,8 @@ const hostApplicationUrl =
   "https://forms.gle/REPLACE_WITH_HOST_APPLICATION_FORM";
 const bandApplicationUrl =
   "https://forms.gle/REPLACE_WITH_BAND_APPLICATION_FORM";
+const vendorYardApplicationUrl =
+  "https://forms.gle/REPLACE_WITH_VENDOR_YARD_APPLICATION_FORM";
 
 type EventSettings = {
   eventName?: string;
@@ -244,7 +246,7 @@ export default async function Home() {
             hear from you.
           </p>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
             <article className="rounded-xl border border-[#e6dccb] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Host Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
@@ -274,6 +276,22 @@ export default async function Home() {
                 className="mt-4 inline-block rounded-full bg-[#3b7a57] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#2f6447]"
               >
                 Apply as an Artist
+              </a>
+            </article>
+
+            <article className="rounded-xl border border-[#e6dccb] bg-white p-5">
+              <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Yard Application</h3>
+              <p className="mt-2 text-sm text-[#4b5563]">
+                Have space in your yard and willing to host local vendors during
+                the event? Let us know.
+              </p>
+              <a
+                href={vendorYardApplicationUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-block rounded-full bg-[#8b5e34] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#734a27]"
+              >
+                Apply to Host Vendors
               </a>
             </article>
           </div>

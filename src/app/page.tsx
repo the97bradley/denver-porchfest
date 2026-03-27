@@ -236,8 +236,8 @@ export default async function Home() {
         <section id="applications" className="mx-auto w-full max-w-6xl px-6 py-14">
           <h2 className="text-2xl font-bold text-[#1f2937]">Be Part of Porchfest</h2>
           <p className="mt-3 max-w-3xl text-[#4b5563]">
-            Whether you have a great porch or a great setlist, we’d love to
-            hear from you.
+            Whether you have a great porch, a great setlist, or a vendor setup
+            that fits the neighborhood vibe, we’d love to hear from you.
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">

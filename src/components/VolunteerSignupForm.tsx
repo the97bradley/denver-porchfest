@@ -50,36 +50,36 @@ export default function VolunteerSignupForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="space-y-3 rounded-xl border border-white/10 bg-neutral-950 p-5"
+      className="space-y-3 rounded-xl border border-[#d8cab3] bg-white p-5 shadow-sm"
     >
       <input
         name="name"
         required
-        className="w-full rounded-lg border border-white/20 bg-neutral-900 px-3 py-2"
+        className="w-full rounded-lg border border-[#d8cab3] bg-[#fffdf8] px-3 py-2 text-[#1f2937] placeholder:text-[#9ca3af]"
         placeholder="Name"
       />
       <input
         name="email"
         required
         type="email"
-        className="w-full rounded-lg border border-white/20 bg-neutral-900 px-3 py-2"
+        className="w-full rounded-lg border border-[#d8cab3] bg-[#fffdf8] px-3 py-2 text-[#1f2937] placeholder:text-[#9ca3af]"
         placeholder="Email"
       />
       <input
         name="phone"
-        className="w-full rounded-lg border border-white/20 bg-neutral-900 px-3 py-2"
+        className="w-full rounded-lg border border-[#d8cab3] bg-[#fffdf8] px-3 py-2 text-[#1f2937] placeholder:text-[#9ca3af]"
         placeholder="Phone (optional)"
       />
       <textarea
         name="notes"
         rows={3}
-        className="w-full rounded-lg border border-white/20 bg-neutral-900 px-3 py-2"
+        className="w-full rounded-lg border border-[#d8cab3] bg-[#fffdf8] px-3 py-2 text-[#1f2937] placeholder:text-[#9ca3af]"
         placeholder="Anything you want us to know (optional)"
       />
       <button
         type="submit"
         disabled={status === "saving"}
-        className="w-full rounded-lg bg-emerald-400 px-4 py-2 font-semibold text-neutral-900 disabled:cursor-not-allowed disabled:opacity-70"
+        className="w-full rounded-lg bg-[#3b7a57] px-4 py-2 font-semibold text-white transition hover:bg-[#2f6447] disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === "saving" ? "Submitting..." : "Join Volunteer List"}
       </button>
@@ -87,7 +87,7 @@ export default function VolunteerSignupForm() {
       {message ? (
         <p
           className={`text-sm ${
-            status === "success" ? "text-emerald-300" : "text-rose-300"
+            status === "success" ? "text-[#3b7a57]" : "text-[#b91c1c]"
           }`}
         >
           {message}

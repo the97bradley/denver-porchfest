@@ -23,15 +23,15 @@ const bandApplicationUrl =
 
 export default function Home() {
   return (
-    <div className="bg-[radial-gradient(circle_at_top,_#3b0764_0%,_#0f172a_35%,_#0b1020_70%,_#070b14_100%)] text-neutral-100">
-      <header className="border-b border-fuchsia-300/20 bg-[#120a2a]/70 backdrop-blur-xl">
+    <div className="min-h-screen bg-[#f8f5ef] text-[#1f2937]">
+      <header className="border-b border-[#d7cdbd] bg-[#fffaf1]/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-          <p className="bg-gradient-to-r from-cyan-300 via-fuchsia-300 to-emerald-300 bg-clip-text text-sm font-bold tracking-[0.2em] text-transparent">
+          <p className="text-sm font-bold tracking-[0.16em] text-[#8b5e34]">
             DENVER PORCHFEST
           </p>
           <a
             href="#volunteer"
-            className="rounded-full bg-emerald-400 px-4 py-2 text-sm font-semibold text-neutral-900 transition hover:bg-emerald-300"
+            className="rounded-full bg-[#3b7a57] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#2f6447]"
           >
             Volunteer
           </a>
@@ -39,73 +39,74 @@ export default function Home() {
       </header>
 
       <main>
-        <section className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:py-24">
+        <section className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:py-20">
           <div className="space-y-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-              October 2026 · Denver, CO
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#8b5e34]">
+              Saturday, October 10 · Denver, CO
             </p>
-            <h1 className="text-4xl font-black leading-tight sm:text-5xl">
-              Music on porches.
-              <br />
-              Neighbors in the streets.
+            <h1 className="text-4xl font-extrabold leading-tight text-[#1f2937] sm:text-5xl">
+              Denver&apos;s neighborhood music day.
             </h1>
-            <p className="max-w-xl text-lg text-neutral-300">
-              A one-day neighborhood music festival connecting Denver artists,
-              local businesses, and community blocks.
+            <p className="max-w-xl text-lg text-[#4b5563]">
+              Porchfest brings local artists, neighbors, and small businesses
+              together for a walkable, all-ages celebration across Denver.
             </p>
             <div className="flex flex-wrap gap-3">
               <a
                 href="#lineup"
-                className="rounded-full bg-white px-5 py-3 text-sm font-bold text-neutral-900 transition hover:bg-neutral-200"
+                className="rounded-full bg-[#1f2937] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#111827]"
               >
                 See Lineup
               </a>
               <a
-                href="#sponsor"
-                className="rounded-full border border-white/30 px-5 py-3 text-sm font-bold transition hover:bg-white/10"
+                href="#applications"
+                className="rounded-full border border-[#c9b69d] bg-white px-5 py-3 text-sm font-bold text-[#374151] transition hover:bg-[#f3eee4]"
               >
-                Become a Sponsor
+                Apply to Participate
               </a>
             </div>
           </div>
 
-          <div className="rounded-2xl border border-fuchsia-300/20 bg-gradient-to-br from-fuchsia-950/60 via-indigo-950/50 to-cyan-950/50 p-6 shadow-2xl shadow-fuchsia-500/20">
-            <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-fuchsia-300">
+          <div className="rounded-2xl border border-[#d8cab3] bg-white p-6 shadow-sm">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#8b5e34]">
               Event Snapshot
             </h2>
-            <ul className="space-y-3 text-sm text-neutral-200">
-              <li className="flex justify-between border-b border-white/10 pb-2">
+            <ul className="space-y-3 text-sm text-[#374151]">
+              <li className="flex justify-between border-b border-[#eee4d3] pb-2">
                 <span>Date</span>
                 <span className="font-semibold">Saturday, October 10</span>
               </li>
-              <li className="flex justify-between border-b border-white/10 pb-2">
+              <li className="flex justify-between border-b border-[#eee4d3] pb-2">
                 <span>Estimated Acts</span>
                 <span className="font-semibold">100+ artists</span>
               </li>
-              <li className="flex justify-between border-b border-white/10 pb-2">
+              <li className="flex justify-between border-b border-[#eee4d3] pb-2">
                 <span>Porches / Stages</span>
                 <span className="font-semibold">15+ neighborhood sites</span>
               </li>
               <li className="flex justify-between">
                 <span>Admission</span>
-                <span className="font-semibold text-emerald-300">Free</span>
+                <span className="font-semibold text-[#3b7a57]">Free</span>
               </li>
             </ul>
           </div>
         </section>
 
-        <section id="lineup" className="border-y border-cyan-300/20 bg-gradient-to-r from-indigo-950/60 via-fuchsia-950/40 to-cyan-950/50">
+        <section id="lineup" className="border-y border-[#e3d8c5] bg-[#fffdf8]">
           <div className="mx-auto w-full max-w-6xl px-6 py-14">
-            <h2 className="mb-6 text-2xl font-bold">Sample Lineup</h2>
+            <h2 className="mb-2 text-2xl font-bold text-[#1f2937]">Lineup Preview</h2>
+            <p className="mb-6 text-[#6b7280]">
+              Early sample acts while full scheduling is in progress.
+            </p>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {lineup.map((act) => (
                 <article
                   key={act.name}
-                  className="rounded-xl border border-fuchsia-300/20 bg-gradient-to-br from-[#221138] to-[#111a33] p-4"
+                  className="rounded-xl border border-[#e6dccb] bg-white p-4"
                 >
-                  <p className="text-sm text-cyan-300">{act.time}</p>
-                  <h3 className="mt-1 font-semibold">{act.name}</h3>
-                  <p className="text-sm text-neutral-400">{act.genre}</p>
+                  <p className="text-sm font-medium text-[#8b5e34]">{act.time}</p>
+                  <h3 className="mt-1 font-semibold text-[#1f2937]">{act.name}</h3>
+                  <p className="text-sm text-[#6b7280]">{act.genre}</p>
                 </article>
               ))}
             </div>
@@ -113,16 +114,19 @@ export default function Home() {
         </section>
 
         <section id="schedule" className="mx-auto w-full max-w-6xl px-6 py-14">
-          <h2 className="mb-6 text-2xl font-bold">Neighborhood Porches</h2>
+          <h2 className="mb-2 text-2xl font-bold text-[#1f2937]">Neighborhood Porches</h2>
+          <p className="mb-6 text-[#6b7280]">
+            Final map and full running order will be posted closer to event day.
+          </p>
           <div className="grid gap-4 md:grid-cols-2">
             {venues.map((venue) => (
               <div
                 key={venue.name}
-                className="rounded-xl border border-cyan-300/20 bg-gradient-to-br from-[#10243d] to-[#152035] p-5"
+                className="rounded-xl border border-[#e6dccb] bg-white p-5"
               >
-                <h3 className="font-semibold">{venue.name}</h3>
-                <p className="mt-1 text-sm text-neutral-300">{venue.area}</p>
-                <p className="mt-2 text-sm text-fuchsia-300">
+                <h3 className="font-semibold text-[#1f2937]">{venue.name}</h3>
+                <p className="mt-1 text-sm text-[#4b5563]">{venue.area}</p>
+                <p className="mt-2 text-sm text-[#3b7a57]">
                   {venue.acts} scheduled acts
                 </p>
               </div>
@@ -130,14 +134,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section
-          id="volunteer"
-          className="border-y border-white/10 bg-gradient-to-r from-emerald-500/15 via-transparent to-cyan-500/10"
-        >
+        <section id="volunteer" className="border-y border-[#e3d8c5] bg-[#f2eadf]">
           <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-14 md:grid-cols-2">
             <div>
-              <h2 className="text-2xl font-bold">Volunteer with us</h2>
-              <p className="mt-3 text-neutral-300">
+              <h2 className="text-2xl font-bold text-[#1f2937]">Volunteer with us</h2>
+              <p className="mt-3 text-[#4b5563]">
                 Help with artist support, wayfinding, setup, and neighborhood
                 logistics. Perfect for music lovers who want to make Porchfest
                 happen.
@@ -148,16 +149,16 @@ export default function Home() {
         </section>
 
         <section id="applications" className="mx-auto w-full max-w-6xl px-6 py-14">
-          <h2 className="text-2xl font-bold">Applications</h2>
-          <p className="mt-3 max-w-3xl text-neutral-300">
+          <h2 className="text-2xl font-bold text-[#1f2937]">Applications</h2>
+          <p className="mt-3 max-w-3xl text-[#4b5563]">
             Interested in hosting a porch or performing as an artist? Apply
             using the forms below.
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <article className="rounded-xl border border-white/10 bg-neutral-900 p-5">
-              <h3 className="text-lg font-semibold">Host Application</h3>
-              <p className="mt-2 text-sm text-neutral-300">
+            <article className="rounded-xl border border-[#e6dccb] bg-white p-5">
+              <h3 className="text-lg font-semibold text-[#1f2937]">Host Application</h3>
+              <p className="mt-2 text-sm text-[#4b5563]">
                 Open your porch, yard, or shared outdoor space to support local
                 music in your neighborhood.
               </p>
@@ -165,15 +166,15 @@ export default function Home() {
                 href={hostApplicationUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 inline-block rounded-full bg-white px-4 py-2 text-sm font-bold text-neutral-900 transition hover:bg-neutral-200"
+                className="mt-4 inline-block rounded-full bg-[#1f2937] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#111827]"
               >
                 Apply to Host
               </a>
             </article>
 
-            <article className="rounded-xl border border-white/10 bg-neutral-900 p-5">
-              <h3 className="text-lg font-semibold">Band Application</h3>
-              <p className="mt-2 text-sm text-neutral-300">
+            <article className="rounded-xl border border-[#e6dccb] bg-white p-5">
+              <h3 className="text-lg font-semibold text-[#1f2937]">Band Application</h3>
+              <p className="mt-2 text-sm text-[#4b5563]">
                 Submit your act for consideration in the 2026 Denver Porchfest
                 lineup.
               </p>
@@ -181,7 +182,7 @@ export default function Home() {
                 href={bandApplicationUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 inline-block rounded-full bg-emerald-400 px-4 py-2 text-sm font-bold text-neutral-900 transition hover:bg-emerald-300"
+                className="mt-4 inline-block rounded-full bg-[#3b7a57] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#2f6447]"
               >
                 Apply as an Artist
               </a>
@@ -189,23 +190,23 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="sponsor" className="mx-auto w-full max-w-6xl px-6 py-14">
-          <h2 className="text-2xl font-bold">Sponsors & Partners</h2>
-          <p className="mt-3 max-w-2xl text-neutral-300">
+        <section id="sponsor" className="mx-auto w-full max-w-6xl px-6 pb-14">
+          <h2 className="text-2xl font-bold text-[#1f2937]">Sponsors & Partners</h2>
+          <p className="mt-3 max-w-2xl text-[#4b5563]">
             We&apos;re building a community-first event with support from local
             businesses. Sponsorship packages include stage mentions, web
             placement, and day-of activations.
           </p>
           <a
             href="mailto:sponsors@denverporchfest.com"
-            className="mt-5 inline-block rounded-full border border-white/30 px-5 py-3 text-sm font-bold transition hover:bg-white/10"
+            className="mt-5 inline-block rounded-full border border-[#c9b69d] bg-white px-5 py-3 text-sm font-bold text-[#374151] transition hover:bg-[#f3eee4]"
           >
             Request Sponsorship Deck
           </a>
         </section>
       </main>
 
-      <footer className="border-t border-white/10 py-8 text-center text-sm text-neutral-400">
+      <footer className="border-t border-[#d7cdbd] bg-[#fffaf1] py-8 text-center text-sm text-[#6b7280]">
         Denver Porchfest · Built with Next.js · Free-hosting ready
       </footer>
     </div>

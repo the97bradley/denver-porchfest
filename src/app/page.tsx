@@ -309,7 +309,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section id="sponsor" className="mx-auto w-full max-w-6xl px-6 pb-14">
+        <section id="sponsor" className="mx-auto w-full max-w-6xl px-6 py-14">
           <h2 className="text-2xl font-bold text-[#1f2937]">Local Sponsors & Partners</h2>
           <p className="mt-3 max-w-2xl text-[#4b5563]">
             Porchfest is powered by neighborhood businesses, community groups,

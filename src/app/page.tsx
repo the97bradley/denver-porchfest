@@ -42,7 +42,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#f8f5ef] text-[#1f2937]">
       <header className="border-b border-[#d7cdbd] bg-[#fffaf1]/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-          <p className="text-sm font-bold tracking-[0.16em] text-[#8b5e34]">
+          <p className="text-base font-bold tracking-[0.08em] text-[#8b5e34]">
             DENVER PORCHFEST
           </p>
           <nav className="hidden items-center gap-4 text-sm text-[#4b5563] md:flex">

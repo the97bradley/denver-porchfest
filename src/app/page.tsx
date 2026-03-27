@@ -144,9 +144,6 @@ export default async function Home() {
                 Join the Neighborhood Team
               </a>
             </div>
-            <p className="text-sm text-[#6b7280]">
-              Bring a lawn chair, walking shoes, and your favorite local coffee.
-            </p>
           </div>
 
           <div className="rounded-2xl border border-[#cfe0ff] bg-white p-6 shadow-sm">

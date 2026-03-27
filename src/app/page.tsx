@@ -7,7 +7,7 @@ import { hasSanityConfig } from "@/sanity/env";
 import { sanityClient } from "@/sanity/lib/client";
 
 const hostApplicationUrl =
-  "https://forms.gle/REPLACE_WITH_HOST_APPLICATION_FORM";
+  "https://docs.google.com/forms/d/e/1FAIpQLSd7XD6FEIOBmv6uYaSdJf8daQmZf2d54nl3Y6_qpMLz3532uQ/viewform?usp=pp_url";
 const bandApplicationUrl =
   "https://docs.google.com/forms/d/1S-mjWFTPde5L7l3qbkOzy-jtTKCzqIQLMw0alEM5zAE/viewform";
 const vendorYardApplicationUrl =
@@ -242,7 +242,7 @@ export default async function Home() {
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             <article className="rounded-xl border border-[#dbe7ff] bg-white p-5">
-              <h3 className="text-lg font-semibold text-[#1f2937]">Host Application</h3>
+              <h3 className="text-lg font-semibold text-[#1f2937]">Music Host Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
                 Open your porch, yard, or shared outdoor space to support local
                 music in your neighborhood.
@@ -258,7 +258,7 @@ export default async function Home() {
             </article>
 
             <article className="rounded-xl border border-[#dbe7ff] bg-white p-5">
-              <h3 className="text-lg font-semibold text-[#1f2937]">Band Application</h3>
+              <h3 className="text-lg font-semibold text-[#1f2937]">Artist Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
                 Submit your act for consideration in the 2026 Denver Porchfest
                 lineup.

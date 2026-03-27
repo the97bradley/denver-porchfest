@@ -45,11 +45,12 @@ export default function Home() {
               Saturday, October 10 · Denver, CO
             </p>
             <h1 className="text-4xl font-extrabold leading-tight text-[#1f2937] sm:text-5xl">
-              Denver&apos;s neighborhood music day.
+              A front-porch music day for Denver neighbors.
             </h1>
             <p className="max-w-xl text-lg text-[#4b5563]">
-              Porchfest brings local artists, neighbors, and small businesses
-              together for a walkable, all-ages celebration across Denver.
+              Walk the blocks, meet your neighbors, discover local artists, and
+              spend the day outside. Denver Porchfest is community-first,
+              family-friendly, and free for everyone.
             </p>
             <div className="flex flex-wrap gap-3">
               <a
@@ -59,12 +60,15 @@ export default function Home() {
                 See Lineup
               </a>
               <a
-                href="#applications"
+                href="#volunteer"
                 className="rounded-full border border-[#c9b69d] bg-white px-5 py-3 text-sm font-bold text-[#374151] transition hover:bg-[#f3eee4]"
               >
-                Apply to Participate
+                Join the Neighborhood Team
               </a>
             </div>
+            <p className="text-sm text-[#6b7280]">
+              Bring a lawn chair, walking shoes, and your favorite local coffee.
+            </p>
           </div>
 
           <div className="rounded-2xl border border-[#d8cab3] bg-white p-6 shadow-sm">
@@ -96,7 +100,8 @@ export default function Home() {
           <div className="mx-auto w-full max-w-6xl px-6 py-14">
             <h2 className="mb-2 text-2xl font-bold text-[#1f2937]">Lineup Preview</h2>
             <p className="mb-6 text-[#6b7280]">
-              Early sample acts while full scheduling is in progress.
+              Expect a mix of neighborhood favorites, new local artists, and
+              community collaborations across the day.
             </p>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {lineup.map((act) => (
@@ -116,7 +121,8 @@ export default function Home() {
         <section id="schedule" className="mx-auto w-full max-w-6xl px-6 py-14">
           <h2 className="mb-2 text-2xl font-bold text-[#1f2937]">Neighborhood Porches</h2>
           <p className="mb-6 text-[#6b7280]">
-            Final map and full running order will be posted closer to event day.
+            Think of each porch as a mini stage hosted by your neighbors. Full
+            map and timing will be posted closer to event day.
           </p>
           <div className="grid gap-4 md:grid-cols-2">
             {venues.map((venue) => (
@@ -137,11 +143,11 @@ export default function Home() {
         <section id="volunteer" className="border-y border-[#e3d8c5] bg-[#f2eadf]">
           <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-14 md:grid-cols-2">
             <div>
-              <h2 className="text-2xl font-bold text-[#1f2937]">Volunteer with us</h2>
+              <h2 className="text-2xl font-bold text-[#1f2937]">Neighborhood Team</h2>
               <p className="mt-3 text-[#4b5563]">
-                Help with artist support, wayfinding, setup, and neighborhood
-                logistics. Perfect for music lovers who want to make Porchfest
-                happen.
+                We’re looking for block captains, setup helpers, greeters,
+                artist runners, and cleanup crew. If you care about community,
+                there’s a role for you.
               </p>
             </div>
             <VolunteerSignupForm />
@@ -149,10 +155,10 @@ export default function Home() {
         </section>
 
         <section id="applications" className="mx-auto w-full max-w-6xl px-6 py-14">
-          <h2 className="text-2xl font-bold text-[#1f2937]">Applications</h2>
+          <h2 className="text-2xl font-bold text-[#1f2937]">Be Part of Porchfest</h2>
           <p className="mt-3 max-w-3xl text-[#4b5563]">
-            Interested in hosting a porch or performing as an artist? Apply
-            using the forms below.
+            Whether you have a great porch or a great setlist, we’d love to
+            hear from you.
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -191,11 +197,10 @@ export default function Home() {
         </section>
 
         <section id="sponsor" className="mx-auto w-full max-w-6xl px-6 pb-14">
-          <h2 className="text-2xl font-bold text-[#1f2937]">Sponsors & Partners</h2>
+          <h2 className="text-2xl font-bold text-[#1f2937]">Local Sponsors & Partners</h2>
           <p className="mt-3 max-w-2xl text-[#4b5563]">
-            We&apos;re building a community-first event with support from local
-            businesses. Sponsorship packages include stage mentions, web
-            placement, and day-of activations.
+            Porchfest is powered by neighborhood businesses, community groups,
+            and local supporters who want to invest in Denver&apos;s creative scene.
           </p>
           <a
             href="mailto:sponsors@denverporchfest.com"

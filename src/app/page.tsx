@@ -280,9 +280,9 @@ export default function Home() {
           <div className="mx-auto w-full max-w-6xl px-6 py-14">
             <h2 className="text-2xl font-bold text-[#1f2937]">The Neighborhood</h2>
             <p className="mt-3 max-w-3xl text-[#4b5563]">
-              Bars, restaurants, and local gathering spots in the event area.
-              Featured spots are within the event footprint (1st–5th, Broadway
-              to Santa Fe) or within about a two-block buffer.
+              Bars, restaurants, and local hangouts in and around the event
+              area. Featured spots are either inside the footprint or within a
+              couple blocks.
             </p>
 
             <div className="mt-6">

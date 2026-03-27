@@ -227,7 +227,6 @@ export default function NeighborhoodCarousel() {
               </p>
               <h3 className="mt-1 font-semibold text-[#1f2937]">{spot.name}</h3>
               <p className="mt-1 text-sm text-[#6b7280]">{spot.note}</p>
-              <p className="mt-2 text-xs text-[#9ca3af]">Photo source: Google Places</p>
             </a>
           ))}
         </div>

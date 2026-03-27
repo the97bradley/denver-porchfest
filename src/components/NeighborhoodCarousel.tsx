@@ -9,6 +9,7 @@ type Spot = {
   note: string;
   mapsUrl: string;
   photoQuery: string;
+  imageUrl?: string;
 };
 
 const spots: Spot[] = [
@@ -19,6 +20,8 @@ const spots: Spot[] = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Town+Hall+Collaborative+Denver",
     photoQuery: "Town Hall Collaborative Denver",
+    imageUrl:
+      "https://lh3.googleusercontent.com/p/AF1QipNPdmB8G51ntX6NbF40ccmrQ7mcEM4irrIrVsVU=s1360-w1360-h1020-rw",
   },
   {
     name: "Black Sky Brewery",
@@ -201,7 +204,10 @@ export default function NeighborhoodCarousel() {
               {!imageFailed[spot.name] ? (
                 <div className="relative mb-3 h-28 overflow-hidden rounded-lg border border-[#dbe7ff]">
                   <Image
-                    src={`/api/business-photo?q=${encodeURIComponent(spot.photoQuery)}`}
+                    src={
+                      spot.imageUrl ||
+                      `/api/business-photo?q=${encodeURIComponent(spot.photoQuery)}`
+                    }
                     alt={`${spot.name} storefront`}
                     fill
                     unoptimized

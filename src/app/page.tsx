@@ -1,3 +1,5 @@
+import VolunteerSignupForm from "@/components/VolunteerSignupForm";
+
 const lineup = [
   { name: "The Sidewalk Saints", genre: "Indie Folk", time: "12:00 PM" },
   { name: "Mile High Brass", genre: "Brass Funk", time: "1:15 PM" },
@@ -13,6 +15,11 @@ const venues = [
   { name: "Porch C", area: "Capitol Hill", acts: 3 },
   { name: "Porch D", area: "Cheesman Park", acts: 4 },
 ];
+
+const hostApplicationUrl =
+  "https://forms.gle/REPLACE_WITH_HOST_APPLICATION_FORM";
+const bandApplicationUrl =
+  "https://forms.gle/REPLACE_WITH_BAND_APPLICATION_FORM";
 
 export default function Home() {
   return (
@@ -136,22 +143,49 @@ export default function Home() {
                 happen.
               </p>
             </div>
-            <form className="space-y-3 rounded-xl border border-white/10 bg-neutral-950 p-5">
-              <input
-                className="w-full rounded-lg border border-white/20 bg-neutral-900 px-3 py-2"
-                placeholder="Name"
-              />
-              <input
-                className="w-full rounded-lg border border-white/20 bg-neutral-900 px-3 py-2"
-                placeholder="Email"
-              />
-              <button
-                type="button"
-                className="w-full rounded-lg bg-emerald-400 px-4 py-2 font-semibold text-neutral-900"
+            <VolunteerSignupForm />
+          </div>
+        </section>
+
+        <section id="applications" className="mx-auto w-full max-w-6xl px-6 py-14">
+          <h2 className="text-2xl font-bold">Applications</h2>
+          <p className="mt-3 max-w-3xl text-neutral-300">
+            Interested in hosting a porch or performing as an artist? Apply
+            using the forms below.
+          </p>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <article className="rounded-xl border border-white/10 bg-neutral-900 p-5">
+              <h3 className="text-lg font-semibold">Host Application</h3>
+              <p className="mt-2 text-sm text-neutral-300">
+                Open your porch, yard, or shared outdoor space to support local
+                music in your neighborhood.
+              </p>
+              <a
+                href={hostApplicationUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-block rounded-full bg-white px-4 py-2 text-sm font-bold text-neutral-900 transition hover:bg-neutral-200"
               >
-                Join Volunteer List
-              </button>
-            </form>
+                Apply to Host
+              </a>
+            </article>
+
+            <article className="rounded-xl border border-white/10 bg-neutral-900 p-5">
+              <h3 className="text-lg font-semibold">Band Application</h3>
+              <p className="mt-2 text-sm text-neutral-300">
+                Submit your act for consideration in the 2026 Denver Porchfest
+                lineup.
+              </p>
+              <a
+                href={bandApplicationUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-block rounded-full bg-emerald-400 px-4 py-2 text-sm font-bold text-neutral-900 transition hover:bg-emerald-300"
+              >
+                Apply as an Artist
+              </a>
+            </article>
           </div>
         </section>
 

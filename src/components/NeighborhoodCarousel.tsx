@@ -160,10 +160,7 @@ export default function NeighborhoodCarousel() {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between">
-        <p className="text-xs text-[#8b5e34]">
-          {visibleSpots.length} featured businesses · use arrows to slide
-        </p>
+      <div className="mb-4 flex items-center justify-end">
         <div className="flex gap-2">
           <button
             type="button"
@@ -194,9 +191,12 @@ export default function NeighborhoodCarousel() {
           className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
         >
           {visibleSpots.map((spot, index) => (
-            <article
+            <a
               key={spot.name}
-              className="w-[85%] shrink-0 snap-start rounded-xl border border-[#e6dccb] bg-white p-4 sm:w-[48%] lg:w-[24%]"
+              href={spot.mapsUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="block w-[85%] shrink-0 snap-start rounded-xl border border-[#e6dccb] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-sm sm:w-[48%] lg:w-[24%]"
             >
               {!imageFailed[spot.name] ? (
                 <div className="relative mb-3 h-28 overflow-hidden rounded-lg border border-[#e6dccb]">
@@ -221,18 +221,8 @@ export default function NeighborhoodCarousel() {
               </p>
               <h3 className="mt-1 font-semibold text-[#1f2937]">{spot.name}</h3>
               <p className="mt-1 text-sm text-[#6b7280]">{spot.note}</p>
-              <a
-                href={spot.mapsUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-3 inline-block text-sm font-semibold text-[#3b7a57] hover:underline"
-              >
-                View on Google Maps
-              </a>
-              <p className="mt-1 text-xs text-[#9ca3af]">
-                Photo source: Google Places
-              </p>
-            </article>
+              <p className="mt-2 text-xs text-[#9ca3af]">Photo source: Google Places</p>
+            </a>
           ))}
         </div>
       )}

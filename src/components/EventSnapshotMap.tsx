@@ -4,7 +4,17 @@ import { useEffect, useRef } from "react";
 
 declare global {
   interface Window {
-    google?: typeof google;
+    google?: {
+      maps: {
+        Map: new (
+          element: HTMLElement,
+          options: Record<string, unknown>,
+        ) => unknown;
+        Polygon: new (options: Record<string, unknown>) => {
+          setMap: (map: unknown) => void;
+        };
+      };
+    };
   }
 }
 

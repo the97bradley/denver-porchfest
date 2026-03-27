@@ -23,6 +23,35 @@ const hostApplicationUrl =
 const bandApplicationUrl =
   "https://forms.gle/REPLACE_WITH_BAND_APPLICATION_FORM";
 
+const eventJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "MusicFestival",
+  name: "Denver Porchfest",
+  description:
+    "A front-porch music day for Denver neighbors with local artists, neighborhood porches, and community partners.",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  eventStatus: "https://schema.org/EventScheduled",
+  startDate: "2026-10-10T12:00:00-06:00",
+  endDate: "2026-10-10T20:00:00-06:00",
+  isAccessibleForFree: true,
+  location: {
+    "@type": "Place",
+    name: "Denver Porchfest Footprint",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Denver",
+      addressRegion: "CO",
+      addressCountry: "US",
+    },
+  },
+  organizer: {
+    "@type": "Organization",
+    name: "Denver Porchfest",
+    url: "https://denverporchfest.com",
+  },
+  url: "https://denverporchfest.com",
+};
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#f8f5ef] text-[#1f2937]">
@@ -41,6 +70,10 @@ export default function Home() {
       </header>
 
       <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
+        />
         <section className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:py-20">
           <div className="space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#8b5e34]">

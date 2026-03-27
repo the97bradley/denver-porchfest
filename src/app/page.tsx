@@ -10,8 +10,8 @@ const hostApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSd7XD6FEIOBmv6uYaSdJf8daQmZf2d54nl3Y6_qpMLz3532uQ/viewform?usp=pp_url";
 const bandApplicationUrl =
   "https://docs.google.com/forms/d/1S-mjWFTPde5L7l3qbkOzy-jtTKCzqIQLMw0alEM5zAE/viewform";
-const vendorYardApplicationUrl =
-  "https://forms.gle/REPLACE_WITH_VENDOR_YARD_APPLICATION_FORM";
+const vendorHostApplicationUrl =
+  "https://forms.gle/REPLACE_WITH_VENDOR_HOST_APPLICATION_FORM";
 
 type EventSettings = {
   eventName?: string;
@@ -274,13 +274,12 @@ export default async function Home() {
             </article>
 
             <article className="rounded-xl border border-[#dbe7ff] bg-white p-5">
-              <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Yard Application</h3>
+              <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Host Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
-                Have space in your yard and willing to host local vendors during
-                the event? Let us know.
+                Willing to host local vendors during the event? Let us know.
               </p>
               <a
-                href={vendorYardApplicationUrl}
+                href={vendorHostApplicationUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-4 inline-block rounded-full bg-[#7c3aed] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#6d28d9]"

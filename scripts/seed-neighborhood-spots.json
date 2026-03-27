@@ -1,0 +1,134 @@
+[
+  {
+    "_id": "neighborhood-spot-town-hall-collaborative",
+    "_type": "neighborhoodSpot",
+    "name": "Town Hall Collaborative",
+    "type": "Food Hall & Bar",
+    "note": "High-traffic local gathering space near Broadway.",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Town+Hall+Collaborative+Denver",
+    "photoQuery": "Town Hall Collaborative Denver",
+    "featured": true,
+    "sortOrder": 1
+  },
+  {
+    "_id": "neighborhood-spot-black-sky-brewery",
+    "_type": "neighborhoodSpot",
+    "name": "Black Sky Brewery",
+    "type": "Brewery",
+    "note": "Neighborhood brewery and taproom close to Santa Fe.",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Black+Sky+Brewery+Denver",
+    "photoQuery": "Black Sky Brewery Denver",
+    "featured": true,
+    "sortOrder": 2
+  },
+  {
+    "_id": "neighborhood-spot-baker-market",
+    "_type": "neighborhoodSpot",
+    "name": "Baker Market",
+    "type": "Market & Eatery",
+    "note": "Casual local stop for food and quick grabs.",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Baker+Market+Denver",
+    "photoQuery": "Baker Market Denver",
+    "featured": true,
+    "sortOrder": 3
+  },
+  {
+    "_id": "neighborhood-spot-smokin-yards-bbq",
+    "_type": "neighborhoodSpot",
+    "name": "Smokin Yards BBQ",
+    "type": "Restaurant",
+    "note": "Classic BBQ option on the edge of the footprint.",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Smokin+Yards+BBQ+Denver",
+    "photoQuery": "Smokin Yards BBQ Denver",
+    "featured": true,
+    "sortOrder": 4
+  },
+  {
+    "_id": "neighborhood-spot-bar-404",
+    "_type": "neighborhoodSpot",
+    "name": "Bar 404",
+    "type": "Bar",
+    "note": "Neighborhood bar option right off Broadway.",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bar+404+Denver",
+    "photoQuery": "Bar 404 Denver",
+    "featured": true,
+    "sortOrder": 5
+  },
+  {
+    "_id": "neighborhood-spot-postino-broadway",
+    "_type": "neighborhoodSpot",
+    "name": "Postino Broadway",
+    "type": "Wine Cafe",
+    "note": "Popular patio and wine stop in the district.",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Postino+Broadway+Denver",
+    "photoQuery": "Postino Broadway Denver",
+    "featured": true,
+    "sortOrder": 6
+  },
+  {
+    "_id": "neighborhood-spot-adventure-time",
+    "_type": "neighborhoodSpot",
+    "name": "Adventure Time",
+    "type": "Bar",
+    "note": "Included per organizer list (please confirm final listing name).",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Adventure+Time+Denver+bar",
+    "photoQuery": "Adventure Time bar Denver",
+    "featured": true,
+    "sortOrder": 7
+  },
+  {
+    "_id": "neighborhood-spot-sputnik",
+    "_type": "neighborhoodSpot",
+    "name": "Sputnik",
+    "type": "Bar & Grill",
+    "note": "Longtime South Broadway neighborhood staple.",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sputnik+Denver",
+    "photoQuery": "Sputnik Denver",
+    "featured": true,
+    "sortOrder": 8
+  },
+  {
+    "_id": "neighborhood-spot-trve-brewing-company",
+    "_type": "neighborhoodSpot",
+    "name": "TRVE Brewing Company",
+    "type": "Brewery",
+    "note": "Local craft stop within the broader two-block buffer.",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=TRVE+Brewing+Company+Denver",
+    "photoQuery": "TRVE Brewing Company Denver",
+    "featured": true,
+    "sortOrder": 9
+  },
+  {
+    "_id": "neighborhood-spot-historians-ale-house",
+    "_type": "neighborhoodSpot",
+    "name": "Historians Ale House",
+    "type": "Bar & Restaurant",
+    "note": "Large neighborhood pub space on South Broadway.",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Historians+Ale+House+Denver",
+    "photoQuery": "Historians Ale House Denver",
+    "featured": true,
+    "sortOrder": 10
+  },
+  {
+    "_id": "neighborhood-spot-illegal-petes-broadway",
+    "_type": "neighborhoodSpot",
+    "name": "Illegal Pete’s (Broadway)",
+    "type": "Restaurant & Bar",
+    "note": "Fast, easy stop for festival foot traffic.",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Illegal+Petes+Broadway+Denver",
+    "photoQuery": "Illegal Petes Broadway Denver",
+    "featured": true,
+    "sortOrder": 11
+  },
+  {
+    "_id": "neighborhood-spot-baere-brewing-company",
+    "_type": "neighborhoodSpot",
+    "name": "BAERE Brewing Company",
+    "type": "Brewery",
+    "note": "Small-batch neighborhood brewery near the event area.",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=BAERE+Brewing+Company+Denver",
+    "photoQuery": "BAERE Brewing Company Denver",
+    "featured": true,
+    "sortOrder": 12
+  }
+]

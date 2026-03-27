@@ -19,8 +19,8 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Denver Porchfest | Official Site",
-    template: "%s | Denver Porchfest",
+    default: "Denver PorchFest",
+    template: "%s | Denver PorchFest",
   },
   description:
     "Denver Porchfest official site: lineup, neighborhood porches, local businesses, volunteer signup, and sponsor information.",

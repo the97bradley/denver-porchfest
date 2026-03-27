@@ -42,8 +42,8 @@ export default function EventSnapshotMap() {
       const eventBoundary = [
         { lat: 39.7183, lng: -104.9872 }, // 1st & Broadway (approx)
         { lat: 39.7183, lng: -104.9988 }, // 1st & Santa Fe (approx)
-        { lat: 39.7254, lng: -104.9988 }, // 5th & Santa Fe (approx)
-        { lat: 39.7254, lng: -104.9872 }, // 5th & Broadway (approx)
+        { lat: 39.7271, lng: -104.9988 }, // 6th & Santa Fe (approx)
+        { lat: 39.7271, lng: -104.9872 }, // 6th & Broadway (approx)
       ];
 
       const polygon = new window.google.maps.Polygon({

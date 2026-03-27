@@ -165,7 +165,7 @@ export default function NeighborhoodCarousel() {
           <button
             type="button"
             onClick={() => slide("prev")}
-            className="rounded-full border border-[#c9b69d] bg-white px-3 py-1 text-sm font-semibold text-[#374151] hover:bg-[#f3eee4]"
+            className="rounded-full border border-[#bfdbfe] bg-white px-3 py-1 text-sm font-semibold text-[#374151] hover:bg-[#eef5ff]"
             aria-label="Previous businesses"
           >
             ←
@@ -173,7 +173,7 @@ export default function NeighborhoodCarousel() {
           <button
             type="button"
             onClick={() => slide("next")}
-            className="rounded-full border border-[#c9b69d] bg-white px-3 py-1 text-sm font-semibold text-[#374151] hover:bg-[#f3eee4]"
+            className="rounded-full border border-[#bfdbfe] bg-white px-3 py-1 text-sm font-semibold text-[#374151] hover:bg-[#eef5ff]"
             aria-label="Next businesses"
           >
             →
@@ -182,7 +182,7 @@ export default function NeighborhoodCarousel() {
       </div>
 
       {visibleSpots.length === 0 ? (
-        <p className="rounded-xl border border-[#e6dccb] bg-white p-4 text-sm text-[#6b7280]">
+        <p className="rounded-xl border border-[#dbe7ff] bg-white p-4 text-sm text-[#6b7280]">
           We&apos;re refreshing local listings right now. Check back shortly.
         </p>
       ) : (
@@ -196,10 +196,10 @@ export default function NeighborhoodCarousel() {
               href={spot.mapsUrl}
               target="_blank"
               rel="noreferrer"
-              className="block w-[85%] shrink-0 snap-start rounded-xl border border-[#e6dccb] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-sm sm:w-[48%] lg:w-[calc((100%-3rem)/4)]"
+              className="block w-[85%] shrink-0 snap-start rounded-xl border border-[#dbe7ff] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-sm sm:w-[48%] lg:w-[calc((100%-3rem)/4)]"
             >
               {!imageFailed[spot.name] ? (
-                <div className="relative mb-3 h-28 overflow-hidden rounded-lg border border-[#e6dccb]">
+                <div className="relative mb-3 h-28 overflow-hidden rounded-lg border border-[#dbe7ff]">
                   <Image
                     src={`/api/business-photo?q=${encodeURIComponent(spot.photoQuery)}`}
                     alt={`${spot.name} storefront`}
@@ -216,7 +216,7 @@ export default function NeighborhoodCarousel() {
                   className={`mb-3 h-28 rounded-lg bg-gradient-to-br ${colors[index % colors.length]}`}
                 />
               )}
-              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#8b5e34]">
+              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#2563eb]">
                 {spot.type}
               </p>
               <h3 className="mt-1 font-semibold text-[#1f2937]">{spot.name}</h3>

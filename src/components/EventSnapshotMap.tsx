@@ -81,7 +81,7 @@ export default function EventSnapshotMap() {
 
   if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
     return (
-      <p className="mt-3 rounded-lg border border-[#eee4d3] bg-[#fffaf1] p-3 text-xs text-[#6b7280]">
+      <p className="mt-3 rounded-lg border border-[#dbe7ff] bg-[#f8fbff] p-3 text-xs text-[#6b7280]">
         Add <code>NEXT_PUBLIC_GOOGLE_MAPS_API_KEY</code> to enable the event area
         map overlay.
       </p>
@@ -89,7 +89,7 @@ export default function EventSnapshotMap() {
   }
 
   return (
-    <div className="mt-4 overflow-hidden rounded-xl border border-[#e6dccb] bg-white">
+    <div className="mt-4 overflow-hidden rounded-xl border border-[#dbe7ff] bg-white">
       <div ref={mapRef} className="h-80 w-full" />
     </div>
   );

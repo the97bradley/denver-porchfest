@@ -87,10 +87,10 @@ export default async function Home() {
   const s = { ...defaultEventSettings, ...(cmsSettings || {}) };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#fff7ea] via-[#fdf4e8] to-[#f7efe3] text-[#1f2937]">
-      <header className="border-b border-[#e4b56a] bg-[#fff5de]/90 backdrop-blur">
+    <div className="min-h-screen bg-gradient-to-b from-[#f3f8ff] via-[#eef6ff] to-[#eaf4ff] text-[#1f2937]">
+      <header className="border-b border-[#bfdbfe] bg-[#f8fbff]/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-          <p className="text-base font-bold tracking-[0.08em] text-[#b45309]">
+          <p className="text-base font-bold tracking-[0.08em] text-[#1d4ed8]">
             {s.eventName.toUpperCase()}
           </p>
           <a
@@ -121,7 +121,7 @@ export default async function Home() {
 
         <section className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:py-20">
           <div className="space-y-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#8b5e34]">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#1d4ed8]">
               {s.eventDateLabel}
             </p>
             <h1 className="text-4xl font-extrabold leading-tight text-[#1f2937] sm:text-5xl">
@@ -149,24 +149,24 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-[#d8cab3] bg-white p-6 shadow-sm">
-            <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#8b5e34]">
+          <div className="rounded-2xl border border-[#cfe0ff] bg-white p-6 shadow-sm">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#2563eb]">
               Event Snapshot
             </h2>
             <ul className="space-y-3 text-sm text-[#374151]">
-              <li className="flex justify-between border-b border-[#eee4d3] pb-2">
+              <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Date</span>
                 <span className="font-semibold">Saturday, October 10</span>
               </li>
-              <li className="flex justify-between border-b border-[#eee4d3] pb-2">
+              <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Estimated Acts</span>
                 <span className="font-semibold">{s.estimatedActs}</span>
               </li>
-              <li className="flex justify-between border-b border-[#eee4d3] pb-2">
+              <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Porches / Stages</span>
                 <span className="font-semibold">{s.porchesStages}</span>
               </li>
-              <li className="flex justify-between border-b border-[#eee4d3] pb-2">
+              <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Area</span>
                 <span className="font-semibold">{s.areaLabel}</span>
               </li>
@@ -188,14 +188,14 @@ export default async function Home() {
           />
         </div>
 
-        <section id="lineup" className="border-y border-[#f2c57c] bg-[#fff8ec]">
+        <section id="lineup" className="border-y border-[#bfdbfe] bg-[#f4f9ff]">
           <div className="mx-auto w-full max-w-6xl px-6 py-14">
             <h2 className="mb-2 text-2xl font-bold text-[#1f2937]">Lineup Preview</h2>
             <p className="mb-6 text-[#6b7280]">
               Expect a mix of neighborhood favorites, new local artists, and
               community collaborations across the day.
             </p>
-            <div className="rounded-xl border border-[#e6dccb] bg-white p-6 text-center">
+            <div className="rounded-xl border border-[#dbe7ff] bg-white p-6 text-center">
               <p className="text-lg font-semibold text-[#1f2937]">TBA</p>
               <p className="mt-1 text-sm text-[#6b7280]">
                 Full lineup and set times coming soon.
@@ -211,7 +211,7 @@ export default async function Home() {
             across the footprint between 1st & 5th Ave from Broadway to Santa
             Fe. Full map and timing will be posted closer to event day.
           </p>
-          <div className="rounded-xl border border-[#e6dccb] bg-white p-6 text-center">
+          <div className="rounded-xl border border-[#dbe7ff] bg-white p-6 text-center">
             <p className="text-lg font-semibold text-[#1f2937]">TBA</p>
             <p className="mt-1 text-sm text-[#6b7280]">
               Porch locations and neighborhood stage details coming soon.
@@ -219,7 +219,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section id="volunteer" className="border-y border-[#f0b8d8] bg-[#fff0f7]">
+        <section id="volunteer" className="border-y border-[#c7f0e1] bg-[#f0fffa]">
           <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-14 md:grid-cols-2">
             <div>
               <h2 className="text-2xl font-bold text-[#1f2937]">Neighborhood Team</h2>
@@ -241,7 +241,7 @@ export default async function Home() {
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <article className="rounded-xl border border-[#e6dccb] bg-white p-5">
+            <article className="rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Host Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
                 Open your porch, yard, or shared outdoor space to support local
@@ -257,7 +257,7 @@ export default async function Home() {
               </a>
             </article>
 
-            <article className="rounded-xl border border-[#e6dccb] bg-white p-5">
+            <article className="rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Band Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
                 Submit your act for consideration in the 2026 Denver Porchfest
@@ -273,7 +273,7 @@ export default async function Home() {
               </a>
             </article>
 
-            <article className="rounded-xl border border-[#e6dccb] bg-white p-5">
+            <article className="rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Yard Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
                 Have space in your yard and willing to host local vendors during
@@ -283,7 +283,7 @@ export default async function Home() {
                 href={vendorYardApplicationUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 inline-block rounded-full bg-[#8b5e34] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#734a27]"
+                className="mt-4 inline-block rounded-full bg-[#7c3aed] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#6d28d9]"
               >
                 Apply to Host Vendors
               </a>
@@ -317,7 +317,7 @@ export default async function Home() {
           </p>
           <a
             href="mailto:sponsors@denverporchfest.com"
-            className="mt-5 inline-block rounded-full border border-[#c9b69d] bg-white px-5 py-3 text-sm font-bold text-[#374151] transition hover:bg-[#f3eee4]"
+            className="mt-5 inline-block rounded-full border border-[#bfdbfe] bg-white px-5 py-3 text-sm font-bold text-[#374151] transition hover:bg-[#eef5ff]"
           >
             Request Sponsorship Deck
           </a>

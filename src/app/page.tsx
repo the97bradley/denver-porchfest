@@ -45,6 +45,9 @@ export default function Home() {
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#8b5e34]">
               Saturday, October 10 · Denver, CO
             </p>
+            <p className="text-sm text-[#6b7280]">
+              Event footprint: between 1st & 5th Ave, from Broadway to Santa Fe.
+            </p>
             <h1 className="text-4xl font-extrabold leading-tight text-[#1f2937] sm:text-5xl">
               A front-porch music day for Denver neighbors.
             </h1>
@@ -89,6 +92,10 @@ export default function Home() {
                 <span>Porches / Stages</span>
                 <span className="font-semibold">15+ neighborhood sites</span>
               </li>
+              <li className="flex justify-between border-b border-[#eee4d3] pb-2">
+                <span>Area</span>
+                <span className="font-semibold">1st–5th, Broadway to Santa Fe</span>
+              </li>
               <li className="flex justify-between">
                 <span>Admission</span>
                 <span className="font-semibold text-[#3b7a57]">Free</span>
@@ -131,8 +138,9 @@ export default function Home() {
         <section id="schedule" className="mx-auto w-full max-w-6xl px-6 py-14">
           <h2 className="mb-2 text-2xl font-bold text-[#1f2937]">Neighborhood Porches</h2>
           <p className="mb-6 text-[#6b7280]">
-            Think of each porch as a mini stage hosted by your neighbors. Full
-            map and timing will be posted closer to event day.
+            Think of each porch as a mini stage hosted by your neighbors,
+            across the footprint between 1st & 5th Ave from Broadway to Santa
+            Fe. Full map and timing will be posted closer to event day.
           </p>
           <div className="grid gap-4 md:grid-cols-2">
             {venues.map((venue) => (

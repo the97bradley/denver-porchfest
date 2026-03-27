@@ -33,7 +33,7 @@ export default function EventSnapshotMap() {
       const center = { lat: 39.7208, lng: -104.9927 };
       const map = new window.google.maps.Map(mapRef.current, {
         center,
-        zoom: 15,
+        zoom: 14,
         mapTypeControl: false,
         streetViewControl: false,
         fullscreenControl: false,

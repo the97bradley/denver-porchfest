@@ -23,12 +23,6 @@ export default function SponsorsPage() {
         >
           Request Sponsorship Deck
         </a>
-        <a
-          href="/host-family-sponsorship"
-          className="inline-block rounded-full bg-[#2563eb] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#1d4ed8]"
-        >
-          View Host/Family Sponsorship Sheet
-        </a>
       </div>
     </main>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Spot = {
   name: string;
@@ -118,6 +118,36 @@ const colors = [
 export default function NeighborhoodCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [imageFailed, setImageFailed] = useState<Record<string, boolean>>({});
+  const [visibleSpots, setVisibleSpots] = useState<Spot[]>(spots);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function filterClosedBusinesses() {
+      const checks = await Promise.all(
+        spots.map(async (spot) => {
+          try {
+            const res = await fetch(
+              `/api/place-open?q=${encodeURIComponent(spot.photoQuery)}`,
+            );
+            const json = (await res.json()) as { open?: boolean };
+            return { spot, open: json.open !== false };
+          } catch {
+            return { spot, open: true };
+          }
+        }),
+      );
+
+      if (cancelled) return;
+      setVisibleSpots(checks.filter((c) => c.open).map((c) => c.spot));
+    }
+
+    filterClosedBusinesses();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   function slide(direction: "prev" | "next") {
     if (!trackRef.current) return;
@@ -132,7 +162,7 @@ export default function NeighborhoodCarousel() {
     <div>
       <div className="mb-4 flex items-center justify-between">
         <p className="text-xs text-[#8b5e34]">
-          {spots.length} featured businesses · use arrows to slide
+          {visibleSpots.length} featured businesses · use arrows to slide
         </p>
         <div className="flex gap-2">
           <button
@@ -154,50 +184,58 @@ export default function NeighborhoodCarousel() {
         </div>
       </div>
 
-      <div
-        ref={trackRef}
-        className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
-      >
-        {spots.map((spot, index) => (
-          <article
-            key={spot.name}
-            className="w-[85%] shrink-0 snap-start rounded-xl border border-[#e6dccb] bg-white p-4 sm:w-[48%] lg:w-[24%]"
-          >
-            {!imageFailed[spot.name] ? (
-              <div className="relative mb-3 h-28 overflow-hidden rounded-lg border border-[#e6dccb]">
-                <Image
-                  src={`/api/business-photo?q=${encodeURIComponent(spot.photoQuery)}`}
-                  alt={`${spot.name} storefront`}
-                  fill
-                  unoptimized
-                  className="object-cover"
-                  onError={() =>
-                    setImageFailed((prev) => ({ ...prev, [spot.name]: true }))
-                  }
-                />
-              </div>
-            ) : (
-              <div
-                className={`mb-3 h-28 rounded-lg bg-gradient-to-br ${colors[index % colors.length]}`}
-              />
-            )}
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#8b5e34]">
-              {spot.type}
-            </p>
-            <h3 className="mt-1 font-semibold text-[#1f2937]">{spot.name}</h3>
-            <p className="mt-1 text-sm text-[#6b7280]">{spot.note}</p>
-            <a
-              href={spot.mapsUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-3 inline-block text-sm font-semibold text-[#3b7a57] hover:underline"
+      {visibleSpots.length === 0 ? (
+        <p className="rounded-xl border border-[#e6dccb] bg-white p-4 text-sm text-[#6b7280]">
+          We&apos;re refreshing local listings right now. Check back shortly.
+        </p>
+      ) : (
+        <div
+          ref={trackRef}
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
+        >
+          {visibleSpots.map((spot, index) => (
+            <article
+              key={spot.name}
+              className="w-[85%] shrink-0 snap-start rounded-xl border border-[#e6dccb] bg-white p-4 sm:w-[48%] lg:w-[24%]"
             >
-              View on Google Maps
-            </a>
-            <p className="mt-1 text-xs text-[#9ca3af]">Photo source: Google Places</p>
-          </article>
-        ))}
-      </div>
+              {!imageFailed[spot.name] ? (
+                <div className="relative mb-3 h-28 overflow-hidden rounded-lg border border-[#e6dccb]">
+                  <Image
+                    src={`/api/business-photo?q=${encodeURIComponent(spot.photoQuery)}`}
+                    alt={`${spot.name} storefront`}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                    onError={() =>
+                      setImageFailed((prev) => ({ ...prev, [spot.name]: true }))
+                    }
+                  />
+                </div>
+              ) : (
+                <div
+                  className={`mb-3 h-28 rounded-lg bg-gradient-to-br ${colors[index % colors.length]}`}
+                />
+              )}
+              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#8b5e34]">
+                {spot.type}
+              </p>
+              <h3 className="mt-1 font-semibold text-[#1f2937]">{spot.name}</h3>
+              <p className="mt-1 text-sm text-[#6b7280]">{spot.note}</p>
+              <a
+                href={spot.mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 inline-block text-sm font-semibold text-[#3b7a57] hover:underline"
+              >
+                View on Google Maps
+              </a>
+              <p className="mt-1 text-xs text-[#9ca3af]">
+                Photo source: Google Places
+              </p>
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

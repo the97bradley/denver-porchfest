@@ -22,6 +22,29 @@ const hostApplicationUrl =
 const bandApplicationUrl =
   "https://forms.gle/REPLACE_WITH_BAND_APPLICATION_FORM";
 
+const neighborhoodSpots = [
+  {
+    name: "Local Bar Spotlight",
+    type: "Bar",
+    note: "Feature one of the neighborhood staples on Broadway.",
+  },
+  {
+    name: "Corner Patio Favorite",
+    type: "Restaurant",
+    note: "Great pre-show and between-set food stop.",
+  },
+  {
+    name: "Community Hangout",
+    type: "Bar & Grill",
+    note: "Perfect meet-up spot for neighbors and volunteers.",
+  },
+  {
+    name: "Late Lunch Spot",
+    type: "Restaurant",
+    note: "Highlight local menus and Porchfest partner specials.",
+  },
+];
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#f8f5ef] text-[#1f2937]">
@@ -241,6 +264,46 @@ export default function Home() {
                 Apply as an Artist
               </a>
             </article>
+          </div>
+        </section>
+
+        <section
+          id="neighborhood"
+          className="border-y border-[#e3d8c5] bg-[#fffdf8]"
+        >
+          <div className="mx-auto w-full max-w-6xl px-6 py-14">
+            <h2 className="text-2xl font-bold text-[#1f2937]">The Neighborhood</h2>
+            <p className="mt-3 max-w-3xl text-[#4b5563]">
+              Bars, restaurants, and local gathering spots in the event area.
+              We&apos;ll feature partners and favorites between Broadway and Santa
+              Fe, from 1st to 5th.
+            </p>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {neighborhoodSpots.map((spot, index) => (
+                <article
+                  key={spot.name}
+                  className="rounded-xl border border-[#e6dccb] bg-white p-4"
+                >
+                  <div
+                    className={`mb-3 h-28 rounded-lg ${
+                      index % 4 === 0
+                        ? "bg-gradient-to-br from-[#ceb18f] to-[#9f7f5a]"
+                        : index % 4 === 1
+                          ? "bg-gradient-to-br from-[#b9cfba] to-[#7da07f]"
+                          : index % 4 === 2
+                            ? "bg-gradient-to-br from-[#c8b6d9] to-[#8f75ac]"
+                            : "bg-gradient-to-br from-[#b6cadf] to-[#6f8fb1]"
+                    }`}
+                  />
+                  <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#8b5e34]">
+                    {spot.type}
+                  </p>
+                  <h3 className="mt-1 font-semibold text-[#1f2937]">{spot.name}</h3>
+                  <p className="mt-1 text-sm text-[#6b7280]">{spot.note}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 

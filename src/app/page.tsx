@@ -96,9 +96,6 @@ export default function Home() {
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#8b5e34]">
               Saturday, October 10 · Denver, CO
             </p>
-            <p className="text-sm text-[#6b7280]">
-              Event footprint: between 1st & 5th Ave, from Broadway to Santa Fe.
-            </p>
             <h1 className="text-4xl font-extrabold leading-tight text-[#1f2937] sm:text-5xl">
               A front-porch music day for Denver neighbors.
             </h1>

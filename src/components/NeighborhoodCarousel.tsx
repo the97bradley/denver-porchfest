@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useRef } from "react";
 
 type Spot = {
   name: string;
@@ -14,25 +14,29 @@ const spots: Spot[] = [
     name: "Town Hall Collaborative",
     type: "Food Hall & Bar",
     note: "High-traffic local gathering space near Broadway.",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Town+Hall+Collaborative+Denver",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Town+Hall+Collaborative+Denver",
   },
   {
     name: "Black Sky Brewery",
     type: "Brewery",
     note: "Neighborhood brewery and taproom close to Santa Fe.",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Black+Sky+Brewery+Denver",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Black+Sky+Brewery+Denver",
   },
   {
     name: "Baker Market",
     type: "Market & Eatery",
     note: "Casual local stop for food and quick grabs.",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Baker+Market+Denver",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Baker+Market+Denver",
   },
   {
     name: "Smokin Yards BBQ",
     type: "Restaurant",
     note: "Classic BBQ option on the edge of the footprint.",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Smokin+Yards+BBQ+Denver",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Smokin+Yards+BBQ+Denver",
   },
   {
     name: "Bar 404",
@@ -44,13 +48,15 @@ const spots: Spot[] = [
     name: "Postino Broadway",
     type: "Wine Cafe",
     note: "Popular patio and wine stop in the district.",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Postino+Broadway+Denver",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Postino+Broadway+Denver",
   },
   {
     name: "Adventure Time",
     type: "Bar",
     note: "Included per organizer list (please confirm final listing name).",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Adventure+Time+Denver+bar",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Adventure+Time+Denver+bar",
   },
   {
     name: "Sputnik",
@@ -62,25 +68,29 @@ const spots: Spot[] = [
     name: "TRVE Brewing Company",
     type: "Brewery",
     note: "Local craft stop within the broader two-block buffer.",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=TRVE+Brewing+Company+Denver",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=TRVE+Brewing+Company+Denver",
   },
   {
     name: "Historians Ale House",
     type: "Bar & Restaurant",
     note: "Large neighborhood pub space on South Broadway.",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Historians+Ale+House+Denver",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Historians+Ale+House+Denver",
   },
   {
     name: "Illegal Pete’s (Broadway)",
     type: "Restaurant & Bar",
     note: "Fast, easy stop for festival foot traffic.",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Illegal+Petes+Broadway+Denver",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Illegal+Petes+Broadway+Denver",
   },
   {
     name: "BAERE Brewing Company",
     type: "Brewery",
     note: "Small-batch neighborhood brewery near the event area.",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=BAERE+Brewing+Company+Denver",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=BAERE+Brewing+Company+Denver",
   },
 ];
 
@@ -92,23 +102,27 @@ const colors = [
 ];
 
 export default function NeighborhoodCarousel() {
-  const perPage = 4;
-  const pages = Math.ceil(spots.length / perPage);
-  const [page, setPage] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
 
-  const visible = useMemo(
-    () => spots.slice(page * perPage, page * perPage + perPage),
-    [page],
-  );
+  function slide(direction: "prev" | "next") {
+    if (!trackRef.current) return;
+    const amount = trackRef.current.clientWidth * 0.92;
+    trackRef.current.scrollBy({
+      left: direction === "next" ? amount : -amount,
+      behavior: "smooth",
+    });
+  }
 
   return (
     <div>
       <div className="mb-4 flex items-center justify-between">
-        <p className="text-xs text-[#8b5e34]">Showing {page * perPage + 1}-{Math.min((page + 1) * perPage, spots.length)} of {spots.length}</p>
+        <p className="text-xs text-[#8b5e34]">
+          {spots.length} featured businesses · use arrows to slide
+        </p>
         <div className="flex gap-2">
           <button
             type="button"
-            onClick={() => setPage((p) => (p - 1 + pages) % pages)}
+            onClick={() => slide("prev")}
             className="rounded-full border border-[#c9b69d] bg-white px-3 py-1 text-sm font-semibold text-[#374151] hover:bg-[#f3eee4]"
             aria-label="Previous businesses"
           >
@@ -116,7 +130,7 @@ export default function NeighborhoodCarousel() {
           </button>
           <button
             type="button"
-            onClick={() => setPage((p) => (p + 1) % pages)}
+            onClick={() => slide("next")}
             className="rounded-full border border-[#c9b69d] bg-white px-3 py-1 text-sm font-semibold text-[#374151] hover:bg-[#f3eee4]"
             aria-label="Next businesses"
           >
@@ -125,14 +139,17 @@ export default function NeighborhoodCarousel() {
         </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {visible.map((spot, index) => (
+      <div
+        ref={trackRef}
+        className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
+      >
+        {spots.map((spot, index) => (
           <article
             key={spot.name}
-            className="rounded-xl border border-[#e6dccb] bg-white p-4"
+            className="w-[85%] shrink-0 snap-start rounded-xl border border-[#e6dccb] bg-white p-4 sm:w-[48%] lg:w-[24%]"
           >
             <div
-              className={`mb-3 h-28 rounded-lg bg-gradient-to-br ${colors[(page * perPage + index) % colors.length]}`}
+              className={`mb-3 h-28 rounded-lg bg-gradient-to-br ${colors[index % colors.length]}`}
             />
             <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#8b5e34]">
               {spot.type}

@@ -9,7 +9,7 @@ import { sanityClient } from "@/sanity/lib/client";
 const hostApplicationUrl =
   "https://forms.gle/REPLACE_WITH_HOST_APPLICATION_FORM";
 const bandApplicationUrl =
-  "https://forms.gle/REPLACE_WITH_BAND_APPLICATION_FORM";
+  "https://docs.google.com/forms/d/1S-mjWFTPde5L7l3qbkOzy-jtTKCzqIQLMw0alEM5zAE/viewform";
 const vendorYardApplicationUrl =
   "https://forms.gle/REPLACE_WITH_VENDOR_YARD_APPLICATION_FORM";
 

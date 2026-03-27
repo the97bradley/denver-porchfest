@@ -20,13 +20,17 @@ Set these env vars in `.env.local`:
 ```bash
 VOLUNTEER_APPS_SCRIPT_URL="https://script.google.com/macros/s/REPLACE_ME/exec"
 GOOGLE_MAPS_API_KEY="YOUR_GOOGLE_MAPS_PLATFORM_KEY"
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="YOUR_BROWSER_SAFE_GOOGLE_MAPS_KEY"
 ```
 
 If `VOLUNTEER_APPS_SCRIPT_URL` is not set, volunteer submissions will return a backend-not-configured error.
 
 If `GOOGLE_MAPS_API_KEY` is not set, business cover images in "The Neighborhood" section will fall back to gradient placeholders.
 
+If `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` is not set, the Event Snapshot polygon map will show a setup message instead of the map.
+
 For Google Maps photos, enable the **Places API (New)** in Google Cloud and use an API key with proper restrictions.
+For the Event Snapshot map, enable **Maps JavaScript API** on the browser-safe key.
 
 ## Application forms
 

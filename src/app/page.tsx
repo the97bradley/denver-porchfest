@@ -1,4 +1,5 @@
 import Image from "next/image";
+import EventSnapshotMap from "@/components/EventSnapshotMap";
 import NeighborhoodCarousel from "@/components/NeighborhoodCarousel";
 import VolunteerSignupForm from "@/components/VolunteerSignupForm";
 
@@ -150,6 +151,7 @@ export default function Home() {
                 <span className="font-semibold text-[#3b7a57]">Free</span>
               </li>
             </ul>
+            <EventSnapshotMap />
           </div>
         </section>
 

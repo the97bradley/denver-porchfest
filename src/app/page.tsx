@@ -87,15 +87,15 @@ export default async function Home() {
   const s = { ...defaultEventSettings, ...(cmsSettings || {}) };
 
   return (
-    <div className="min-h-screen bg-[#f8f5ef] text-[#1f2937]">
-      <header className="border-b border-[#d7cdbd] bg-[#fffaf1]/90 backdrop-blur">
+    <div className="min-h-screen bg-gradient-to-b from-[#fff7ea] via-[#fdf4e8] to-[#f7efe3] text-[#1f2937]">
+      <header className="border-b border-[#e4b56a] bg-[#fff5de]/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-          <p className="text-base font-bold tracking-[0.08em] text-[#8b5e34]">
+          <p className="text-base font-bold tracking-[0.08em] text-[#b45309]">
             {s.eventName.toUpperCase()}
           </p>
           <a
             href="/volunteer"
-            className="rounded-full bg-[#3b7a57] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#2f6447]"
+            className="rounded-full bg-[#1d4ed8] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#1e40af]"
           >
             Volunteer
           </a>
@@ -133,13 +133,13 @@ export default async function Home() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="#lineup"
-                className="rounded-full bg-[#1f2937] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#111827]"
+                className="rounded-full bg-[#ea580c] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#c2410c]"
               >
                 See Lineup
               </a>
               <a
                 href="#volunteer"
-                className="rounded-full border border-[#c9b69d] bg-white px-5 py-3 text-sm font-bold text-[#374151] transition hover:bg-[#f3eee4]"
+                className="rounded-full border border-[#f59e0b] bg-white px-5 py-3 text-sm font-bold text-[#374151] transition hover:bg-[#fff4d6]"
               >
                 Join the Neighborhood Team
               </a>
@@ -188,7 +188,7 @@ export default async function Home() {
           />
         </div>
 
-        <section id="lineup" className="border-y border-[#e3d8c5] bg-[#fffdf8]">
+        <section id="lineup" className="border-y border-[#f2c57c] bg-[#fff8ec]">
           <div className="mx-auto w-full max-w-6xl px-6 py-14">
             <h2 className="mb-2 text-2xl font-bold text-[#1f2937]">Lineup Preview</h2>
             <p className="mb-6 text-[#6b7280]">
@@ -219,7 +219,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section id="volunteer" className="border-y border-[#e3d8c5] bg-[#f2eadf]">
+        <section id="volunteer" className="border-y border-[#f0b8d8] bg-[#fff0f7]">
           <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-14 md:grid-cols-2">
             <div>
               <h2 className="text-2xl font-bold text-[#1f2937]">Neighborhood Team</h2>

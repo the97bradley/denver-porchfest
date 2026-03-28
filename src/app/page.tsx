@@ -166,7 +166,7 @@ export default async function Home() {
               </li>
               <li className="flex justify-between">
                 <span>Admission</span>
-                <span className="font-semibold text-[#3b7a57]">Free</span>
+                <span className="font-semibold text-[#3b7a57]">Free ($10 donation encouraged)</span>
               </li>
             </ul>
             <EventSnapshotMap />

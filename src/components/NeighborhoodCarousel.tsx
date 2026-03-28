@@ -73,6 +73,7 @@ const spots: Spot[] = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Adventure+Time+Denver+bar",
     photoQuery: "Adventure Time bar Denver",
+    imageUrl: "/businesses/adventure-time.webp",
   },
   {
     name: "Sputnik",

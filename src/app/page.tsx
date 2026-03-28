@@ -241,7 +241,7 @@ export default async function Home() {
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <article className="rounded-xl border border-[#dbe7ff] bg-white p-5">
+            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Music Host Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
                 Open your porch, yard, or shared outdoor space to support local
@@ -251,13 +251,13 @@ export default async function Home() {
                 href={hostApplicationUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 inline-block rounded-full bg-[#1f2937] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#111827]"
+                className="mt-auto inline-flex w-fit rounded-full bg-[#1f2937] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#111827]"
               >
                 Apply to Host
               </a>
             </article>
 
-            <article className="rounded-xl border border-[#dbe7ff] bg-white p-5">
+            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Artist Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
                 Submit your act for consideration in the 2026 Denver Porchfest
@@ -267,14 +267,14 @@ export default async function Home() {
                 href={bandApplicationUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 inline-block rounded-full bg-[#3b7a57] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#2f6447]"
+                className="mt-auto inline-flex w-fit rounded-full bg-[#3b7a57] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#2f6447]"
               >
                 Apply as an Artist
               </a>
             </article>
 
 
-            <article className="rounded-xl border border-[#dbe7ff] bg-white p-5">
+            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
                 Food, art, goods, or pop-up experiences that fit Porchfest?
@@ -284,12 +284,12 @@ export default async function Home() {
                 href={vendorApplicationUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 inline-block rounded-full bg-[#ea580c] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#c2410c]"
+                className="mt-auto inline-flex w-fit rounded-full bg-[#ea580c] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#c2410c]"
               >
                 Apply as a Vendor
               </a>
             </article>
-            <article className="rounded-xl border border-[#dbe7ff] bg-white p-5">
+            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Host Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
                 Willing to host local vendors during the event? Let us know.
@@ -298,7 +298,7 @@ export default async function Home() {
                 href={vendorHostApplicationUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 inline-block rounded-full bg-[#7c3aed] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#6d28d9]"
+                className="mt-auto inline-flex w-fit rounded-full bg-[#7c3aed] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#6d28d9]"
               >
                 Apply to Host Vendors
               </a>

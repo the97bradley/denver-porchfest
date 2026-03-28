@@ -146,6 +146,15 @@ const spots: Spot[] = [
     photoQuery: "Parlor Donuts Denver",
     imageUrl: "/businesses/parlor-donuts.webp",
   },
+  {
+    name: "Huckleberry Roasters",
+    type: "Coffee Roaster",
+    note: "Neighborhood coffee stop for pre- and post-show fuel.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Huckleberry+Roasters+Denver",
+    photoQuery: "Huckleberry Roasters Denver",
+    imageUrl: "/businesses/huckleberry-roasters.webp",
+  },
 ];
 
 const colors = [

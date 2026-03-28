@@ -32,7 +32,7 @@ const defaultEventSettings: Required<EventSettings> = {
   heroHeadline: "A front-porch music day for Denver neighbors.",
   heroBody:
     "Walk the blocks, meet your neighbors, discover local artists, and spend the day outside. Denver PorchFest is community-first, family-friendly, and free for everyone.",
-  estimatedActs: "50 artists",
+  estimatedActs: "50+ artists",
   porchesStages: "15+ neighborhood sites",
   areaLabel: "Inside 1st–5th, Broadway to Santa Fe",
 };

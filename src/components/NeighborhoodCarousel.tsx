@@ -55,6 +55,7 @@ const spots: Spot[] = [
     note: "Neighborhood bar option right off Broadway.",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bar+404+Denver",
     photoQuery: "Bar 404 Denver",
+    imageUrl: "/businesses/bar-404.webp",
   },
   {
     name: "Postino Broadway",

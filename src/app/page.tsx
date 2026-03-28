@@ -11,7 +11,7 @@ const hostApplicationUrl =
 const bandApplicationUrl =
   "https://docs.google.com/forms/d/1S-mjWFTPde5L7l3qbkOzy-jtTKCzqIQLMw0alEM5zAE/viewform";
 const vendorHostApplicationUrl =
-  "https://forms.gle/REPLACE_WITH_VENDOR_HOST_APPLICATION_FORM";
+  "https://docs.google.com/forms/d/e/1FAIpQLSdFdtOr5p7PJ1zxT_roKwjgxFCcnhDG0yOmUBWUmKqv3-5Kow/viewform?usp=pp_url";
 
 type EventSettings = {
   eventName?: string;

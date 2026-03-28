@@ -101,22 +101,6 @@ const spots: Spot[] = [
     photoQuery: "Historians Ale House Denver",
     imageUrl: "/businesses/historians-ale-house.webp",
   },
-  {
-    name: "Illegal Pete’s (Broadway)",
-    type: "Restaurant & Bar",
-    note: "Fast, easy stop for festival foot traffic.",
-    mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=Illegal+Petes+Broadway+Denver",
-    photoQuery: "Illegal Petes Broadway Denver",
-  },
-  {
-    name: "BAERE Brewing Company",
-    type: "Brewery",
-    note: "Small-batch neighborhood brewery near the event area.",
-    mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=BAERE+Brewing+Company+Denver",
-    photoQuery: "BAERE Brewing Company Denver",
-  },
 ];
 
 const colors = [

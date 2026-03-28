@@ -44,9 +44,9 @@ const faqItems = [
       "Yes. The event is free for everyone. We do encourage a suggested $10 donation per attendee to help pay musicians and support event operations.",
   },
   {
-    question: "Where is PorchFest happening?",
+    question: "When and where is PorchFest happening?",
     answer:
-      "PorchFest takes place across the Baker neighborhood footprint, generally between 1st and 5th Ave from Broadway to Santa Fe.",
+      "PorchFest takes place on Saturday, October 10 across the Baker neighborhood footprint between 1st and 5th Ave from Broadway to Santa Fe.",
   },
   {
     question: "When will the lineup and set times be announced?",

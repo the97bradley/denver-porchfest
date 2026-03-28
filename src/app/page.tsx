@@ -258,8 +258,8 @@ export default async function Home() {
             <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Application</h3>
               <p className="mt-2 flex-1 text-sm text-[#4b5563]">
-                Food, art, goods, or pop-up experiences that fit PorchFest?
-                Apply to be a featured vendor.
+                Food, art, or pop-up experiences that fit PorchFest?
+                Apply to be a vendor.
               </p>
               <a
                 href={vendorApplicationUrl}

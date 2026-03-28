@@ -216,6 +216,16 @@ const spots: Spot[] = [
       "https://lh3.googleusercontent.com/gps-cs-s/AHVAweq1dhlC3UNWZPJDYiMuVsCSK-YBA9lbMFnIMqBhPw_AyzcboG5oaJsyKbdBGuuxFa8rnyTLw8OQ7_WIJpOz0m71ASuMmUXH_U-OTBakOz7Wnf_RfB0YyCI4RBvxByW4GcykSBKdYA=s1360-w1360-h1020-rw",
   },
   {
+    name: "The Wizard's Chest",
+    type: "Games & Hobby Store",
+    note: "Beloved local shop for games, costumes, and curiosities.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=The+Wizard%27s+Chest+Denver",
+    photoQuery: "The Wizard's Chest Denver",
+    imageUrl:
+      "https://lh3.googleusercontent.com/gps-cs-s/AHVAweq7YqoKDc2SNGkguhH_ZUAwrgNlL6M_rcB4DSkn3joVacmu-QRToS-qvCTJw6iBm4__DNJouh84_oL4Qk6Ih1aKcLlTwtqBH5Ojv24H0Io5697rdPX5LPgz1qywq48hirV-O9JlNg=s1360-w1360-h1020-rw",
+  },
+  {
     name: "Huckleberry Roasters",
     type: "Coffee Roaster",
     note: "Coffee roaster and cafe for espresso and pastries.",

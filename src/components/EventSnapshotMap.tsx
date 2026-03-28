@@ -1,10 +1,10 @@
 "use client";
 
 const PUBLIC_BOUNDARY_MAP_URL =
-  "https://www.google.com/maps/d/viewer?mid=1kMz1441dwvdGMiIVmdIYmaqobOUzFQ4&ll=39.7209%2C-104.9929&z=15";
+  "https://www.google.com/maps/d/viewer?mid=1kMz1441dwvdGMiIVmdIYmaqobOUzFQ4&ll=39.7209%2C-104.9929&z=14";
 
 const EMBED_BOUNDARY_MAP_URL =
-  "https://www.google.com/maps/d/embed?mid=1kMz1441dwvdGMiIVmdIYmaqobOUzFQ4&ll=39.7209%2C-104.9929&z=15";
+  "https://www.google.com/maps/d/embed?mid=1kMz1441dwvdGMiIVmdIYmaqobOUzFQ4&ll=39.7209%2C-104.9929&z=14";
 
 export default function EventSnapshotMap() {
   return (

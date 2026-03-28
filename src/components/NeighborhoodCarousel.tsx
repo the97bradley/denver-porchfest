@@ -236,6 +236,16 @@ const spots: Spot[] = [
       "https://lh3.googleusercontent.com/gps-cs-s/AHVAweokt1cPi4DvwJGKfpiO3Vh0FFhsbsq7d4bLki5IeD7iPQ7VGv2NoGufw6MP_zTKimApJ2j6Y6F16io25sYOeXftmxN3XuM6DXYQSB0Y6AZuine_wu47FwcNH2gY-W1a2ZQnN5l8=s1360-w1360-h1020-rw",
   },
   {
+    name: "Be a Good Person HQ",
+    type: "Boutique",
+    note: "Local shop with gifts, apparel, and community-minded goods.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Be+a+Good+Person+HQ+Denver",
+    photoQuery: "Be a Good Person HQ Denver",
+    imageUrl:
+      "https://lh3.googleusercontent.com/gps-cs-s/AHVAwer_s6wldV6T8ToCzJKiHZXugfa2NOk-RQs9q2S5DH2QJFTvye1-fXntHZ6p7VxikoAatdvkKWlXlYYEMtFEifY3E3xxBCbGoZ_v_ZUUWH-RVu0SoOKRp42KuNqc0sizzTwnCTb8uHWqUo9q=s1360-w1360-h1020-rw",
+  },
+  {
     name: "Huckleberry Roasters",
     type: "Coffee Roaster",
     note: "Coffee roaster and cafe for espresso and pastries.",

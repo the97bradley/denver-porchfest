@@ -2,7 +2,6 @@ import Image from "next/image";
 import { groq } from "next-sanity";
 import EventSnapshotMap from "@/components/EventSnapshotMap";
 import NeighborhoodCarousel from "@/components/NeighborhoodCarousel";
-import VolunteerSignupForm from "@/components/VolunteerSignupForm";
 import { hasSanityConfig } from "@/sanity/env";
 import { sanityClient } from "@/sanity/lib/client";
 
@@ -14,6 +13,8 @@ const vendorHostApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSdFdtOr5p7PJ1zxT_roKwjgxFCcnhDG0yOmUBWUmKqv3-5Kow/viewform?usp=pp_url";
 const vendorApplicationUrl =
   "https://forms.gle/REPLACE_WITH_VENDOR_APPLICATION_FORM";
+const volunteerApplicationUrl =
+  "https://forms.gle/REPLACE_WITH_VOLUNTEER_SIGNUP_FORM";
 
 type EventSettings = {
   eventName?: string;
@@ -140,7 +141,7 @@ export default async function Home() {
                 See Lineup
               </a>
               <a
-                href="#volunteer"
+                href="#applications"
                 className="rounded-full border border-[#f59e0b] bg-white px-5 py-3 text-sm font-bold text-[#374151] transition hover:bg-[#fff4d6]"
               >
                 Join the Neighborhood Team
@@ -218,20 +219,6 @@ export default async function Home() {
           </div>
         </section>
 
-        <section id="volunteer" className="border-y border-[#c7f0e1] bg-[#f0fffa]">
-          <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-14 md:grid-cols-2">
-            <div>
-              <h2 className="text-2xl font-bold text-[#1f2937]">Neighborhood Team</h2>
-              <p className="mt-3 text-[#4b5563]">
-                We’re looking for block captains, setup helpers, greeters,
-                artist runners, and cleanup crew. If you care about community,
-                there’s a role for you.
-              </p>
-            </div>
-            <VolunteerSignupForm />
-          </div>
-        </section>
-
         <section id="applications" className="mx-auto w-full max-w-6xl px-6 py-14">
           <h2 className="text-2xl font-bold text-[#1f2937]">Be Part of Porchfest</h2>
           <p className="mt-3 max-w-3xl text-[#4b5563]">
@@ -240,7 +227,7 @@ export default async function Home() {
             involved.
           </p>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
             <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5 pb-8">
               <h3 className="text-lg font-semibold text-[#1f2937]">Music Host Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
@@ -301,6 +288,21 @@ export default async function Home() {
                 className="mt-auto inline-flex w-fit translate-y-[15px] rounded-full bg-[#7c3aed] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#6d28d9]"
               >
                 Apply to Host Vendors
+              </a>
+            </article>
+
+            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5 pb-8">
+              <h3 className="text-lg font-semibold text-[#1f2937]">Volunteer Sign Up</h3>
+              <p className="mt-2 text-sm text-[#4b5563]">
+                Join the day-of team for setup, wayfinding, artist support, and cleanup.
+              </p>
+              <a
+                href={volunteerApplicationUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-auto inline-flex w-fit translate-y-[15px] rounded-full bg-[#3b7a57] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#2f6447]"
+              >
+                Sign Up to Volunteer
               </a>
             </article>
           </div>

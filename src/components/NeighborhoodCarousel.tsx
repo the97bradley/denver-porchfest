@@ -186,6 +186,16 @@ const spots: Spot[] = [
       "https://lh3.googleusercontent.com/p/AF1QipM4Z7HJX059YpWS_flcg3Cj3Ixe2ngazR-IVW5H=s1360-w1360-h1020-rw",
   },
   {
+    name: "Snooze, an A.M. Eatery",
+    type: "Breakfast Restaurant",
+    note: "Popular brunch and breakfast spot.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Snooze,+an+A.M.+Eatery+Denver",
+    photoQuery: "Snooze, an A.M. Eatery Denver",
+    imageUrl:
+      "https://lh3.googleusercontent.com/gps-cs-s/AHVAwer6ILMs5cfrJdPPsP_ohuxjd2Rw4bXdIZ4LbTqWilj43PZGlifp0zy1Tgkrm_7ftyy6NxsY1dfqA9V4KJLLjw5N0-WgwRcQMxPTIs2pwhmMpjg1VpxekprVL9h6eAQkv_1U6lZ3=s1360-w1360-h1020-rw",
+  },
+  {
     name: "Huckleberry Roasters",
     type: "Coffee Roaster",
     note: "Coffee roaster and cafe for espresso and pastries.",

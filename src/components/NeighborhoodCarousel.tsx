@@ -157,6 +157,16 @@ const spots: Spot[] = [
       "https://lh3.googleusercontent.com/gps-cs-s/AHVAwerse8DhYD-wm97U3lvFC0DYGOXN_7hF0JEF8NgxVuW1hhWWDd8pJAlb0ONBjD6hq7xMVZ7ykVmYXhlK_y7-3foHXRoTISt6xatGJyOlp4nnrFon_HXViQXKll6Ne3WlWLrvug_Dyg=s1360-w1360-h1020-rw",
   },
   {
+    name: "L.A. Lovely Vintage",
+    type: "Vintage Shop",
+    note: "Vintage clothing and curated finds in the neighborhood.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=LA+Lovely+Vintage+Denver",
+    photoQuery: "LA Lovely Vintage Denver",
+    imageUrl:
+      "https://lh3.googleusercontent.com/gps-cs-s/AHVAwerz7sW-Q4gye5Qs_je8W7Y2RsJmRugF7LW5qOBAkwFTV1J3ZhygJtOLUxY6OYRajoae8b1VwfmaHaOYiDjw6DZDxX6cOZgBGDjkn0bKitz5d0oxrILVlTfEOz1G7mi4mj3s-Hz4ww=s1360-w1360-h1020-rw",
+  },
+  {
     name: "Huckleberry Roasters",
     type: "Coffee Roaster",
     note: "Coffee roaster and cafe for espresso and pastries.",

@@ -47,6 +47,7 @@ const spots: Spot[] = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Smokin+Yards+BBQ+Denver",
     photoQuery: "Smokin Yards BBQ Denver",
+    imageUrl: "/businesses/smokin-yards-bbq.webp",
   },
   {
     name: "Bar 404",

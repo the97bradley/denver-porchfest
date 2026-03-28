@@ -14,7 +14,7 @@ const vendorHostApplicationUrl =
 const vendorApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSdGGqud2IjV89O56-1SNxvxg5SW1Ubai81aGt7Ucf4IgLAdmw/viewform?usp=publish-editor";
 const volunteerApplicationUrl =
-  "https://forms.gle/REPLACE_WITH_VOLUNTEER_SIGNUP_FORM";
+  "https://docs.google.com/forms/d/e/1FAIpQLSckxCBSKunojnMD4xJ6aPeT5kTfH2zpEGIpAtIogYNvz8yVhQ/viewform?usp=publish-editor";
 
 type EventSettings = {
   eventName?: string;

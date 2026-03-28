@@ -12,7 +12,7 @@ const bandApplicationUrl =
 const vendorHostApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSdFdtOr5p7PJ1zxT_roKwjgxFCcnhDG0yOmUBWUmKqv3-5Kow/viewform?usp=pp_url";
 const vendorApplicationUrl =
-  "https://forms.gle/REPLACE_WITH_VENDOR_APPLICATION_FORM";
+  "https://docs.google.com/forms/d/e/1FAIpQLSdGGqud2IjV89O56-1SNxvxg5SW1Ubai81aGt7Ucf4IgLAdmw/viewform?usp=publish-editor";
 const volunteerApplicationUrl =
   "https://forms.gle/REPLACE_WITH_VOLUNTEER_SIGNUP_FORM";
 

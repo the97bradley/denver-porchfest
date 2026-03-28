@@ -69,6 +69,10 @@ const faqItems = [
       "Friendly pets on leash are welcome, but please remember that streets will be crowded, the temperature may be hot, and music can be loud.",
   },
   {
+    question: "What if it rains?",
+    answer: "PorchFest is rain or shine!",
+  },
+  {
     question: "Is PorchFest family friendly?",
     answer:
       "Yes — PorchFest is designed to be a community-first, family-friendly day of local music and neighborhood connection.",

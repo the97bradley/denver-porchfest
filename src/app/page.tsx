@@ -125,7 +125,23 @@ export default async function Home() {
               {s.heroHeadline}
             </h1>
             <p className="max-w-xl text-lg text-[#4b5563]">
-              {s.heroBody}
+              Welcome to the inaugural Denver PorchFest, a great opportunity to
+              meet your neighbors, discover local artists and spend the day
+              outside. Denver PorchFest is community first, family friendly and
+              completely free although we do ask a $10 donation for attendees
+              (all proceeds go towards paying musicians). We will also be
+              collecting donations and raising awareness for{" "}
+              <a
+                href="https://www.east7tharts.org/"
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold text-[#1d4ed8] underline decoration-[#93c5fd] underline-offset-2 hover:text-[#1e40af]"
+              >
+                East 7th Arts
+              </a>
+              , a local nonprofit organization that helps children with autism
+              by providing art and music therapy. To learn more, please see
+              their website to learn about the incredible work they are doing.
             </p>
             <div className="flex flex-wrap gap-3">
               <a

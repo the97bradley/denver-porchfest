@@ -119,6 +119,15 @@ const spots: Spot[] = [
     photoQuery: "Punch Bowl Social Denver",
     imageUrl: "/businesses/punch-bowl-social.webp",
   },
+  {
+    name: "The L",
+    type: "Bar",
+    note: "Neighborhood bar stop in the broader event area.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=The+L+Denver",
+    photoQuery: "The L Denver",
+    imageUrl: "/businesses/the-l.webp",
+  },
 ];
 
 const colors = [

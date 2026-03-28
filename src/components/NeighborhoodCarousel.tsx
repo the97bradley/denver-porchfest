@@ -178,8 +178,8 @@ const spots: Spot[] = [
   },
   {
     name: "FM",
-    type: "Local Spot",
-    note: "Featured neighborhood stop.",
+    type: "Boutique",
+    note: "Stylish neighborhood boutique with curated apparel and gifts.",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=FM+Denver",
     photoQuery: "FM Denver",
     imageUrl:

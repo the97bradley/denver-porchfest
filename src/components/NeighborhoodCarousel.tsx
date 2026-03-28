@@ -167,6 +167,16 @@ const spots: Spot[] = [
       "https://lh3.googleusercontent.com/gps-cs-s/AHVAwerz7sW-Q4gye5Qs_je8W7Y2RsJmRugF7LW5qOBAkwFTV1J3ZhygJtOLUxY6OYRajoae8b1VwfmaHaOYiDjw6DZDxX6cOZgBGDjkn0bKitz5d0oxrILVlTfEOz1G7mi4mj3s-Hz4ww=s1360-w1360-h1020-rw",
   },
   {
+    name: "Full Afterburner Calzones",
+    type: "Restaurant",
+    note: "Calzone spot serving hearty, hand-crafted options.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Full+Afterburner+Calzones+Denver",
+    photoQuery: "Full Afterburner Calzones Denver",
+    imageUrl:
+      "https://lh3.googleusercontent.com/p/AF1QipMM-rQKRXxgN6QEP5eHnhlHntNtddbrW3r8y0Tw=s1360-w1360-h1020-rw",
+  },
+  {
     name: "Huckleberry Roasters",
     type: "Coffee Roaster",
     note: "Coffee roaster and cafe for espresso and pastries.",

@@ -317,7 +317,7 @@ export default function NeighborhoodCarousel() {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-end">
+      <div className="mb-4 hidden items-center justify-end md:flex">
         <div className="flex gap-2">
           <button
             type="button"
@@ -360,7 +360,7 @@ export default function NeighborhoodCarousel() {
                     href={spot.mapsUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="block rounded-xl border border-[#dbe7ff] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-sm"
+                    className="block rounded-xl border border-[#dbe7ff] bg-white p-4 transition hover:shadow-sm"
                   >
                     {!imageFailed[spot.name] ? (
                       <div className="relative mb-3 h-28 overflow-hidden rounded-lg border border-[#dbe7ff]">

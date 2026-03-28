@@ -249,7 +249,8 @@ function shuffleArray<T>(items: T[]): T[] {
 export default function NeighborhoodCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [imageFailed, setImageFailed] = useState<Record<string, boolean>>({});
-  const [visibleSpots, setVisibleSpots] = useState<Spot[]>(() => shuffleArray(spots));
+  const [visibleSpots, setVisibleSpots] = useState<Spot[]>([]);
+  const [spotsReady, setSpotsReady] = useState(false);
 
   const [perPage, setPerPage] = useState(8);
 
@@ -287,6 +288,7 @@ export default function NeighborhoodCarousel() {
       setVisibleSpots(
         shuffleArray(checks.filter((c) => c.open).map((c) => c.spot)),
       );
+      setSpotsReady(true);
     }
 
     filterClosedBusinesses();
@@ -336,7 +338,11 @@ export default function NeighborhoodCarousel() {
         </div>
       </div>
 
-      {visibleSpots.length === 0 ? (
+      {!spotsReady ? (
+        <p className="rounded-xl border border-[#dbe7ff] bg-white p-4 text-sm text-[#6b7280]">
+          Loading local listings…
+        </p>
+      ) : visibleSpots.length === 0 ? (
         <p className="rounded-xl border border-[#dbe7ff] bg-white p-4 text-sm text-[#6b7280]">
           We&apos;re refreshing local listings right now. Check back shortly.
         </p>

@@ -16,7 +16,7 @@ const spots: Spot[] = [
   {
     name: "Town Hall Collaborative",
     type: "Food Hall & Bar",
-    note: "High-traffic local gathering space near Broadway.",
+    note: "Popular neighborhood gathering space.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Town+Hall+Collaborative+Denver",
     photoQuery: "Town Hall Collaborative Denver",
@@ -25,7 +25,7 @@ const spots: Spot[] = [
   {
     name: "Black Sky Brewery",
     type: "Brewery",
-    note: "Neighborhood brewery and taproom close to Santa Fe.",
+    note: "Neighborhood brewery and taproom.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Black+Sky+Brewery+Denver",
     photoQuery: "Black Sky Brewery Denver",
@@ -34,7 +34,7 @@ const spots: Spot[] = [
   {
     name: "Novel Strand Brewery",
     type: "Brewery",
-    note: "Local craft brewery in the Baker/Santa Fe corridor.",
+    note: "Local craft brewery.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Novel+Strand+Brewery+Denver",
     photoQuery: "Novel Strand Brewery Denver",
@@ -52,7 +52,7 @@ const spots: Spot[] = [
   {
     name: "Smokin Yards BBQ",
     type: "Restaurant",
-    note: "Classic BBQ option on the edge of the footprint.",
+    note: "Classic BBQ spot.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Smokin+Yards+BBQ+Denver",
     photoQuery: "Smokin Yards BBQ Denver",
@@ -61,7 +61,7 @@ const spots: Spot[] = [
   {
     name: "Bar 404",
     type: "Bar",
-    note: "Neighborhood bar option right off Broadway.",
+    note: "Neighborhood bar option.",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bar+404+Denver",
     photoQuery: "Bar 404 Denver",
     imageUrl: "/businesses/bar-404.webp",
@@ -69,7 +69,7 @@ const spots: Spot[] = [
   {
     name: "Postino Broadway",
     type: "Wine Cafe",
-    note: "Popular patio and wine stop in the district.",
+    note: "Popular patio and wine stop.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Postino+Broadway+Denver",
     photoQuery: "Postino Broadway Denver",
@@ -87,7 +87,7 @@ const spots: Spot[] = [
   {
     name: "Sputnik",
     type: "Bar & Grill",
-    note: "Longtime South Broadway neighborhood staple.",
+    note: "Longtime neighborhood staple.",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Sputnik+Denver",
     photoQuery: "Sputnik Denver",
     imageUrl: "/businesses/sputnik.webp",
@@ -95,7 +95,7 @@ const spots: Spot[] = [
   {
     name: "TRVE Brewing Company",
     type: "Brewery",
-    note: "Local craft stop within the broader two-block buffer.",
+    note: "Local craft stop.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=TRVE+Brewing+Company+Denver",
     photoQuery: "TRVE Brewing Company Denver",
@@ -104,7 +104,7 @@ const spots: Spot[] = [
   {
     name: "Historians Ale House",
     type: "Bar & Restaurant",
-    note: "Large neighborhood pub space on South Broadway.",
+    note: "Large neighborhood pub space.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Historians+Ale+House+Denver",
     photoQuery: "Historians Ale House Denver",
@@ -113,7 +113,7 @@ const spots: Spot[] = [
   {
     name: "Punch Bowl Social",
     type: "Restaurant & Bar",
-    note: "Food, drinks, and activities near the neighborhood footprint.",
+    note: "Food, drinks, and activities in a lively social setting.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Punch+Bowl+Social+Denver",
     photoQuery: "Punch Bowl Social Denver",
@@ -122,7 +122,7 @@ const spots: Spot[] = [
   {
     name: "The L",
     type: "Bar",
-    note: "Neighborhood bar stop in the broader event area.",
+    note: "Neighborhood bar stop.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=The+L+Denver",
     photoQuery: "The L Denver",
@@ -131,7 +131,7 @@ const spots: Spot[] = [
   {
     name: "Saint Mary Bar",
     type: "Bar",
-    note: "Neighborhood bar stop near the Baker footprint.",
+    note: "Neighborhood bar stop.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Saint+Mary+Bar+Denver",
     photoQuery: "Saint Mary Bar Denver",
@@ -140,7 +140,7 @@ const spots: Spot[] = [
   {
     name: "Parlor Donuts",
     type: "Cafe",
-    note: "Popular sweets and coffee stop near the route.",
+    note: "Popular sweets and coffee stop.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Parlor+Donuts+Denver",
     photoQuery: "Parlor Donuts Denver",
@@ -149,7 +149,7 @@ const spots: Spot[] = [
   {
     name: "Huckleberry Roasters",
     type: "Coffee Roaster",
-    note: "Neighborhood coffee stop for pre- and post-show fuel.",
+    note: "Neighborhood coffee stop.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Huckleberry+Roasters+Denver",
     photoQuery: "Huckleberry Roasters Denver",

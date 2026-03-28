@@ -164,6 +164,15 @@ const spots: Spot[] = [
     photoQuery: "MiddleState Coffee Denver",
     imageUrl: "/businesses/middlestate-coffee.webp",
   },
+  {
+    name: "Walters 303",
+    type: "Pizzeria & Bar",
+    note: "Pizza spot with drinks and casual dine-in seating.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Walters+303+Denver",
+    photoQuery: "Walters 303 Denver",
+    imageUrl: "/businesses/walters-303.webp",
+  },
 ];
 
 const colors = [

@@ -236,10 +236,20 @@ const colors = [
   "from-[#b6cadf] to-[#6f8fb1]",
 ];
 
+
+function shuffleArray<T>(items: T[]): T[] {
+  const arr = [...items];
+  for (let i = arr.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 export default function NeighborhoodCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [imageFailed, setImageFailed] = useState<Record<string, boolean>>({});
-  const [visibleSpots, setVisibleSpots] = useState<Spot[]>(spots);
+  const [visibleSpots, setVisibleSpots] = useState<Spot[]>(() => shuffleArray(spots));
 
   const [perPage, setPerPage] = useState(8);
 
@@ -274,7 +284,9 @@ export default function NeighborhoodCarousel() {
       );
 
       if (cancelled) return;
-      setVisibleSpots(checks.filter((c) => c.open).map((c) => c.spot));
+      setVisibleSpots(
+        shuffleArray(checks.filter((c) => c.open).map((c) => c.spot)),
+      );
     }
 
     filterClosedBusinesses();

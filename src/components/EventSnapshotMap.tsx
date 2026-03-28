@@ -1,98 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
-declare global {
-  interface Window {
-    google?: {
-      maps: {
-        Map: new (
-          element: HTMLElement,
-          options: Record<string, unknown>,
-        ) => unknown;
-        Polygon: new (options: Record<string, unknown>) => {
-          setMap: (map: unknown) => void;
-        };
-      };
-    };
-  }
-}
-
-const MAP_ID = "denver-porchfest-map";
 const PUBLIC_BOUNDARY_MAP_URL =
-  "https://www.google.com/maps/d/viewer?mid=1kMz1441dwvdGMiIVmdIYmaqobOUzFQ4&usp=sharing";
+  "https://www.google.com/maps/d/viewer?mid=1kMz1441dwvdGMiIVmdIYmaqobOUzFQ4&ll=39.740921635442405%2C-104.98839695&z=14";
+
+const EMBED_BOUNDARY_MAP_URL =
+  "https://www.google.com/maps/d/embed?mid=1kMz1441dwvdGMiIVmdIYmaqobOUzFQ4&ll=39.740921635442405%2C-104.98839695&z=14";
 
 export default function EventSnapshotMap() {
-  const mapRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-    if (!apiKey || !mapRef.current) return;
-
-    const initMap = () => {
-      if (!window.google || !mapRef.current) return;
-
-      const center = { lat: 39.7208, lng: -104.9927 };
-      const map = new window.google.maps.Map(mapRef.current, {
-        center,
-        zoom: 14.5,
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: false,
-      });
-
-      const eventBoundary = [
-        { lat: 39.718417, lng: -104.987611 },
-        { lat: 39.718472, lng: -104.998472 },
-        { lat: 39.724083, lng: -104.9985 },
-        { lat: 39.724111, lng: -104.987639 },
-      ];
-
-      const polygon = new window.google.maps.Polygon({
-        paths: eventBoundary,
-        strokeColor: "#8B5E34",
-        strokeOpacity: 0.95,
-        strokeWeight: 2,
-        fillColor: "#3B7A57",
-        fillOpacity: 0.2,
-      });
-
-      polygon.setMap(map);
-    };
-
-    if (window.google?.maps) {
-      initMap();
-      return;
-    }
-
-    const existing = document.getElementById(MAP_ID) as HTMLScriptElement | null;
-    if (existing) {
-      existing.addEventListener("load", initMap);
-      return () => existing.removeEventListener("load", initMap);
-    }
-
-    const script = document.createElement("script");
-    script.id = MAP_ID;
-    script.async = true;
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
-    script.addEventListener("load", initMap);
-    document.head.appendChild(script);
-
-    return () => script.removeEventListener("load", initMap);
-  }, []);
-
-  if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
-    return (
-      <p className="mt-3 rounded-lg border border-[#dbe7ff] bg-[#f8fbff] p-3 text-xs text-[#6b7280]">
-        Add <code>NEXT_PUBLIC_GOOGLE_MAPS_API_KEY</code> to enable the event area
-        map overlay.
-      </p>
-    );
-  }
-
   return (
     <div className="mt-4 overflow-hidden rounded-xl border border-[#dbe7ff] bg-white">
-      <div ref={mapRef} className="h-80 w-full" />
+      <iframe
+        title="Denver PorchFest Full Map"
+        src={EMBED_BOUNDARY_MAP_URL}
+        className="h-80 w-full border-0"
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      />
       <div className="border-t border-[#dbe7ff] bg-[#f8fbff] p-3">
         <a
           href={PUBLIC_BOUNDARY_MAP_URL}

@@ -81,6 +81,7 @@ const spots: Spot[] = [
     note: "Longtime South Broadway neighborhood staple.",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Sputnik+Denver",
     photoQuery: "Sputnik Denver",
+    imageUrl: "/businesses/sputnik.webp",
   },
   {
     name: "TRVE Brewing Company",

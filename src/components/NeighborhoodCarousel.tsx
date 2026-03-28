@@ -227,6 +227,33 @@ const spots: Spot[] = [
     photoQuery: "Trade Denver",
     imageUrl: "/businesses/trade.webp",
   },
+  {
+    name: "Miya Moon",
+    type: "Restaurant",
+    note: "Asian-inspired restaurant with a modern casual menu.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Miya+Moon+Denver",
+    photoQuery: "Miya Moon Denver",
+    imageUrl: "/businesses/miya-moon.webp",
+  },
+  {
+    name: "Lucky Noodles",
+    type: "Restaurant",
+    note: "Noodle-focused spot with quick, flavorful bowls.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Lucky+Noodles+Denver",
+    photoQuery: "Lucky Noodles Denver",
+    imageUrl: "/businesses/lucky-noodles.webp",
+  },
+  {
+    name: "MAKfam",
+    type: "Restaurant",
+    note: "Modern Chinese restaurant with shareable plates.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=MAKfam+Denver",
+    photoQuery: "MAKfam Denver",
+    imageUrl: "/businesses/makfam.webp",
+  },
 ];
 
 const colors = [

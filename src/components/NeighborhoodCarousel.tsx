@@ -191,6 +191,15 @@ const spots: Spot[] = [
     photoQuery: "Pho Social Denver",
     imageUrl: "/businesses/pho-social.webp",
   },
+  {
+    name: "Dae Gee Korean BBQ",
+    type: "Restaurant",
+    note: "Korean BBQ restaurant with grilled meats and classic sides.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Dae+Gee+Korean+BBQ+Denver",
+    photoQuery: "Dae Gee Korean BBQ Denver",
+    imageUrl: "/businesses/dae-gee-korean-bbq.webp",
+  },
 ];
 
 const colors = [

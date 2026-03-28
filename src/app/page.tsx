@@ -251,7 +251,7 @@ export default async function Home() {
                 href={hostApplicationUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-auto inline-flex w-fit rounded-full bg-[#1f2937] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#111827]"
+                className="mt-auto inline-flex w-fit translate-y-[15px] rounded-full bg-[#1f2937] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#111827]"
               >
                 Apply to Host
               </a>
@@ -267,7 +267,7 @@ export default async function Home() {
                 href={bandApplicationUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-auto inline-flex w-fit rounded-full bg-[#3b7a57] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#2f6447]"
+                className="mt-auto inline-flex w-fit translate-y-[15px] rounded-full bg-[#3b7a57] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#2f6447]"
               >
                 Apply as an Artist
               </a>
@@ -284,7 +284,7 @@ export default async function Home() {
                 href={vendorApplicationUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-auto inline-flex w-fit rounded-full bg-[#ea580c] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#c2410c]"
+                className="mt-auto inline-flex w-fit translate-y-[15px] rounded-full bg-[#ea580c] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#c2410c]"
               >
                 Apply as a Vendor
               </a>
@@ -298,7 +298,7 @@ export default async function Home() {
                 href={vendorHostApplicationUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-auto inline-flex w-fit rounded-full bg-[#7c3aed] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#6d28d9]"
+                className="mt-auto inline-flex w-fit translate-y-[15px] rounded-full bg-[#7c3aed] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#6d28d9]"
               >
                 Apply to Host Vendors
               </a>

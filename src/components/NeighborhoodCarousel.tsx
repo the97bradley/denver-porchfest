@@ -226,6 +226,16 @@ const spots: Spot[] = [
       "https://lh3.googleusercontent.com/gps-cs-s/AHVAweq7YqoKDc2SNGkguhH_ZUAwrgNlL6M_rcB4DSkn3joVacmu-QRToS-qvCTJw6iBm4__DNJouh84_oL4Qk6Ih1aKcLlTwtqBH5Ojv24H0Io5697rdPX5LPgz1qywq48hirV-O9JlNg=s1360-w1360-h1020-rw",
   },
   {
+    name: "Explore Glass Gallery",
+    type: "Glass Art Gallery",
+    note: "Local glass art gallery featuring handcrafted work.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Explore+Glass+Gallery+Denver",
+    photoQuery: "Explore Glass Gallery Denver",
+    imageUrl:
+      "https://lh3.googleusercontent.com/gps-cs-s/AHVAweokt1cPi4DvwJGKfpiO3Vh0FFhsbsq7d4bLki5IeD7iPQ7VGv2NoGufw6MP_zTKimApJ2j6Y6F16io25sYOeXftmxN3XuM6DXYQSB0Y6AZuine_wu47FwcNH2gY-W1a2ZQnN5l8=s1360-w1360-h1020-rw",
+  },
+  {
     name: "Huckleberry Roasters",
     type: "Coffee Roaster",
     note: "Coffee roaster and cafe for espresso and pastries.",

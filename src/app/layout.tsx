@@ -25,9 +25,9 @@ export const metadata: Metadata = {
     template: "%s | Denver PorchFest",
   },
   description:
-    "Denver Porchfest official site: lineup, neighborhood porches, local businesses, volunteer signup, and sponsor information.",
+    "Denver PorchFest official site: lineup, neighborhood porches, local businesses, volunteer signup, and sponsor information.",
   keywords: [
-    "Denver Porchfest",
+    "Denver PorchFest",
     "Denver music festival",
     "porchfest denver",
     "Denver live music",
@@ -35,11 +35,11 @@ export const metadata: Metadata = {
     "Denver neighborhood festival",
   ],
   openGraph: {
-    title: "Denver Porchfest | Official Site",
+    title: "Denver PorchFest | Official Site",
     description:
       "A front-porch music day for Denver neighbors. Explore lineup, neighborhood footprint, and how to get involved.",
     url: "/",
-    siteName: "Denver Porchfest",
+    siteName: "Denver PorchFest",
     locale: "en_US",
     type: "website",
     images: [
@@ -47,13 +47,13 @@ export const metadata: Metadata = {
         url: "/og-image",
         width: 1200,
         height: 630,
-        alt: "Denver Porchfest",
+        alt: "Denver PorchFest",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Denver Porchfest | Official Site",
+    title: "Denver PorchFest | Official Site",
     description:
       "A front-porch music day for Denver neighbors. Explore lineup, neighborhood footprint, and how to get involved.",
     images: ["/og-image"],
@@ -88,7 +88,7 @@ export default function RootLayout({
             <Script id="ga4-exclude-toggle" strategy="beforeInteractive">
               {`
                 (function () {
-                  var key = 'denverPorchfestExcludeAnalytics';
+                  var key = 'denverPorchFestExcludeAnalytics';
                   var params = new URLSearchParams(window.location.search);
                   var setOn = params.get('exclude_me') === '1';
                   var setOff = params.get('exclude_me') === '0';

@@ -27,11 +27,11 @@ type EventSettings = {
 };
 
 const defaultEventSettings: Required<EventSettings> = {
-  eventName: "Denver Porchfest",
+  eventName: "Denver PorchFest",
   eventDateLabel: "Saturday, October 10 · Denver, CO",
   heroHeadline: "A front-porch music day for Denver neighbors.",
   heroBody:
-    "Walk the blocks, meet your neighbors, discover local artists, and spend the day outside. Denver Porchfest is community-first, family-friendly, and free for everyone.",
+    "Walk the blocks, meet your neighbors, discover local artists, and spend the day outside. Denver PorchFest is community-first, family-friendly, and free for everyone.",
   estimatedActs: "100+ artists",
   porchesStages: "15+ neighborhood sites",
   areaLabel: "Inside 1st–5th, Broadway to Santa Fe",
@@ -40,7 +40,7 @@ const defaultEventSettings: Required<EventSettings> = {
 const eventJsonLd = {
   "@context": "https://schema.org",
   "@type": "MusicFestival",
-  name: "Denver Porchfest",
+  name: "Denver PorchFest",
   description:
     "A front-porch music day for Denver neighbors with local artists, neighborhood porches, and community partners.",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
@@ -50,7 +50,7 @@ const eventJsonLd = {
   isAccessibleForFree: true,
   location: {
     "@type": "Place",
-    name: "Denver Porchfest Footprint",
+    name: "Denver PorchFest Footprint",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Denver",
@@ -60,7 +60,7 @@ const eventJsonLd = {
   },
   organizer: {
     "@type": "Organization",
-    name: "Denver Porchfest",
+    name: "Denver PorchFest",
     url: "https://denverporchfest.com",
   },
   url: "https://denverporchfest.com",
@@ -214,7 +214,7 @@ export default async function Home() {
         </section>
 
         <section id="applications" className="mx-auto w-full max-w-6xl px-6 py-14">
-          <h2 className="text-2xl font-bold text-[#1f2937]">Be Part of Porchfest</h2>
+          <h2 className="text-2xl font-bold text-[#1f2937]">Be Part of PorchFest</h2>
           <p className="mt-3 max-w-3xl text-[#4b5563]">
             Whether you have a great outdoor space, a great setlist, or
             something interesting or tasty to sell, we&apos;d love for you to be
@@ -225,7 +225,7 @@ export default async function Home() {
             <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Artist Application</h3>
               <p className="mt-2 flex-1 text-sm text-[#4b5563]">
-                Submit your act for consideration in the 2026 Denver Porchfest
+                Submit your act for consideration in the 2026 Denver PorchFest
                 lineup.
               </p>
               <a
@@ -258,7 +258,7 @@ export default async function Home() {
             <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Application</h3>
               <p className="mt-2 flex-1 text-sm text-[#4b5563]">
-                Food, art, goods, or pop-up experiences that fit Porchfest?
+                Food, art, goods, or pop-up experiences that fit PorchFest?
                 Apply to be a featured vendor.
               </p>
               <a
@@ -322,7 +322,7 @@ export default async function Home() {
         <section id="sponsor" className="mx-auto w-full max-w-6xl px-6 py-14">
           <h2 className="text-2xl font-bold text-[#1f2937]">Local Sponsors & Partners</h2>
           <p className="mt-3 max-w-2xl text-[#4b5563]">
-            Porchfest is powered by neighborhood businesses, community groups,
+            PorchFest is powered by neighborhood businesses, community groups,
             and local supporters who want to invest in Denver&apos;s creative scene.
           </p>
           <a

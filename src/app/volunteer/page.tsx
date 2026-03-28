@@ -4,7 +4,7 @@ import VolunteerSignupForm from "@/components/VolunteerSignupForm";
 export const metadata: Metadata = {
   title: "Volunteer",
   description:
-    "Join the Denver Porchfest neighborhood team: block captains, setup helpers, greeters, and cleanup crew.",
+    "Join the Denver PorchFest neighborhood team: block captains, setup helpers, greeters, and cleanup crew.",
   alternates: { canonical: "/volunteer" },
 };
 
@@ -14,7 +14,7 @@ export default function VolunteerPage() {
       <section>
         <h1 className="text-3xl font-bold text-[#1f2937]">Volunteer</h1>
         <p className="mt-3 text-[#4b5563]">
-          Help make Porchfest happen. We&apos;re looking for block captains,
+          Help make PorchFest happen. We&apos;re looking for block captains,
           setup crew, artist support, and cleanup helpers.
         </p>
       </section>

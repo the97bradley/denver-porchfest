@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Lineup",
   description:
-    "Preview artists and set times for Denver Porchfest. Full running order coming soon.",
+    "Preview artists and set times for Denver PorchFest. Full running order coming soon.",
   alternates: { canonical: "/lineup" },
 };
 
@@ -19,7 +19,7 @@ const lineup = [
 export default function LineupPage() {
   return (
     <main className="mx-auto w-full max-w-6xl px-6 py-14">
-      <h1 className="text-3xl font-bold text-[#1f2937]">Denver Porchfest Lineup</h1>
+      <h1 className="text-3xl font-bold text-[#1f2937]">Denver PorchFest Lineup</h1>
       <p className="mt-3 text-[#4b5563]">
         Early lineup preview. Final stage-by-stage schedule will be posted as we
         get closer to October 10.

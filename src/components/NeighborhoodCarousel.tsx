@@ -78,7 +78,7 @@ const spots: Spot[] = [
   {
     name: "Adventure Time",
     type: "Bar",
-    note: "Included per organizer list (please confirm final listing name).",
+    note: "Arcade-style bar with games, drinks, and casual hangout space.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Adventure+Time+Denver+bar",
     photoQuery: "Adventure Time bar Denver",

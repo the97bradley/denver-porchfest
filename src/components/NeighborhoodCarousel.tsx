@@ -389,6 +389,18 @@ const colors = [
   "from-[#b6cadf] to-[#6f8fb1]",
 ];
 
+const featuredSpotNames = new Set([
+  "Sweet Action",
+  "L.A. Lovely Vintage",
+  "Full Afterburner Calzones",
+  "FM",
+  "Snooze, an A.M. Eatery",
+  "Goldmine Vintage",
+  "The Ten Penny Store",
+  "The Wizard's Chest",
+  "Explore Glass Gallery",
+  "Be a Good Person HQ",
+]);
 
 function shuffleArray<T>(items: T[]): T[] {
   const arr = [...items];
@@ -430,7 +442,10 @@ export default function NeighborhoodCarousel() {
               `/api/place-open?q=${encodeURIComponent(spot.photoQuery)}`,
             );
             const json = (await res.json()) as { open?: boolean };
-            return { spot, open: json.open !== false };
+            return {
+              spot,
+              open: featuredSpotNames.has(spot.name) ? true : json.open !== false,
+            };
           } catch {
             return { spot, open: true };
           }
@@ -438,9 +453,11 @@ export default function NeighborhoodCarousel() {
       );
 
       if (cancelled) return;
-      setVisibleSpots(
-        shuffleArray(checks.filter((c) => c.open).map((c) => c.spot)),
-      );
+      const openSpots = checks.filter((c) => c.open).map((c) => c.spot);
+      const featured = openSpots.filter((spot) => featuredSpotNames.has(spot.name));
+      const others = openSpots.filter((spot) => !featuredSpotNames.has(spot.name));
+
+      setVisibleSpots([...featured, ...shuffleArray(others)]);
       setSpotsReady(true);
     }
 

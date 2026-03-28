@@ -177,6 +177,15 @@ const spots: Spot[] = [
       "https://lh3.googleusercontent.com/p/AF1QipMM-rQKRXxgN6QEP5eHnhlHntNtddbrW3r8y0Tw=s1360-w1360-h1020-rw",
   },
   {
+    name: "FM",
+    type: "Local Spot",
+    note: "Featured neighborhood stop.",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=FM+Denver",
+    photoQuery: "FM Denver",
+    imageUrl:
+      "https://lh3.googleusercontent.com/p/AF1QipM4Z7HJX059YpWS_flcg3Cj3Ixe2ngazR-IVW5H=s1360-w1360-h1020-rw",
+  },
+  {
     name: "Huckleberry Roasters",
     type: "Coffee Roaster",
     note: "Coffee roaster and cafe for espresso and pastries.",

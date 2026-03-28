@@ -314,8 +314,7 @@ export default async function Home() {
             <h2 className="text-2xl font-bold text-[#1f2937]">The Neighborhood</h2>
             <p className="mt-3 max-w-3xl text-[#4b5563]">
               Bars, restaurants, and local hangouts in and around the event
-              area. Featured spots are either inside the footprint or within a
-              couple blocks.
+              area.
             </p>
 
             <div className="mt-6">

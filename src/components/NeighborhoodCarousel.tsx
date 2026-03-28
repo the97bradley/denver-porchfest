@@ -454,10 +454,7 @@ export default function NeighborhoodCarousel() {
 
       if (cancelled) return;
       const openSpots = checks.filter((c) => c.open).map((c) => c.spot);
-      const featured = openSpots.filter((spot) => featuredSpotNames.has(spot.name));
-      const others = openSpots.filter((spot) => !featuredSpotNames.has(spot.name));
-
-      setVisibleSpots([...featured, ...shuffleArray(others)]);
+      setVisibleSpots(shuffleArray(openSpots));
       setSpotsReady(true);
     }
 

@@ -19,6 +19,8 @@ declare global {
 }
 
 const MAP_ID = "denver-porchfest-map";
+const PUBLIC_BOUNDARY_MAP_URL =
+  "https://www.google.com/maps/d/viewer?mid=1kMz1441dwvdGMiIVmdIYmaqobOUzFQ4&usp=sharing";
 
 export default function EventSnapshotMap() {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -91,6 +93,16 @@ export default function EventSnapshotMap() {
   return (
     <div className="mt-4 overflow-hidden rounded-xl border border-[#dbe7ff] bg-white">
       <div ref={mapRef} className="h-80 w-full" />
+      <div className="border-t border-[#dbe7ff] bg-[#f8fbff] p-3">
+        <a
+          href={PUBLIC_BOUNDARY_MAP_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex rounded-full border border-[#bfdbfe] bg-white px-4 py-2 text-xs font-semibold text-[#1f2937] transition hover:bg-[#eef5ff]"
+        >
+          Open Full Map
+        </a>
+      </div>
     </div>
   );
 }

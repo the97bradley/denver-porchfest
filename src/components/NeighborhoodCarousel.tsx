@@ -162,6 +162,7 @@ const spots: Spot[] = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=MiddleState+Coffee+Denver",
     photoQuery: "MiddleState Coffee Denver",
+    imageUrl: "/businesses/middlestate-coffee.webp",
   },
 ];
 

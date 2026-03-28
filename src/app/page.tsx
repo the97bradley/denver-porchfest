@@ -128,7 +128,7 @@ export default async function Home() {
               Welcome to the inaugural Denver PorchFest, a great opportunity to
               meet your neighbors, discover local artists and spend the day
               outside. Denver PorchFest is community first, family friendly and
-              completely free although we do ask a $10 donation for attendees
+              completely free, with a suggested $10 donation per attendee
               (all proceeds go towards paying musicians). We will also be
               collecting donations and raising awareness for{" "}
               <a

@@ -147,6 +147,16 @@ const spots: Spot[] = [
     imageUrl: "/businesses/parlor-donuts.webp",
   },
   {
+    name: "Sweet Action",
+    type: "Ice Cream Shop",
+    note: "Local ice cream shop on South Broadway.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Sweet+Action+Denver",
+    photoQuery: "Sweet Action Denver",
+    imageUrl:
+      "https://lh3.googleusercontent.com/gps-cs-s/AHVAwerse8DhYD-wm97U3lvFC0DYGOXN_7hF0JEF8NgxVuW1hhWWDd8pJAlb0ONBjD6hq7xMVZ7ykVmYXhlK_y7-3foHXRoTISt6xatGJyOlp4nnrFon_HXViQXKll6Ne3WlWLrvug_Dyg=s1360-w1360-h1020-rw",
+  },
+  {
     name: "Huckleberry Roasters",
     type: "Coffee Roaster",
     note: "Coffee roaster and cafe for espresso and pastries.",

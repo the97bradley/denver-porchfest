@@ -96,12 +96,6 @@ export default async function Home() {
           <p className="text-base font-bold tracking-[0.08em] text-[#1d4ed8]">
             {s.eventName.toUpperCase()}
           </p>
-          <a
-            href="/volunteer"
-            className="rounded-full bg-[#1d4ed8] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#1e40af]"
-          >
-            Volunteer
-          </a>
         </div>
       </header>
 

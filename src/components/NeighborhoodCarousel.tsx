@@ -206,6 +206,16 @@ const spots: Spot[] = [
       "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqtNRH-OLT1jzAijN0JNHJZS3NrvXQ1nNK4ZR0v5RZ1cgPSweFKKLnD9FLx3ZDfya976rwgfGL-7Bchz6amRGDJqL4zgXsOjqjKhFHXugUE6xyVfYdWXnorKKz5nM_ehCm0tsKO=s1360-w1360-h1020-rw",
   },
   {
+    name: "The Ten Penny Store",
+    type: "Gift & Variety Shop",
+    note: "Neighborhood shop with eclectic gifts and goods.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=The+Ten+Penny+Store+Denver",
+    photoQuery: "The Ten Penny Store Denver",
+    imageUrl:
+      "https://lh3.googleusercontent.com/gps-cs-s/AHVAweq1dhlC3UNWZPJDYiMuVsCSK-YBA9lbMFnIMqBhPw_AyzcboG5oaJsyKbdBGuuxFa8rnyTLw8OQ7_WIJpOz0m71ASuMmUXH_U-OTBakOz7Wnf_RfB0YyCI4RBvxByW4GcykSBKdYA=s1360-w1360-h1020-rw",
+  },
+  {
     name: "Huckleberry Roasters",
     type: "Coffee Roaster",
     note: "Coffee roaster and cafe for espresso and pastries.",

@@ -128,6 +128,24 @@ const spots: Spot[] = [
     photoQuery: "The L Denver",
     imageUrl: "/businesses/the-l.webp",
   },
+  {
+    name: "Saint Mary Bar",
+    type: "Bar",
+    note: "Neighborhood bar stop near the Baker footprint.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Saint+Mary+Bar+Denver",
+    photoQuery: "Saint Mary Bar Denver",
+    imageUrl: "/businesses/saint-mary-bar.webp",
+  },
+  {
+    name: "Parlor Donuts",
+    type: "Cafe",
+    note: "Popular sweets and coffee stop near the route.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Parlor+Donuts+Denver",
+    photoQuery: "Parlor Donuts Denver",
+    imageUrl: "/businesses/parlor-donuts.webp",
+  },
 ];
 
 const colors = [

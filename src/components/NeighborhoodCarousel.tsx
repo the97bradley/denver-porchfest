@@ -182,6 +182,15 @@ const spots: Spot[] = [
     photoQuery: "The Argentos Empanadas Denver",
     imageUrl: "/businesses/the-argentos.webp",
   },
+  {
+    name: "Pho Social",
+    type: "Restaurant",
+    note: "Vietnamese-focused menu with soups, noodles, and shareables.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Pho+Social+Denver",
+    photoQuery: "Pho Social Denver",
+    imageUrl: "/businesses/pho-social.webp",
+  },
 ];
 
 const colors = [

@@ -1,9 +1,6 @@
 import Image from "next/image";
-import { groq } from "next-sanity";
 import EventSnapshotMap from "@/components/EventSnapshotMap";
 import NeighborhoodCarousel from "@/components/NeighborhoodCarousel";
-import { hasSanityConfig } from "@/sanity/env";
-import { sanityClient } from "@/sanity/lib/client";
 
 const hostApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSd7XD6FEIOBmv6uYaSdJf8daQmZf2d54nl3Y6_qpMLz3532uQ/viewform?usp=pp_url";
@@ -16,17 +13,7 @@ const vendorApplicationUrl =
 const volunteerApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSckxCBSKunojnMD4xJ6aPeT5kTfH2zpEGIpAtIogYNvz8yVhQ/viewform?usp=publish-editor";
 
-type EventSettings = {
-  eventName?: string;
-  eventDateLabel?: string;
-  heroHeadline?: string;
-  heroBody?: string;
-  estimatedActs?: string;
-  porchesStages?: string;
-  areaLabel?: string;
-};
-
-const defaultEventSettings: Required<EventSettings> = {
+const eventSettings = {
   eventName: "Denver PorchFest",
   eventDateLabel: "Saturday, October 10 · Denver, CO",
   heroHeadline: "A front-porch music day for Denver neighbors.",
@@ -113,28 +100,8 @@ const eventJsonLd = {
   url: "https://denverporchfest.com",
 };
 
-export default async function Home() {
-  let cmsSettings: EventSettings | null = null;
-
-  if (hasSanityConfig && sanityClient) {
-    try {
-      cmsSettings = await sanityClient.fetch<EventSettings | null>(
-        groq`*[_type == "eventSettings"][0]{
-          eventName,
-          eventDateLabel,
-          heroHeadline,
-          heroBody,
-          estimatedActs,
-          porchesStages,
-          areaLabel
-        }`,
-      );
-    } catch {
-      cmsSettings = null;
-    }
-  }
-
-  const s = { ...defaultEventSettings, ...(cmsSettings || {}) };
+export default function Home() {
+  const s = eventSettings;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f3f8ff] via-[#eef6ff] to-[#eaf4ff] text-[#1f2937]">

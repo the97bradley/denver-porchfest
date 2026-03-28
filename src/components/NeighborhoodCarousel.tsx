@@ -174,12 +174,12 @@ const spots: Spot[] = [
     imageUrl: "/businesses/walters-303.webp",
   },
   {
-    name: "The Argentos",
+    name: "The Argentos Empanadas",
     type: "Restaurant",
     note: "Casual dining spot with a full-service menu.",
     mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=The+Argentos+Denver",
-    photoQuery: "The Argentos Denver",
+      "https://www.google.com/maps/search/?api=1&query=The+Argentos+Empanadas+Denver",
+    photoQuery: "The Argentos Empanadas Denver",
     imageUrl: "/businesses/the-argentos.webp",
   },
 ];

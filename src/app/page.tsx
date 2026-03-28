@@ -139,7 +139,7 @@ export default async function Home() {
               >
                 East 7th Arts
               </a>
-              , a local nonprofit that helps children with autism
+              , a local nonprofit which helps children with autism
               by providing art and music therapy. To learn more, please see
               their website to learn about the incredible work they are doing.
             </p>

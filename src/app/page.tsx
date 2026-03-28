@@ -223,22 +223,6 @@ export default async function Home() {
 
           <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
             <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
-              <h3 className="text-lg font-semibold text-[#1f2937]">Music Host Application</h3>
-              <p className="mt-2 flex-1 text-sm text-[#4b5563]">
-                Open your porch, yard, or shared outdoor space to support local
-                music in your neighborhood.
-              </p>
-              <a
-                href={hostApplicationUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-6 inline-flex w-fit rounded-full bg-[#1f2937] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#111827]"
-              >
-                Apply to Host Music
-              </a>
-            </article>
-
-            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Artist Application</h3>
               <p className="mt-2 flex-1 text-sm text-[#4b5563]">
                 Submit your act for consideration in the 2026 Denver Porchfest
@@ -251,6 +235,22 @@ export default async function Home() {
                 className="mt-6 inline-flex w-fit rounded-full bg-[#3b7a57] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#2f6447]"
               >
                 Apply as an Artist
+              </a>
+            </article>
+
+            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
+              <h3 className="text-lg font-semibold text-[#1f2937]">Music Host Application</h3>
+              <p className="mt-2 flex-1 text-sm text-[#4b5563]">
+                Open your porch, yard, or shared outdoor space to support local
+                music in your neighborhood.
+              </p>
+              <a
+                href={hostApplicationUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex w-fit rounded-full bg-[#1f2937] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#111827]"
+              >
+                Apply to Host Music
               </a>
             </article>
 

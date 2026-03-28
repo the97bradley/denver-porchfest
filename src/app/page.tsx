@@ -15,7 +15,7 @@ const volunteerApplicationUrl =
 
 const eventSettings = {
   eventName: "Denver PorchFest",
-  eventDateLabel: "Saturday, October 10 · Denver, CO",
+  eventDateLabel: "Saturday, October 3 · Denver, CO",
   heroHeadline: "A front-porch music day for Denver neighbors.",
   heroBody:
     "Walk the blocks, meet your neighbors, discover local artists, and spend the day outside. Denver PorchFest is community-first, family-friendly, and free for everyone.",
@@ -33,7 +33,7 @@ const faqItems = [
   {
     question: "When and where is PorchFest happening?",
     answer:
-      "PorchFest takes place on Saturday, October 10 across the Baker neighborhood footprint between 1st and 5th Ave from Broadway to Santa Fe.",
+      "PorchFest takes place on Saturday, October 3 across the Baker neighborhood footprint between 1st and 5th Ave from Broadway to Santa Fe.",
   },
   {
     question: "When will the lineup and set times be announced?",
@@ -79,8 +79,8 @@ const eventJsonLd = {
     "A front-porch music day for Denver neighbors with local artists, neighborhood porches, and community partners.",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
-  startDate: "2026-10-10T12:00:00-06:00",
-  endDate: "2026-10-10T20:00:00-06:00",
+  startDate: "2026-10-03T12:00:00-06:00",
+  endDate: "2026-10-03T20:00:00-06:00",
   isAccessibleForFree: true,
   location: {
     "@type": "Place",
@@ -179,7 +179,7 @@ export default function Home() {
             <ul className="space-y-3 text-sm text-[#374151]">
               <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Date</span>
-                <span className="font-semibold">Saturday, October 10 · 12 PM - 7 PM</span>
+                <span className="font-semibold">Saturday, October 3 · 12 PM - 7 PM</span>
               </li>
               <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Estimated Acts</span>

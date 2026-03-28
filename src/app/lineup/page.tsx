@@ -22,7 +22,7 @@ export default function LineupPage() {
       <h1 className="text-3xl font-bold text-[#1f2937]">Denver PorchFest Lineup</h1>
       <p className="mt-3 text-[#4b5563]">
         Early lineup preview. Final stage-by-stage schedule will be posted as we
-        get closer to October 10.
+        get closer to October 3.
       </p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

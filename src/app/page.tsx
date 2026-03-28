@@ -61,7 +61,7 @@ const faqItems = [
   {
     question: "Is the festival handicap accessible?",
     answer:
-      "Yes — it takes place on city sidewalks and is generally accessible.",
+      "Yes — the event takes place on city sidewalks and most areas are accessible.",
   },
   {
     question: "Can I bring pets?",

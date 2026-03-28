@@ -178,8 +178,8 @@ const spots: Spot[] = [
   },
   {
     name: "FM",
-    type: "Local Spot",
-    note: "Featured neighborhood stop.",
+    type: "Boutique",
+    note: "Stylish neighborhood boutique with curated apparel and gifts.",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=FM+Denver",
     photoQuery: "FM Denver",
     imageUrl:
@@ -454,10 +454,7 @@ export default function NeighborhoodCarousel() {
 
       if (cancelled) return;
       const openSpots = checks.filter((c) => c.open).map((c) => c.spot);
-      const featured = openSpots.filter((spot) => featuredSpotNames.has(spot.name));
-      const others = openSpots.filter((spot) => !featuredSpotNames.has(spot.name));
-
-      setVisibleSpots([...featured, ...shuffleArray(others)]);
+      setVisibleSpots(shuffleArray(openSpots));
       setSpotsReady(true);
     }
 

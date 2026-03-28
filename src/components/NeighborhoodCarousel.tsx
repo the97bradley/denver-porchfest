@@ -173,6 +173,15 @@ const spots: Spot[] = [
     photoQuery: "Walters 303 Denver",
     imageUrl: "/businesses/walters-303.webp",
   },
+  {
+    name: "The Argentos",
+    type: "Restaurant",
+    note: "Casual dining spot with a full-service menu.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=The+Argentos+Denver",
+    photoQuery: "The Argentos Denver",
+    imageUrl: "/businesses/the-argentos.webp",
+  },
 ];
 
 const colors = [

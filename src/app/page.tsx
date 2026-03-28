@@ -140,8 +140,7 @@ export default async function Home() {
                 East 7th Arts
               </a>
               , a local nonprofit which helps children with autism
-              by providing art and music therapy. To learn more, please see
-              their website to learn about the incredible work they are doing.
+              by providing art and music therapy.
             </p>
             <div className="flex flex-wrap gap-3">
               <a

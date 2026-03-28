@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type Spot = {
   name: string;
@@ -111,9 +111,12 @@ const colors = [
 ];
 
 export default function NeighborhoodCarousel() {
-  const trackRef = useRef<HTMLDivElement>(null);
   const [imageFailed, setImageFailed] = useState<Record<string, boolean>>({});
   const [visibleSpots, setVisibleSpots] = useState<Spot[]>(spots);
+  const [page, setPage] = useState(0);
+
+  const perPage = 8;
+  const totalPages = Math.max(1, Math.ceil(visibleSpots.length / perPage));
 
   useEffect(() => {
     let cancelled = false;
@@ -135,6 +138,7 @@ export default function NeighborhoodCarousel() {
 
       if (cancelled) return;
       setVisibleSpots(checks.filter((c) => c.open).map((c) => c.spot));
+      setPage(0);
     }
 
     filterClosedBusinesses();
@@ -144,13 +148,17 @@ export default function NeighborhoodCarousel() {
     };
   }, []);
 
-  function slide(direction: "prev" | "next") {
-    if (!trackRef.current) return;
-    const amount = trackRef.current.clientWidth * 0.92;
-    trackRef.current.scrollBy({
-      left: direction === "next" ? amount : -amount,
-      behavior: "smooth",
-    });
+  const pageSpots = useMemo(() => {
+    const start = page * perPage;
+    return visibleSpots.slice(start, start + perPage);
+  }, [page, visibleSpots]);
+
+  function goPrev() {
+    setPage((p) => (p - 1 + totalPages) % totalPages);
+  }
+
+  function goNext() {
+    setPage((p) => (p + 1) % totalPages);
   }
 
   return (
@@ -159,7 +167,7 @@ export default function NeighborhoodCarousel() {
         <div className="flex gap-2">
           <button
             type="button"
-            onClick={() => slide("prev")}
+            onClick={goPrev}
             className="rounded-full border border-[#bfdbfe] bg-white px-3 py-1 text-sm font-semibold text-[#374151] hover:bg-[#eef5ff]"
             aria-label="Previous businesses"
           >
@@ -167,7 +175,7 @@ export default function NeighborhoodCarousel() {
           </button>
           <button
             type="button"
-            onClick={() => slide("next")}
+            onClick={goNext}
             className="rounded-full border border-[#bfdbfe] bg-white px-3 py-1 text-sm font-semibold text-[#374151] hover:bg-[#eef5ff]"
             aria-label="Next businesses"
           >
@@ -181,17 +189,14 @@ export default function NeighborhoodCarousel() {
           We&apos;re refreshing local listings right now. Check back shortly.
         </p>
       ) : (
-        <div
-          ref={trackRef}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pt-1 pb-2"
-        >
-          {visibleSpots.map((spot, index) => (
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {pageSpots.map((spot, index) => (
             <a
               key={spot.name}
               href={spot.mapsUrl}
               target="_blank"
               rel="noreferrer"
-              className="block w-[85%] shrink-0 snap-start rounded-xl border border-[#dbe7ff] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-sm sm:w-[48%] lg:w-[calc((100%-3rem)/4)]"
+              className="block rounded-xl border border-[#dbe7ff] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-sm"
             >
               {!imageFailed[spot.name] ? (
                 <div className="relative mb-3 h-28 overflow-hidden rounded-lg border border-[#dbe7ff]">
@@ -211,7 +216,9 @@ export default function NeighborhoodCarousel() {
                 </div>
               ) : (
                 <div
-                  className={`mb-3 h-28 rounded-lg bg-gradient-to-br ${colors[index % colors.length]}`}
+                  className={`mb-3 h-28 rounded-lg bg-gradient-to-br ${
+                    colors[index % colors.length]
+                  }`}
                 />
               )}
               <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#2563eb]">

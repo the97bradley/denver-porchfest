@@ -73,6 +73,11 @@ const faqItems = [
     answer: "PorchFest is rain or shine!",
   },
   {
+    question: "Where do I park?",
+    answer:
+      "Free neighborhood street parking is very limited, so rideshare is strongly encouraged. We are working on coordinating a free bike parking lot - check back soon for details.",
+  },
+  {
     question: "Is PorchFest family friendly?",
     answer:
       "Yes — PorchFest is designed to be a community-first, family-friendly day of local music and neighborhood connection.",

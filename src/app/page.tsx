@@ -61,7 +61,7 @@ const faqItems = [
   {
     question: "Is the festival handicap accessible?",
     answer:
-      "Yes — it takes place on city sidewalks and is generally accessible.",
+      "Yes — the event takes place on city sidewalks and most areas are accessible.",
   },
   {
     question: "Can I bring pets?",
@@ -397,8 +397,8 @@ export default async function Home() {
 
         <section id="faq" className="border-t border-[#bfdbfe] bg-[#f8fbff]">
           <div className="mx-auto w-full max-w-6xl px-6 py-14">
-            <h2 className="text-2xl font-bold text-[#1f2937]">FAQ</h2>
-            <p className="mt-3 max-w-2xl text-[#4b5563]">
+            <h2 className="text-3xl font-bold text-[#1f2937]">FAQ</h2>
+            <p className="mt-3 max-w-2xl text-lg text-[#4b5563]">
               Quick answers to common PorchFest questions.
             </p>
 
@@ -408,10 +408,10 @@ export default async function Home() {
                   key={item.question}
                   className="rounded-xl border border-[#dbe7ff] bg-white p-4"
                 >
-                  <summary className="cursor-pointer list-none pr-6 text-base font-semibold text-[#1f2937] [&::-webkit-details-marker]:hidden">
+                  <summary className="cursor-pointer list-none pr-6 text-lg font-semibold text-[#1f2937] [&::-webkit-details-marker]:hidden">
                     {item.question}
                   </summary>
-                  <p className="mt-3 text-sm leading-6 text-[#4b5563]">{item.answer}</p>
+                  <p className="mt-3 text-lg leading-8 text-[#4b5563]">{item.answer}</p>
                 </details>
               ))}
             </div>

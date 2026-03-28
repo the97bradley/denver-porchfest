@@ -242,7 +242,7 @@ export default async function Home() {
               <h3 className="text-lg font-semibold text-[#1f2937]">Music Host Application</h3>
               <p className="mt-2 flex-1 text-sm text-[#4b5563]">
                 Open your porch, yard, or shared outdoor space to support local
-                music in your neighborhood.
+                music.
               </p>
               <a
                 href={hostApplicationUrl}

@@ -241,7 +241,7 @@ export default async function Home() {
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
+            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5 pb-8">
               <h3 className="text-lg font-semibold text-[#1f2937]">Music Host Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
                 Open your porch, yard, or shared outdoor space to support local
@@ -253,11 +253,11 @@ export default async function Home() {
                 rel="noreferrer"
                 className="mt-auto inline-flex w-fit translate-y-[15px] rounded-full bg-[#1f2937] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#111827]"
               >
-                Apply to Host
+                Apply to Host Music
               </a>
             </article>
 
-            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
+            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5 pb-8">
               <h3 className="text-lg font-semibold text-[#1f2937]">Artist Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
                 Submit your act for consideration in the 2026 Denver Porchfest
@@ -274,7 +274,7 @@ export default async function Home() {
             </article>
 
 
-            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
+            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5 pb-8">
               <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
                 Food, art, goods, or pop-up experiences that fit Porchfest?
@@ -289,7 +289,7 @@ export default async function Home() {
                 Apply as a Vendor
               </a>
             </article>
-            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
+            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5 pb-8">
               <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Host Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
                 Willing to host local vendors during the event? Let us know.

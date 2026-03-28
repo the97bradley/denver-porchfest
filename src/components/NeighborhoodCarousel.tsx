@@ -165,12 +165,12 @@ const spots: Spot[] = [
     imageUrl: "/businesses/middlestate-coffee.webp",
   },
   {
-    name: "Walters 303",
-    type: "Pizzeria & Bar",
+    name: "Walter's303 Pizzeria & Publik House",
+    type: "Pizzeria & Pub",
     note: "Pizza spot with drinks and casual dine-in seating.",
     mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=Walters+303+Denver",
-    photoQuery: "Walters 303 Denver",
+      "https://www.google.com/maps/search/?api=1&query=Walter%27s303+Pizzeria+%26+Publik+House+Denver",
+    photoQuery: "Walter's303 Pizzeria & Publik House Denver",
     imageUrl: "/businesses/walters-303.webp",
   },
   {
@@ -196,7 +196,19 @@ export default function NeighborhoodCarousel() {
   const [imageFailed, setImageFailed] = useState<Record<string, boolean>>({});
   const [visibleSpots, setVisibleSpots] = useState<Spot[]>(spots);
 
-  const perPage = 8;
+  const [perPage, setPerPage] = useState(8);
+
+  useEffect(() => {
+    const syncPerPage = () => {
+      if (typeof window === "undefined") return;
+      setPerPage(window.innerWidth < 768 ? 3 : 8);
+    };
+
+    syncPerPage();
+    window.addEventListener("resize", syncPerPage);
+
+    return () => window.removeEventListener("resize", syncPerPage);
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -233,7 +245,7 @@ export default function NeighborhoodCarousel() {
       out.push(visibleSpots.slice(i, i + perPage));
     }
     return out;
-  }, [visibleSpots]);
+  }, [visibleSpots, perPage]);
 
   function slide(direction: "prev" | "next") {
     if (!trackRef.current) return;

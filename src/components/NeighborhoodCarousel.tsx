@@ -16,7 +16,7 @@ const spots: Spot[] = [
   {
     name: "Town Hall Collaborative",
     type: "Food Hall & Bar",
-    note: "Popular neighborhood gathering space.",
+    note: "Popular gathering space.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Town+Hall+Collaborative+Denver",
     photoQuery: "Town Hall Collaborative Denver",
@@ -25,7 +25,7 @@ const spots: Spot[] = [
   {
     name: "Black Sky Brewery",
     type: "Brewery",
-    note: "Neighborhood brewery and taproom.",
+    note: "Brewery and taproom with rotating local beers.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Black+Sky+Brewery+Denver",
     photoQuery: "Black Sky Brewery Denver",
@@ -52,7 +52,7 @@ const spots: Spot[] = [
   {
     name: "Smokin Yards BBQ",
     type: "Restaurant",
-    note: "Classic BBQ spot.",
+    note: "BBQ restaurant known for smoked meats and sides.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Smokin+Yards+BBQ+Denver",
     photoQuery: "Smokin Yards BBQ Denver",
@@ -61,7 +61,7 @@ const spots: Spot[] = [
   {
     name: "Bar 404",
     type: "Bar",
-    note: "Neighborhood bar option.",
+    note: "Bar with cocktails, beer, and casual hangout vibes.",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Bar+404+Denver",
     photoQuery: "Bar 404 Denver",
     imageUrl: "/businesses/bar-404.webp",
@@ -87,7 +87,7 @@ const spots: Spot[] = [
   {
     name: "Sputnik",
     type: "Bar & Grill",
-    note: "Longtime neighborhood staple.",
+    note: "Bar and grill with late-night bites and drinks.",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Sputnik+Denver",
     photoQuery: "Sputnik Denver",
     imageUrl: "/businesses/sputnik.webp",
@@ -104,7 +104,7 @@ const spots: Spot[] = [
   {
     name: "Historians Ale House",
     type: "Bar & Restaurant",
-    note: "Large neighborhood pub space.",
+    note: "Large pub with beer selection and full food menu.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Historians+Ale+House+Denver",
     photoQuery: "Historians Ale House Denver",
@@ -122,7 +122,7 @@ const spots: Spot[] = [
   {
     name: "The L",
     type: "Bar",
-    note: "Neighborhood bar stop.",
+    note: "Bar known for drinks and laid-back atmosphere.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=The+L+Denver",
     photoQuery: "The L Denver",
@@ -131,7 +131,7 @@ const spots: Spot[] = [
   {
     name: "Saint Mary Bar",
     type: "Bar",
-    note: "Neighborhood bar stop.",
+    note: "Bar known for drinks and laid-back atmosphere.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Saint+Mary+Bar+Denver",
     photoQuery: "Saint Mary Bar Denver",
@@ -149,7 +149,7 @@ const spots: Spot[] = [
   {
     name: "Huckleberry Roasters",
     type: "Coffee Roaster",
-    note: "Neighborhood coffee stop.",
+    note: "Coffee roaster and cafe for espresso and pastries.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Huckleberry+Roasters+Denver",
     photoQuery: "Huckleberry Roasters Denver",
@@ -158,7 +158,7 @@ const spots: Spot[] = [
   {
     name: "MiddleState Coffee",
     type: "Coffee Shop",
-    note: "Specialty coffee and neighborhood cafe atmosphere.",
+    note: "Specialty coffee shop with house-roasted beans.",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=MiddleState+Coffee+Denver",
     photoQuery: "MiddleState Coffee Denver",

@@ -272,6 +272,15 @@ const spots: Spot[] = [
     photoQuery: "Brewery Bar II Denver",
     imageUrl: "/businesses/brewery-bar-ii.webp",
   },
+  {
+    name: "Moonrise Coffee Roasters",
+    type: "Coffee Roaster",
+    note: "Coffee roaster and cafe with espresso and pastries.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Moonrise+Coffee+Roasters+Denver",
+    photoQuery: "Moonrise Coffee Roasters Denver",
+    imageUrl: "/businesses/moonrise-coffee-roasters.webp",
+  },
 ];
 
 const colors = [

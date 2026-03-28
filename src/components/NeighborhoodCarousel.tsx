@@ -90,6 +90,7 @@ const spots: Spot[] = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=TRVE+Brewing+Company+Denver",
     photoQuery: "TRVE Brewing Company Denver",
+    imageUrl: "/businesses/trve-brewing-company.webp",
   },
   {
     name: "Historians Ale House",

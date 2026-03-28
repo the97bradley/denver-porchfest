@@ -38,6 +38,7 @@ const spots: Spot[] = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Baker+Market+Denver",
     photoQuery: "Baker Market Denver",
+    imageUrl: "/businesses/baker-market.webp",
   },
   {
     name: "Smokin Yards BBQ",

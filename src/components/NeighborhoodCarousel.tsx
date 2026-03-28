@@ -349,7 +349,7 @@ export default function NeighborhoodCarousel() {
       ) : (
         <div
           ref={trackRef}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-visible scroll-smooth pt-1 pb-2"
         >
           {pages.map((pageSpots, pageIndex) => (
             <div key={pageIndex} className="w-full shrink-0 snap-start">
@@ -360,7 +360,7 @@ export default function NeighborhoodCarousel() {
                     href={spot.mapsUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="block rounded-xl border border-[#dbe7ff] bg-white p-4 transition hover:shadow-sm"
+                    className="block rounded-xl border border-[#dbe7ff] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-sm"
                   >
                     {!imageFailed[spot.name] ? (
                       <div className="relative mb-3 h-28 overflow-hidden rounded-lg border border-[#dbe7ff]">

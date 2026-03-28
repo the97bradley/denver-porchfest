@@ -196,6 +196,16 @@ const spots: Spot[] = [
       "https://lh3.googleusercontent.com/gps-cs-s/AHVAwer6ILMs5cfrJdPPsP_ohuxjd2Rw4bXdIZ4LbTqWilj43PZGlifp0zy1Tgkrm_7ftyy6NxsY1dfqA9V4KJLLjw5N0-WgwRcQMxPTIs2pwhmMpjg1VpxekprVL9h6eAQkv_1U6lZ3=s1360-w1360-h1020-rw",
   },
   {
+    name: "Goldmine Vintage",
+    type: "Vintage Shop",
+    note: "Vintage shop with curated apparel and accessories.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Goldmine+Vintage+Denver",
+    photoQuery: "Goldmine Vintage Denver",
+    imageUrl:
+      "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqtNRH-OLT1jzAijN0JNHJZS3NrvXQ1nNK4ZR0v5RZ1cgPSweFKKLnD9FLx3ZDfya976rwgfGL-7Bchz6amRGDJqL4zgXsOjqjKhFHXugUE6xyVfYdWXnorKKz5nM_ehCm0tsKO=s1360-w1360-h1020-rw",
+  },
+  {
     name: "Huckleberry Roasters",
     type: "Coffee Roaster",
     note: "Coffee roaster and cafe for espresso and pastries.",

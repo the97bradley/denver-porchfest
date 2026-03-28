@@ -414,7 +414,7 @@ export default function NeighborhoodCarousel() {
                     href={spot.mapsUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="block rounded-xl border border-[#dbe7ff] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-sm"
+                    className="flex h-full min-h-[250px] flex-col rounded-xl border border-[#dbe7ff] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-sm"
                   >
                     {!imageFailed[spot.name] ? (
                       <div className="relative mb-3 h-28 overflow-hidden rounded-lg border border-[#dbe7ff]">
@@ -450,7 +450,7 @@ export default function NeighborhoodCarousel() {
                     <h3 className="mt-1 font-semibold text-[#1f2937]">
                       {spot.name}
                     </h3>
-                    <p className="mt-1 text-sm text-[#6b7280]">{spot.note}</p>
+                    <p className="mt-1 min-h-[40px] text-sm text-[#6b7280]">{spot.note}</p>
                   </a>
                 ))}
               </div>

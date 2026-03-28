@@ -155,6 +155,14 @@ const spots: Spot[] = [
     photoQuery: "Huckleberry Roasters Denver",
     imageUrl: "/businesses/huckleberry-roasters.webp",
   },
+  {
+    name: "MiddleState Coffee",
+    type: "Coffee Shop",
+    note: "Specialty coffee and neighborhood cafe atmosphere.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=MiddleState+Coffee+Denver",
+    photoQuery: "MiddleState Coffee Denver",
+  },
 ];
 
 const colors = [

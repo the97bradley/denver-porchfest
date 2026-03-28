@@ -64,6 +64,7 @@ const spots: Spot[] = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Postino+Broadway+Denver",
     photoQuery: "Postino Broadway Denver",
+    imageUrl: "/businesses/postino-broadway.webp",
   },
   {
     name: "Adventure Time",

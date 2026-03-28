@@ -51,7 +51,7 @@ const faqItems = [
   {
     question: "When will the lineup and set times be announced?",
     answer:
-      "The full lineup and schedule will be posted closer to event day. Check back on this site for updates.",
+      "The lineup will be announced on September 12. Check back on this site for updates.",
   },
   {
     question: "Can I apply as an artist, host, vendor, or volunteer?",

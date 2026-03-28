@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type Spot = {
   name: string;
@@ -120,12 +120,11 @@ const colors = [
 ];
 
 export default function NeighborhoodCarousel() {
+  const trackRef = useRef<HTMLDivElement>(null);
   const [imageFailed, setImageFailed] = useState<Record<string, boolean>>({});
   const [visibleSpots, setVisibleSpots] = useState<Spot[]>(spots);
-  const [page, setPage] = useState(0);
 
   const perPage = 8;
-  const totalPages = Math.max(1, Math.ceil(visibleSpots.length / perPage));
 
   useEffect(() => {
     let cancelled = false;
@@ -147,7 +146,6 @@ export default function NeighborhoodCarousel() {
 
       if (cancelled) return;
       setVisibleSpots(checks.filter((c) => c.open).map((c) => c.spot));
-      setPage(0);
     }
 
     filterClosedBusinesses();
@@ -157,17 +155,21 @@ export default function NeighborhoodCarousel() {
     };
   }, []);
 
-  const pageSpots = useMemo(() => {
-    const start = page * perPage;
-    return visibleSpots.slice(start, start + perPage);
-  }, [page, visibleSpots]);
+  const pages = useMemo(() => {
+    const out: Spot[][] = [];
+    for (let i = 0; i < visibleSpots.length; i += perPage) {
+      out.push(visibleSpots.slice(i, i + perPage));
+    }
+    return out;
+  }, [visibleSpots]);
 
-  function goPrev() {
-    setPage((p) => (p - 1 + totalPages) % totalPages);
-  }
-
-  function goNext() {
-    setPage((p) => (p + 1) % totalPages);
+  function slide(direction: "prev" | "next") {
+    if (!trackRef.current) return;
+    const amount = trackRef.current.clientWidth;
+    trackRef.current.scrollBy({
+      left: direction === "next" ? amount : -amount,
+      behavior: "smooth",
+    });
   }
 
   return (
@@ -176,7 +178,7 @@ export default function NeighborhoodCarousel() {
         <div className="flex gap-2">
           <button
             type="button"
-            onClick={goPrev}
+            onClick={() => slide("prev")}
             className="rounded-full border border-[#bfdbfe] bg-white px-3 py-1 text-sm font-semibold text-[#374151] hover:bg-[#eef5ff]"
             aria-label="Previous businesses"
           >
@@ -184,7 +186,7 @@ export default function NeighborhoodCarousel() {
           </button>
           <button
             type="button"
-            onClick={goNext}
+            onClick={() => slide("next")}
             className="rounded-full border border-[#bfdbfe] bg-white px-3 py-1 text-sm font-semibold text-[#374151] hover:bg-[#eef5ff]"
             aria-label="Next businesses"
           >
@@ -198,44 +200,60 @@ export default function NeighborhoodCarousel() {
           We&apos;re refreshing local listings right now. Check back shortly.
         </p>
       ) : (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {pageSpots.map((spot, index) => (
-            <a
-              key={spot.name}
-              href={spot.mapsUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="block rounded-xl border border-[#dbe7ff] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-sm"
-            >
-              {!imageFailed[spot.name] ? (
-                <div className="relative mb-3 h-28 overflow-hidden rounded-lg border border-[#dbe7ff]">
-                  <Image
-                    src={
-                      spot.imageUrl ||
-                      `/api/business-photo?q=${encodeURIComponent(spot.photoQuery)}`
-                    }
-                    alt={`${spot.name} storefront`}
-                    fill
-                    unoptimized
-                    className="object-cover"
-                    onError={() =>
-                      setImageFailed((prev) => ({ ...prev, [spot.name]: true }))
-                    }
-                  />
-                </div>
-              ) : (
-                <div
-                  className={`mb-3 h-28 rounded-lg bg-gradient-to-br ${
-                    colors[index % colors.length]
-                  }`}
-                />
-              )}
-              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#2563eb]">
-                {spot.type}
-              </p>
-              <h3 className="mt-1 font-semibold text-[#1f2937]">{spot.name}</h3>
-              <p className="mt-1 text-sm text-[#6b7280]">{spot.note}</p>
-            </a>
+        <div
+          ref={trackRef}
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
+        >
+          {pages.map((pageSpots, pageIndex) => (
+            <div key={pageIndex} className="w-full shrink-0 snap-start">
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                {pageSpots.map((spot, index) => (
+                  <a
+                    key={spot.name}
+                    href={spot.mapsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block rounded-xl border border-[#dbe7ff] bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-sm"
+                  >
+                    {!imageFailed[spot.name] ? (
+                      <div className="relative mb-3 h-28 overflow-hidden rounded-lg border border-[#dbe7ff]">
+                        <Image
+                          src={
+                            spot.imageUrl ||
+                            `/api/business-photo?q=${encodeURIComponent(
+                              spot.photoQuery,
+                            )}`
+                          }
+                          alt={`${spot.name} storefront`}
+                          fill
+                          unoptimized
+                          className="object-cover"
+                          onError={() =>
+                            setImageFailed((prev) => ({
+                              ...prev,
+                              [spot.name]: true,
+                            }))
+                          }
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className={`mb-3 h-28 rounded-lg bg-gradient-to-br ${
+                          colors[index % colors.length]
+                        }`}
+                      />
+                    )}
+                    <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#2563eb]">
+                      {spot.type}
+                    </p>
+                    <h3 className="mt-1 font-semibold text-[#1f2937]">
+                      {spot.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-[#6b7280]">{spot.note}</p>
+                  </a>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       )}

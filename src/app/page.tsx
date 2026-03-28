@@ -64,6 +64,11 @@ const faqItems = [
       "Yes — it takes place on city sidewalks and is generally accessible.",
   },
   {
+    question: "Can I bring pets?",
+    answer:
+      "Friendly pets on leash are welcome, but please remember that streets will be crowded, the temperature may be hot, and music can be loud.",
+  },
+  {
     question: "Is PorchFest family friendly?",
     answer:
       "Yes — PorchFest is designed to be a community-first, family-friendly day of local music and neighborhood connection.",

@@ -110,6 +110,15 @@ const spots: Spot[] = [
     photoQuery: "Historians Ale House Denver",
     imageUrl: "/businesses/historians-ale-house.webp",
   },
+  {
+    name: "Punch Bowl Social",
+    type: "Restaurant & Bar",
+    note: "Food, drinks, and activities near the neighborhood footprint.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Punch+Bowl+Social+Denver",
+    photoQuery: "Punch Bowl Social Denver",
+    imageUrl: "/businesses/punch-bowl-social.webp",
+  },
 ];
 
 const colors = [

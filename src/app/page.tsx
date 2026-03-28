@@ -12,6 +12,8 @@ const bandApplicationUrl =
   "https://docs.google.com/forms/d/1S-mjWFTPde5L7l3qbkOzy-jtTKCzqIQLMw0alEM5zAE/viewform";
 const vendorHostApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSdFdtOr5p7PJ1zxT_roKwjgxFCcnhDG0yOmUBWUmKqv3-5Kow/viewform?usp=pp_url";
+const vendorApplicationUrl =
+  "https://forms.gle/REPLACE_WITH_VENDOR_APPLICATION_FORM";
 
 type EventSettings = {
   eventName?: string;
@@ -238,7 +240,7 @@ export default async function Home() {
             involved.
           </p>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <article className="rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Music Host Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">
@@ -271,6 +273,22 @@ export default async function Home() {
               </a>
             </article>
 
+
+            <article className="rounded-xl border border-[#dbe7ff] bg-white p-5">
+              <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Application</h3>
+              <p className="mt-2 text-sm text-[#4b5563]">
+                Food, art, goods, or pop-up experiences that fit Porchfest?
+                Apply to be a featured vendor.
+              </p>
+              <a
+                href={vendorApplicationUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-block rounded-full bg-[#ea580c] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#c2410c]"
+              >
+                Apply as a Vendor
+              </a>
+            </article>
             <article className="rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Host Application</h3>
               <p className="mt-2 text-sm text-[#4b5563]">

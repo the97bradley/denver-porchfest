@@ -59,6 +59,11 @@ const faqItems = [
       "Absolutely. Use the application links in the 'Be Part of PorchFest' section to apply in the category that fits you.",
   },
   {
+    question: "Is the festival handicap accessible?",
+    answer:
+      "Yes — it takes place on city sidewalks and is generally accessible.",
+  },
+  {
     question: "Is PorchFest family friendly?",
     answer:
       "Yes — PorchFest is designed to be a community-first, family-friendly day of local music and neighborhood connection.",

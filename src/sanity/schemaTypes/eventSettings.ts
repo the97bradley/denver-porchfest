@@ -33,7 +33,7 @@ export const eventSettingsType = defineType({
       name: "estimatedActs",
       title: "Estimated Acts",
       type: "string",
-      initialValue: "50 artists",
+      initialValue: "50+ artists",
     }),
     defineField({
       name: "porchesStages",

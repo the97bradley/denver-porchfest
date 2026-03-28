@@ -411,7 +411,7 @@ export default async function Home() {
                   <summary className="cursor-pointer list-none pr-6 text-base font-semibold text-[#1f2937] [&::-webkit-details-marker]:hidden">
                     {item.question}
                   </summary>
-                  <p className="mt-3 text-sm leading-6 text-[#4b5563]">{item.answer}</p>
+                  <p className="mt-3 text-base leading-7 text-[#4b5563]">{item.answer}</p>
                 </details>
               ))}
             </div>

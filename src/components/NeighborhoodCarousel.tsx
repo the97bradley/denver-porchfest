@@ -200,6 +200,15 @@ const spots: Spot[] = [
     photoQuery: "Dae Gee Korean BBQ Denver",
     imageUrl: "/businesses/dae-gee-korean-bbq.webp",
   },
+  {
+    name: "SPACE Gallery",
+    type: "Gallery",
+    note: "Contemporary art gallery and event space.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=SPACE+Gallery+Denver",
+    photoQuery: "SPACE Gallery Denver",
+    imageUrl: "/businesses/space-gallery.webp",
+  },
 ];
 
 const colors = [

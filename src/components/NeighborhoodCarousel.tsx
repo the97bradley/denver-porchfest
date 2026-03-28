@@ -218,6 +218,15 @@ const spots: Spot[] = [
     photoQuery: "Ti Cafe Denver",
     imageUrl: "/businesses/ti-cafe.webp",
   },
+  {
+    name: "Trade",
+    type: "Bar",
+    note: "Cocktail-focused bar with lounge-style seating.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Trade+Denver",
+    photoQuery: "Trade Denver",
+    imageUrl: "/businesses/trade.webp",
+  },
 ];
 
 const colors = [

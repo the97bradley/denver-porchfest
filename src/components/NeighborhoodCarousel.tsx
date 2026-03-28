@@ -32,6 +32,15 @@ const spots: Spot[] = [
     imageUrl: "/businesses/black-sky-brewery.webp",
   },
   {
+    name: "Novel Strand Brewery",
+    type: "Brewery",
+    note: "Local craft brewery in the Baker/Santa Fe corridor.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Novel+Strand+Brewery+Denver",
+    photoQuery: "Novel Strand Brewery Denver",
+    imageUrl: "/businesses/novel-strand-brewery.webp",
+  },
+  {
     name: "Baker Market",
     type: "Market & Eatery",
     note: "Casual local stop for food and quick grabs.",

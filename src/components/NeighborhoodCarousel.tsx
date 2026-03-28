@@ -403,7 +403,7 @@ export default function NeighborhoodCarousel() {
       ) : (
         <div
           ref={trackRef}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-visible scroll-smooth pt-1 pb-2"
+          className="hide-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-visible scroll-smooth pt-1 pb-2"
         >
           {pages.map((pageSpots, pageIndex) => (
             <div key={pageIndex} className="w-full shrink-0 snap-start">

@@ -34,3 +34,12 @@ h3 {
     object-position: 50% calc(100% + 25px);
   }
 }
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

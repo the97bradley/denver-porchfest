@@ -254,6 +254,15 @@ const spots: Spot[] = [
     photoQuery: "MAKfam Denver",
     imageUrl: "/businesses/makfam.webp",
   },
+  {
+    name: "Moxie Eatery",
+    type: "Cafe",
+    note: "All-day cafe with breakfast, sandwiches, and coffee.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Moxie+Eatery+Denver",
+    photoQuery: "Moxie Eatery Denver",
+    imageUrl: "/businesses/moxie-eatery.webp",
+  },
 ];
 
 const colors = [

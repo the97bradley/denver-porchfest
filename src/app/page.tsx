@@ -37,6 +37,34 @@ const defaultEventSettings: Required<EventSettings> = {
   areaLabel: "Inside 1st–5th, Broadway to Santa Fe",
 };
 
+const faqItems = [
+  {
+    question: "Is Denver PorchFest free to attend?",
+    answer:
+      "Yes. The event is free for everyone. We do encourage a suggested $10 donation per attendee to help pay musicians and support event operations.",
+  },
+  {
+    question: "Where is PorchFest happening?",
+    answer:
+      "PorchFest takes place across the Baker neighborhood footprint, generally between 1st and 5th Ave from Broadway to Santa Fe.",
+  },
+  {
+    question: "When will the lineup and set times be announced?",
+    answer:
+      "The full lineup and schedule will be posted closer to event day. Check back on this site for updates.",
+  },
+  {
+    question: "Can I apply as an artist, host, vendor, or volunteer?",
+    answer:
+      "Absolutely. Use the application links in the 'Be Part of PorchFest' section to apply in the category that fits you.",
+  },
+  {
+    question: "Is PorchFest family friendly?",
+    answer:
+      "Yes — PorchFest is designed to be a community-first, family-friendly day of local music and neighborhood connection.",
+  },
+] as const;
+
 const eventJsonLd = {
   "@context": "https://schema.org",
   "@type": "MusicFestival",
@@ -346,6 +374,29 @@ export default async function Home() {
           >
             Request Sponsorship Deck
           </a>
+        </section>
+
+        <section id="faq" className="border-t border-[#bfdbfe] bg-[#f8fbff]">
+          <div className="mx-auto w-full max-w-6xl px-6 py-14">
+            <h2 className="text-2xl font-bold text-[#1f2937]">FAQ</h2>
+            <p className="mt-3 max-w-2xl text-[#4b5563]">
+              Quick answers to common PorchFest questions.
+            </p>
+
+            <div className="mt-6 space-y-3">
+              {faqItems.map((item) => (
+                <details
+                  key={item.question}
+                  className="rounded-xl border border-[#dbe7ff] bg-white p-4"
+                >
+                  <summary className="cursor-pointer list-none pr-6 text-base font-semibold text-[#1f2937] [&::-webkit-details-marker]:hidden">
+                    {item.question}
+                  </summary>
+                  <p className="mt-3 text-sm leading-6 text-[#4b5563]">{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
         </section>
       </main>
 

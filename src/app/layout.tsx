@@ -85,6 +85,25 @@ export default function RootLayout({
         {children}
         {gaMeasurementId ? (
           <>
+            <Script id="ga4-exclude-toggle" strategy="beforeInteractive">
+              {`
+                (function () {
+                  var key = 'denverPorchfestExcludeAnalytics';
+                  var params = new URLSearchParams(window.location.search);
+                  var setOn = params.get('exclude_me') === '1';
+                  var setOff = params.get('exclude_me') === '0';
+
+                  if (setOn) localStorage.setItem(key, '1');
+                  if (setOff) localStorage.removeItem(key);
+
+                  var excluded = localStorage.getItem(key) === '1';
+                  if (excluded) {
+                    window['ga-disable-${gaMeasurementId}'] = true;
+                    window.__dpfAnalyticsExcluded = true;
+                  }
+                })();
+              `}
+            </Script>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
               strategy="afterInteractive"

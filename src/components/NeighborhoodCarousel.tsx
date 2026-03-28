@@ -99,6 +99,7 @@ const spots: Spot[] = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Historians+Ale+House+Denver",
     photoQuery: "Historians Ale House Denver",
+    imageUrl: "/businesses/historians-ale-house.webp",
   },
   {
     name: "Illegal Pete’s (Broadway)",

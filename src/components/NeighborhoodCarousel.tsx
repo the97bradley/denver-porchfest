@@ -372,6 +372,16 @@ const spots: Spot[] = [
     imageUrl: "/businesses/brewery-bar-ii.webp",
   },
   {
+    name: "Milagro Burritos",
+    type: "Burrito Spot",
+    note: "Neighborhood burrito spot for quick, flavorful bites.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Milagro+Burritos+Denver",
+    photoQuery: "Milagro Burritos Denver",
+    imageUrl:
+      "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepb5XKKd30EzONTxk2i0Wcx998T7NHX-nOhDroZ1Jj1ho4QDIXMWMpdgF_KE_GQXECik8W_b6-iB2LhcbvDoFTEUlefK79tw5FDdx2bC_x9c-cyL99VhCKTRQu76_YHi4uPGnEBTA=s1360-w1360-h1020-rw",
+  },
+  {
     name: "Moonrise Coffee Roasters",
     type: "Coffee Roaster",
     note: "Coffee roaster and cafe with espresso and pastries.",

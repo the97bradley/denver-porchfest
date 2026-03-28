@@ -263,6 +263,15 @@ const spots: Spot[] = [
     photoQuery: "Moxie Eatery Denver",
     imageUrl: "/businesses/moxie-eatery.webp",
   },
+  {
+    name: "Brewery Bar II",
+    type: "Restaurant & Bar",
+    note: "Classic Mexican restaurant with margaritas and casual dining.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Brewery+Bar+II+Denver",
+    photoQuery: "Brewery Bar II Denver",
+    imageUrl: "/businesses/brewery-bar-ii.webp",
+  },
 ];
 
 const colors = [

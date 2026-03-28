@@ -209,6 +209,15 @@ const spots: Spot[] = [
     photoQuery: "SPACE Gallery Denver",
     imageUrl: "/businesses/space-gallery.webp",
   },
+  {
+    name: "Ti Cafe",
+    type: "Cafe",
+    note: "Cafe with coffee, tea, and light Vietnamese bites.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Ti+Cafe+Denver",
+    photoQuery: "Ti Cafe Denver",
+    imageUrl: "/businesses/ti-cafe.webp",
+  },
 ];
 
 const colors = [

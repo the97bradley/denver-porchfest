@@ -279,7 +279,7 @@ export default async function Home() {
                 href={vendorHostApplicationUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-6 inline-flex w-fit rounded-full bg-[#7c3aed] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#6d28d9]"
+                className="mt-6 inline-flex w-fit whitespace-nowrap rounded-full bg-[#7c3aed] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#6d28d9]"
               >
                 Apply to Host Vendors
               </a>

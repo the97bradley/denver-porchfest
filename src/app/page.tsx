@@ -3,11 +3,9 @@ import EventSnapshotMap from "@/components/EventSnapshotMap";
 import NeighborhoodCarousel from "@/components/NeighborhoodCarousel";
 
 const hostApplicationUrl =
-  "https://docs.google.com/forms/d/e/1FAIpQLSd7XD6FEIOBmv6uYaSdJf8daQmZf2d54nl3Y6_qpMLz3532uQ/viewform?usp=pp_url";
+  "https://docs.google.com/forms/d/1hZONc8KKvk603YW_So8A-0rJE1hCDzx5L_8iI3HjKRs/edit";
 const bandApplicationUrl =
   "https://docs.google.com/forms/d/1S-mjWFTPde5L7l3qbkOzy-jtTKCzqIQLMw0alEM5zAE/viewform";
-const vendorHostApplicationUrl =
-  "https://docs.google.com/forms/d/e/1FAIpQLSdFdtOr5p7PJ1zxT_roKwjgxFCcnhDG0yOmUBWUmKqv3-5Kow/viewform?usp=pp_url";
 const vendorApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSdGGqud2IjV89O56-1SNxvxg5SW1Ubai81aGt7Ucf4IgLAdmw/viewform?usp=publish-editor";
 const volunteerApplicationUrl =
@@ -250,7 +248,7 @@ export default function Home() {
             involved.
           </p>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Artist Application</h3>
               <p className="mt-2 flex-1 text-sm text-[#4b5563]">
@@ -268,10 +266,10 @@ export default function Home() {
             </article>
 
             <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
-              <h3 className="text-lg font-semibold text-[#1f2937]">Music Host Application</h3>
+              <h3 className="text-lg font-semibold text-[#1f2937]">Host Application</h3>
               <p className="mt-2 flex-1 text-sm text-[#4b5563]">
-                Open your porch, yard, or shared outdoor space to support local
-                music.
+                Open your porch, yard, or shared outdoor space to host music,
+                vendors, or both.
               </p>
               <a
                 href={hostApplicationUrl}
@@ -279,10 +277,9 @@ export default function Home() {
                 rel="noreferrer"
                 className="mt-6 inline-flex w-fit self-center rounded-full bg-[#1f2937] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#111827]"
               >
-                Apply to Host Music
+                Apply as a Host
               </a>
             </article>
-
 
             <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Application</h3>
@@ -297,20 +294,6 @@ export default function Home() {
                 className="mt-6 inline-flex w-fit self-center rounded-full bg-[#ea580c] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#c2410c]"
               >
                 Apply as a Vendor
-              </a>
-            </article>
-            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
-              <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Host Application</h3>
-              <p className="mt-2 flex-1 text-sm text-[#4b5563]">
-                Willing to host local vendors during the event? Let us know.
-              </p>
-              <a
-                href={vendorHostApplicationUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-6 inline-flex w-fit self-center whitespace-nowrap rounded-full bg-[#7c3aed] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#6d28d9]"
-              >
-                Apply to Host Vendors
               </a>
             </article>
 

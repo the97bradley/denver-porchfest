@@ -1,9 +1,6 @@
 import Image from "next/image";
-import { groq } from "next-sanity";
 import EventSnapshotMap from "@/components/EventSnapshotMap";
 import NeighborhoodCarousel from "@/components/NeighborhoodCarousel";
-import { hasSanityConfig } from "@/sanity/env";
-import { sanityClient } from "@/sanity/lib/client";
 
 const hostApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSd7XD6FEIOBmv6uYaSdJf8daQmZf2d54nl3Y6_qpMLz3532uQ/viewform?usp=pp_url";
@@ -16,19 +13,9 @@ const vendorApplicationUrl =
 const volunteerApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSckxCBSKunojnMD4xJ6aPeT5kTfH2zpEGIpAtIogYNvz8yVhQ/viewform?usp=publish-editor";
 
-type EventSettings = {
-  eventName?: string;
-  eventDateLabel?: string;
-  heroHeadline?: string;
-  heroBody?: string;
-  estimatedActs?: string;
-  porchesStages?: string;
-  areaLabel?: string;
-};
-
-const defaultEventSettings: Required<EventSettings> = {
+const eventSettings = {
   eventName: "Denver PorchFest",
-  eventDateLabel: "Saturday, October 10 · Denver, CO",
+  eventDateLabel: "Saturday, October 3 · Denver, CO",
   heroHeadline: "A front-porch music day for Denver neighbors.",
   heroBody:
     "Walk the blocks, meet your neighbors, discover local artists, and spend the day outside. Denver PorchFest is community-first, family-friendly, and free for everyone.",
@@ -46,12 +33,12 @@ const faqItems = [
   {
     question: "When and where is PorchFest happening?",
     answer:
-      "PorchFest takes place on Saturday, October 10 across the Baker neighborhood footprint between 1st and 5th Ave from Broadway to Santa Fe.",
+      "PorchFest takes place on Saturday, October 3 across the Baker neighborhood footprint between 1st and 5th Ave from Broadway to Santa Fe.",
   },
   {
     question: "When will the lineup and set times be announced?",
     answer:
-      "The lineup will be announced on September 12. Check back on this site for updates.",
+      "The lineup will be announced on September 5. Check back on this site for updates.",
   },
   {
     question: "Can I apply as an artist, host, vendor, or volunteer?",
@@ -92,8 +79,8 @@ const eventJsonLd = {
     "A front-porch music day for Denver neighbors with local artists, neighborhood porches, and community partners.",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
-  startDate: "2026-10-10T12:00:00-06:00",
-  endDate: "2026-10-10T20:00:00-06:00",
+  startDate: "2026-10-03T12:00:00-06:00",
+  endDate: "2026-10-03T20:00:00-06:00",
   isAccessibleForFree: true,
   location: {
     "@type": "Place",
@@ -113,28 +100,8 @@ const eventJsonLd = {
   url: "https://denverporchfest.com",
 };
 
-export default async function Home() {
-  let cmsSettings: EventSettings | null = null;
-
-  if (hasSanityConfig && sanityClient) {
-    try {
-      cmsSettings = await sanityClient.fetch<EventSettings | null>(
-        groq`*[_type == "eventSettings"][0]{
-          eventName,
-          eventDateLabel,
-          heroHeadline,
-          heroBody,
-          estimatedActs,
-          porchesStages,
-          areaLabel
-        }`,
-      );
-    } catch {
-      cmsSettings = null;
-    }
-  }
-
-  const s = { ...defaultEventSettings, ...(cmsSettings || {}) };
+export default function Home() {
+  const s = eventSettings;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f3f8ff] via-[#eef6ff] to-[#eaf4ff] text-[#1f2937]">
@@ -212,7 +179,7 @@ export default async function Home() {
             <ul className="space-y-3 text-sm text-[#374151]">
               <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Date</span>
-                <span className="font-semibold">Saturday, October 10 · 12 PM - 7 PM</span>
+                <span className="font-semibold">Saturday, October 3 · 12 PM - 7 PM</span>
               </li>
               <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Estimated Acts</span>

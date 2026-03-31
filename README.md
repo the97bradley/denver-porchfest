@@ -87,3 +87,35 @@ Replace those placeholders with your real Google Form URLs.
    - `/lineup`
    - `/volunteer`
    - `/sponsors`
+
+## Uptime monitoring (cloud-only)
+
+A health endpoint is available at:
+
+- `GET /api/health`
+- `HEAD /api/health`
+
+Expected behavior:
+
+- Returns **200** when critical dependencies are configured.
+- Returns **503** when the volunteer webhook env var is missing (`VOLUNTEER_APPS_SCRIPT_URL`).
+- Response includes timestamp, deploy version, and config check flags.
+
+### UptimeRobot setup
+
+Create monitors for:
+
+1. `https://denverporchfest.com/` (HTTP(s), 5 min)
+2. `https://denverporchfest.com/lineup` (HTTP(s), 5 min)
+3. `https://denverporchfest.com/api/health` (HTTP(s), 5 min)
+
+Alert contacts:
+
+- Add SMS/email/push for urgent alerts
+- Optional: add Slack/Discord webhook for team notifications
+
+Recommended alerting policy:
+
+- Trigger after **2 consecutive failures**
+- Recovery notification enabled
+- Maintenance windows configured before planned deploys

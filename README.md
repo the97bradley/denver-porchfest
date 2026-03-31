@@ -97,9 +97,8 @@ A health endpoint is available at:
 
 Expected behavior:
 
-- Returns **200** when critical dependencies are configured.
-- Returns **503** when the volunteer webhook env var is missing (`VOLUNTEER_APPS_SCRIPT_URL`).
-- Response includes timestamp, deploy version, and config check flags.
+- Returns **200** when app is live and serving.
+- Response includes timestamp, deploy version, and non-critical config check flags.
 
 ### UptimeRobot setup
 

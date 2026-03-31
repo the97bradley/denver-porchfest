@@ -4,7 +4,6 @@ export const dynamic = "force-dynamic";
 
 function configuredEnvStatus() {
   return {
-    volunteerWebhookConfigured: Boolean(process.env.VOLUNTEER_APPS_SCRIPT_URL),
     googleMapsServerKeyConfigured: Boolean(process.env.GOOGLE_MAPS_API_KEY),
     googleMapsBrowserKeyConfigured: Boolean(
       process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
@@ -17,22 +16,17 @@ function configuredEnvStatus() {
 }
 
 export async function GET() {
-  const env = configuredEnvStatus();
-  const criticalDependencyHealthy = env.volunteerWebhookConfigured;
-
-  const status = criticalDependencyHealthy ? "ok" : "degraded";
-
   const response = NextResponse.json(
     {
-      ok: status === "ok",
-      status,
+      ok: true,
+      status: "ok",
       service: "denver-porchfest-site",
       timestamp: new Date().toISOString(),
       version: process.env.VERCEL_GIT_COMMIT_SHA ?? "local",
-      checks: env,
+      checks: configuredEnvStatus(),
     },
     {
-      status: criticalDependencyHealthy ? 200 : 503,
+      status: 200,
     },
   );
 
@@ -41,10 +35,8 @@ export async function GET() {
 }
 
 export async function HEAD() {
-  const volunteerWebhookConfigured = Boolean(process.env.VOLUNTEER_APPS_SCRIPT_URL);
-
   return new NextResponse(null, {
-    status: volunteerWebhookConfigured ? 200 : 503,
+    status: 200,
     headers: { "Cache-Control": "no-store" },
   });
 }

@@ -343,12 +343,16 @@ export default function Home() {
             <li>Direct connection with local music fans, families, and neighbors</li>
             <li>Support for free, community-centered arts programming in Denver</li>
           </ul>
-          <a
-            href="mailto:info@denverporchfest.com"
-            className="mt-5 inline-block rounded-full border border-[#bfdbfe] bg-white px-5 py-3 text-sm font-bold text-[#374151] transition hover:bg-[#eef5ff]"
-          >
-            Request Sponsorship Deck
-          </a>
+          <p className="mt-5 text-sm text-[#4b5563]">
+            To sponsor PorchFest, email us at{" "}
+            <a
+              href="mailto:info@denverporchfest.com"
+              className="font-semibold text-[#1f2937] underline decoration-[#93c5fd] underline-offset-2"
+            >
+              info@denverporchfest.com
+            </a>
+            .
+          </p>
         </section>
 
         <section id="faq" className="border-t border-[#bfdbfe] bg-[#f8fbff]">

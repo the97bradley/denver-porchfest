@@ -344,7 +344,7 @@ export default function Home() {
             <li>Support for free, community-centered arts programming in Denver</li>
           </ul>
           <p className="mt-5 text-sm text-[#4b5563]">
-            To sponsor PorchFest, email us at{" "}
+            To request sponsorship information, email us at{" "}
             <a
               href="mailto:info@denverporchfest.com"
               className="font-semibold text-[#1f2937] underline decoration-[#93c5fd] underline-offset-2"

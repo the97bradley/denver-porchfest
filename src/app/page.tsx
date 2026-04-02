@@ -333,10 +333,16 @@ export default function Home() {
 
         <section id="sponsor" className="mx-auto w-full max-w-6xl px-6 py-14">
           <h2 className="text-2xl font-bold text-[#1f2937]">Local Sponsors & Partners</h2>
-          <p className="mt-3 max-w-2xl text-[#4b5563]">
+          <p className="mt-3 max-w-3xl text-[#4b5563]">
             PorchFest is powered by neighborhood businesses, community groups,
             and local supporters who want to invest in Denver&apos;s creative scene.
+            We are currently accepting both individual and business sponsors.
           </p>
+          <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-[#4b5563]">
+            <li>Brand visibility across event signage, website, and social media</li>
+            <li>Direct connection with local music fans, families, and neighbors</li>
+            <li>Support for free, community-centered arts programming in Denver</li>
+          </ul>
           <a
             href="mailto:info@denverporchfest.com"
             className="mt-5 inline-block rounded-full border border-[#bfdbfe] bg-white px-5 py-3 text-sm font-bold text-[#374151] transition hover:bg-[#eef5ff]"

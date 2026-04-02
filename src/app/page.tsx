@@ -338,7 +338,7 @@ export default function Home() {
             and local supporters who want to invest in Denver&apos;s creative scene.
           </p>
           <a
-            href="mailto:sponsors@denverporchfest.com"
+            href="mailto:info@denverporchfest.com"
             className="mt-5 inline-block rounded-full border border-[#bfdbfe] bg-white px-5 py-3 text-sm font-bold text-[#374151] transition hover:bg-[#eef5ff]"
           >
             Request Sponsorship Deck

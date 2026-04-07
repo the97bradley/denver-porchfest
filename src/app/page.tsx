@@ -29,6 +29,11 @@ const faqItems = [
       "Yes. The event is free for everyone. We do encourage a suggested $10 donation per attendee to help pay musicians and support event operations.",
   },
   {
+    question: "The festival is free. Will artists be paid??",
+    answer:
+      "We know how important it is to pay musicians a fair wage. The festival is free but attendees are encouraged to donate $10 - the entirety of this money will be split between artists. We are also working on additional sponsorships which will guarantee artist payment.",
+  },
+  {
     question: "When and where is PorchFest happening?",
     answer:
       "PorchFest takes place on Saturday, October 3 across the Baker neighborhood footprint between 1st and 5th Ave from Broadway to Santa Fe.",

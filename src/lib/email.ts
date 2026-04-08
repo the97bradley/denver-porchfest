@@ -25,13 +25,14 @@ export async function sendAccessEmail(input: AccessEmailInput) {
         </a>
       </p>
       <p><strong>Backup access code:</strong> ${input.accessCode}</p>
+      <p><strong>Perk:</strong> Show the app at the info booth to get a free Denver PorchFest sticker and lanyard (while supplies last).</p>
       <p>If the button doesn't work, copy and paste this link:</p>
       <p><a href="${input.tokenUrl}">${input.tokenUrl}</a></p>
       <p>— Denver PorchFest</p>
     </div>
   `;
 
-  const text = `Hey ${first},\n\nThanks for supporting Denver PorchFest. Your app access is ready.\n\nOpen link: ${input.tokenUrl}\nBackup access code: ${input.accessCode}\n\n— Denver PorchFest`;
+  const text = `Hey ${first},\n\nThanks for supporting Denver PorchFest. Your app access is ready.\n\nOpen link: ${input.tokenUrl}\nBackup access code: ${input.accessCode}\n\nPerk: Show the app at the info booth to get a free Denver PorchFest sticker and lanyard (while supplies last).\n\n— Denver PorchFest`;
 
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",

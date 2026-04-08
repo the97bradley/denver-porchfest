@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { fetchRecentEventbriteAttendees } from "@/lib/eventbrite";
 import { upsertEventbriteAttendee } from "@/lib/attendee-sync";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
+import { sendAccessEmail } from "@/lib/email";
 
 function isAdmin(req: NextRequest) {
   const secret = process.env.ADMIN_API_SECRET;
@@ -31,8 +32,35 @@ export async function POST(req: NextRequest) {
 
   for (const attendee of attendees) {
     const result = await upsertEventbriteAttendee(attendee, appBase);
-    if (result.ok) processed += 1;
-    else {
+    if (result.ok) {
+      processed += 1;
+      const emailResult = await sendAccessEmail({
+        to: result.email,
+        firstName: result.firstName,
+        tokenUrl: result.tokenUrl,
+        accessCode: result.accessCode,
+      });
+
+      if (emailResult.ok) {
+        await supabase
+          .from("attendees")
+          .update({ accessEmailSentAt: new Date().toISOString(), accessEmailError: null })
+          .eq("eventbriteAttendeeId", attendee.id);
+      } else {
+        await supabase
+          .from("attendees")
+          .update({ accessEmailError: emailResult.error })
+          .eq("eventbriteAttendeeId", attendee.id);
+
+        await supabase.from("webhook_dead_letters").insert({
+          source: "admin_backfill_email",
+          reference_id: `${attendee.order_id}:${attendee.id}`,
+          reason: "email_send_failed",
+          payload: attendee,
+          error: emailResult.error,
+        });
+      }
+    } else {
       await supabase.from("webhook_dead_letters").insert({
         source: "admin_backfill",
         reference_id: `${attendee.order_id}:${attendee.id}`,

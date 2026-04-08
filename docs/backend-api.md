@@ -44,8 +44,9 @@ Typical payload fields used:
    - `firstName`, `lastName`, `email`
    - `eventbriteAttendeeId`, `eventbriteOrderId`
    - `tokenUrl`, `accessCode`, `status`
-5. Logs webhook processing status in `public.webhook_events`.
-6. Writes failed attendee sync records to `public.webhook_dead_letters`.
+5. Sends attendee-specific access email (token link + code) via Resend.
+6. Logs webhook processing status in `public.webhook_events`.
+7. Writes failed attendee sync/email records to `public.webhook_dead_letters`.
 
 ### Success response
 
@@ -191,6 +192,8 @@ Required for full pipeline:
 - `APP_BASE_URL`
 - `APP_SUCCESS_URL`
 - `ADMIN_API_SECRET`
+- `RESEND_API_KEY`
+- `ACCESS_EMAIL_FROM`
 
 ---
 

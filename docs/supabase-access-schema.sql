@@ -17,9 +17,14 @@ create table if not exists public.attendees (
   status text not null default 'active',
 
   "lastAccessedAt" timestamptz,
+  "accessEmailSentAt" timestamptz,
+  "accessEmailError" text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+alter table public.attendees add column if not exists "accessEmailSentAt" timestamptz;
+alter table public.attendees add column if not exists "accessEmailError" text;
 
 create index if not exists attendees_email_idx on public.attendees (email);
 create index if not exists attendees_order_idx on public.attendees ("eventbriteOrderId");

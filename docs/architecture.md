@@ -8,6 +8,7 @@ This is a practical system overview of the current PorchFest platform.
 - **Database:** Supabase (Postgres)
 - **Ticket source:** Eventbrite
 - **Inbound integration:** Eventbrite webhooks + API pulls
+- **Email delivery:** Resend API (attendee-specific token/code emails)
 - **Access model:** token link + access code gate
 
 ## 2) System Diagram (logical)

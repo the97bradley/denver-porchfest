@@ -43,7 +43,14 @@ export async function upsertEventbriteAttendee(attendee: EventbriteAttendee, app
     );
 
     if (!error) {
-      return { ok: true as const, attendeeId: attendee.id };
+      return {
+        ok: true as const,
+        attendeeId: attendee.id,
+        email,
+        firstName,
+        tokenUrl,
+        accessCode,
+      };
     }
 
     lastError = error;

@@ -10,13 +10,13 @@ export async function POST(req: NextRequest) {
 
   const { data: attendee } = await supabase
     .from("attendees")
-    .select("access_link,status")
-    .eq("access_code", normalized)
+    .select("tokenUrl,status")
+    .eq("accessCode", normalized)
     .maybeSingle();
 
   if (!attendee || attendee.status !== "active") {
     return NextResponse.json({ error: "Invalid code" }, { status: 404 });
   }
 
-  return NextResponse.json({ ok: true, accessLink: attendee.access_link });
+  return NextResponse.json({ ok: true, accessLink: attendee.tokenUrl });
 }

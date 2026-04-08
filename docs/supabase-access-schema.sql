@@ -2,31 +2,29 @@
 
 create table if not exists public.attendees (
   id uuid primary key default gen_random_uuid(),
-  eventbrite_attendee_id text unique not null,
-  eventbrite_order_id text not null,
-  full_name text not null,
+
+  "firstName" text not null,
+  "lastName" text not null,
   email text not null,
-  access_code text unique not null,
-  access_link_token text unique not null,
-  access_link text not null,
+
+  "tokenUrl" text not null unique,
+  "accessCode" text not null unique,
+
+  "eventbriteAttendeeId" text unique,
+  "eventbriteOrderId" text,
+  "ticketType" text,
+
   status text not null default 'active',
+
+  "lastAccessedAt" timestamptz,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
 create index if not exists attendees_email_idx on public.attendees (email);
-create index if not exists attendees_order_idx on public.attendees (eventbrite_order_id);
+create index if not exists attendees_order_idx on public.attendees ("eventbriteOrderId");
+create index if not exists attendees_status_idx on public.attendees (status);
 
-create table if not exists public.webhook_events (
-  id uuid primary key default gen_random_uuid(),
-  eventbrite_webhook_id text unique not null,
-  event_type text not null,
-  payload jsonb not null,
-  processed_at timestamptz not null,
-  created_at timestamptz not null default now()
-);
-
--- Optional updated_at trigger
 create or replace function public.touch_updated_at()
 returns trigger as $$
 begin

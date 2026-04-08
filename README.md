@@ -143,6 +143,8 @@ Added API routes:
   - admin-only endpoint to resync a specific Eventbrite order by `orderId`
 - `POST /api/admin/backfill`
   - admin-only endpoint to pull recent attendees from Eventbrite and upsert missing records
+- `POST /api/admin/resend-access-email`
+  - admin-only endpoint to resend attendee access email by attendeeId/email
 
 ### Setup
 

@@ -179,6 +179,38 @@ Default is `24`.
 
 ---
 
+## 6) Admin: Resend Access Email
+
+### `POST /api/admin/resend-access-email`
+
+Resend the attendee access email manually.
+
+### Auth
+
+- Header: `Authorization: Bearer <ADMIN_API_SECRET>`
+
+### Request
+
+Provide one of:
+
+```json
+{ "attendeeId": "123456789" }
+```
+
+or
+
+```json
+{ "email": "person@example.com" }
+```
+
+### Success
+
+```json
+{ "ok": true, "attendeeId": "123456789", "email": "person@example.com" }
+```
+
+---
+
 ## Environment Variables
 
 Required for full pipeline:

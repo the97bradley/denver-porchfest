@@ -31,6 +31,9 @@ export async function POST(req: NextRequest) {
     const result = await upsertEventbriteAttendee(attendee, appBase);
     if (result.ok) {
       processed += 1;
+      if (result.status !== "active") {
+        continue;
+      }
       const emailResult = await sendAccessEmail({
         to: result.email,
         firstName: result.firstName,

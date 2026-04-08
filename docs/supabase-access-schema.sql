@@ -65,3 +65,8 @@ drop trigger if exists trg_attendees_updated_at on public.attendees;
 create trigger trg_attendees_updated_at
 before update on public.attendees
 for each row execute function public.touch_updated_at();
+
+-- Hardening: keep exposed tables closed to anon/authenticated clients.
+alter table public.attendees enable row level security;
+alter table public.webhook_events enable row level security;
+alter table public.webhook_dead_letters enable row level security;

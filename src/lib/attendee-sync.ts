@@ -13,6 +13,8 @@ export async function upsertEventbriteAttendee(attendee: EventbriteAttendee, app
   const firstName = attendee.profile?.first_name?.trim() ?? "";
   const lastName = attendee.profile?.last_name?.trim() ?? "";
   const base = appBaseUrl.replace(/\/$/, "");
+  const attendeeStatus = (attendee.status ?? "").toLowerCase();
+  const status = attendeeStatus.includes("refund") || attendeeStatus.includes("cancel") ? "revoked" : "active";
 
   const { data: existing } = await supabase
     .from("attendees")
@@ -37,7 +39,7 @@ export async function upsertEventbriteAttendee(attendee: EventbriteAttendee, app
         accessCode,
         eventbriteAttendeeId: attendee.id,
         eventbriteOrderId: attendee.order_id,
-        status: "active",
+        status,
       },
       { onConflict: "eventbriteAttendeeId" },
     );
@@ -50,6 +52,7 @@ export async function upsertEventbriteAttendee(attendee: EventbriteAttendee, app
         firstName,
         tokenUrl,
         accessCode,
+        status,
       };
     }
 

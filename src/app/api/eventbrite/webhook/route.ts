@@ -61,10 +61,15 @@ export async function POST(req: NextRequest) {
     const order = await fetchEventbriteOrder(orderId, eventbriteToken);
     if (order.status && !["placed", "completed"].includes(order.status.toLowerCase())) {
       await supabase
+        .from("attendees")
+        .update({ status: "revoked" })
+        .eq("eventbriteOrderId", orderId);
+
+      await supabase
         .from("webhook_events")
         .update({ status: "ignored", processed_at: new Date().toISOString() })
         .eq("eventbrite_webhook_id", webhookKey);
-      return NextResponse.json({ ok: true, ignored: true, orderStatus: order.status });
+      return NextResponse.json({ ok: true, ignored: true, orderStatus: order.status, revokedOrder: true });
     }
 
     const attendees = await fetchEventbriteAttendeesByOrder(orderId, eventbriteToken);
@@ -74,6 +79,10 @@ export async function POST(req: NextRequest) {
       const result = await upsertEventbriteAttendee(attendee, appBase);
       if (result.ok) {
         processed += 1;
+
+        if (result.status !== "active") {
+          continue;
+        }
 
         const emailResult = await sendAccessEmail({
           to: result.email,

@@ -70,9 +70,12 @@ Recommended hardening next:
 Implemented:
 - Unique constraints on access identifiers
 - Retry logic on token/code uniqueness collisions
-- Dead-letter capture for failed attendee writes
+- Dead-letter capture for failed attendee writes/emails
 - Manual resync endpoint by order
 - Backfill endpoint for missed webhook deliveries
+- Manual resend-access-email admin endpoint
+- Auto-revocation when order/attendee status indicates refund/cancel
+- RLS enabled on access pipeline tables
 
 Recommended next:
 - Scheduled cron backfill every 15–30 min

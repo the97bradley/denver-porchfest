@@ -3,6 +3,7 @@ import { fetchRecentEventbriteAttendees } from "@/lib/eventbrite";
 import { upsertEventbriteAttendee } from "@/lib/attendee-sync";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { sendAccessEmail } from "@/lib/email";
+import { notifyAccessEmailFailure } from "@/lib/email-alerts";
 
 function isAdmin(req: NextRequest) {
   const secret = process.env.ADMIN_API_SECRET;
@@ -61,6 +62,14 @@ export async function POST(req: NextRequest) {
           reason: "email_send_failed",
           payload: attendee,
           error: emailResult.error,
+        });
+
+        await notifyAccessEmailFailure({
+          attendeeEmail: result.email,
+          attendeeName: attendee.profile?.name ?? result.firstName,
+          eventbriteOrderId: attendee.order_id,
+          eventbriteAttendeeId: attendee.id,
+          reason: emailResult.error,
         });
       }
     } else {

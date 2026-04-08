@@ -226,6 +226,7 @@ Required for full pipeline:
 - `ADMIN_API_SECRET`
 - `RESEND_API_KEY`
 - `ACCESS_EMAIL_FROM`
+- `ACCESS_ALERT_TO` (alert recipient for failed attendee emails)
 
 ---
 

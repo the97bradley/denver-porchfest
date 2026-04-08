@@ -3,6 +3,7 @@ import { fetchEventbriteAttendeesByOrder, fetchEventbriteOrder } from "@/lib/eve
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { upsertEventbriteAttendee } from "@/lib/attendee-sync";
 import { sendAccessEmail } from "@/lib/email";
+import { notifyAccessEmailFailure } from "@/lib/email-alerts";
 
 export async function POST(req: NextRequest) {
   const supabase = getSupabaseAdmin();
@@ -108,6 +109,14 @@ export async function POST(req: NextRequest) {
             reason: "email_send_failed",
             payload: attendee,
             error: emailResult.error,
+          });
+
+          await notifyAccessEmailFailure({
+            attendeeEmail: result.email,
+            attendeeName: attendee.profile?.name ?? result.firstName,
+            eventbriteOrderId: attendee.order_id,
+            eventbriteAttendeeId: attendee.id,
+            reason: emailResult.error,
           });
         }
       } else {

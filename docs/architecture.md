@@ -71,6 +71,7 @@ Implemented:
 - Unique constraints on access identifiers
 - Retry logic on token/code uniqueness collisions
 - Dead-letter capture for failed attendee writes/emails
+- Automatic delayed order retries (2m/10m/30m) via retry job queue + cron processor
 - Manual resync endpoint by order
 - Backfill endpoint for missed webhook deliveries
 - Manual resend-access-email admin endpoint

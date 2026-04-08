@@ -211,6 +211,26 @@ or
 
 ---
 
+## 7) Internal: Process Retry Jobs (Cron)
+
+### `GET /api/internal/process-retries`
+
+Processes due retry jobs (`retry_jobs`) to handle delayed Eventbrite attendee assignment and missed first-pass sends.
+
+### Auth
+
+- Header: `Authorization: Bearer <CRON_SECRET>`
+
+### Behavior
+
+- Loads pending retry jobs where `run_at <= now()`
+- Pulls attendees by order from Eventbrite
+- Upserts missing attendees
+- Sends missing emails only for active attendees not previously emailed
+- Marks job `done` or `failed`
+
+---
+
 ## Environment Variables
 
 Required for full pipeline:
@@ -224,6 +244,7 @@ Required for full pipeline:
 - `APP_BASE_URL`
 - `APP_SUCCESS_URL`
 - `ADMIN_API_SECRET`
+- `CRON_SECRET`
 - `RESEND_API_KEY`
 - `ACCESS_EMAIL_FROM`
 - `ACCESS_ALERT_TO` (alert recipient for failed attendee emails)

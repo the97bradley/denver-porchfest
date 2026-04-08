@@ -53,6 +53,20 @@ create table if not exists public.webhook_dead_letters (
 create index if not exists webhook_dead_letters_source_idx on public.webhook_dead_letters (source);
 create index if not exists webhook_dead_letters_reference_idx on public.webhook_dead_letters (reference_id);
 
+create table if not exists public.retry_jobs (
+  id uuid primary key default gen_random_uuid(),
+  job_key text unique not null,
+  kind text not null,
+  payload jsonb not null,
+  run_at timestamptz not null,
+  status text not null default 'pending',
+  error jsonb,
+  processed_at timestamptz,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists retry_jobs_status_runat_idx on public.retry_jobs (status, run_at);
+
 create or replace function public.touch_updated_at()
 returns trigger as $$
 begin
@@ -70,3 +84,4 @@ for each row execute function public.touch_updated_at();
 alter table public.attendees enable row level security;
 alter table public.webhook_events enable row level security;
 alter table public.webhook_dead_letters enable row level security;
+alter table public.retry_jobs enable row level security;

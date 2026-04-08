@@ -145,6 +145,8 @@ Added API routes:
   - admin-only endpoint to pull recent attendees from Eventbrite and upsert missing records
 - `POST /api/admin/resend-access-email`
   - admin-only endpoint to resend attendee access email by attendeeId/email
+- `GET /api/internal/process-retries`
+  - internal cron endpoint for delayed order retry processing (2m/10m/30m)
 
 ### Setup
 
@@ -160,4 +162,5 @@ Added API routes:
 - This MVP stores unique links/codes and handles gate checks.
 - Next step is wiring outbound email delivery for links/codes (Resend/Postmark/Supabase Auth magic-link email).
 - Set `EVENTBRITE_EVENT_ID` and `ADMIN_API_SECRET` to use backfill/resync admin endpoints.
+- Set `CRON_SECRET` for internal retry cron auth.
 - Admin endpoints require: `Authorization: Bearer <ADMIN_API_SECRET>`.

@@ -18,7 +18,7 @@ export async function upsertEventbriteAttendee(attendee: EventbriteAttendee, app
 
   const { data: existing } = await supabase
     .from("attendees")
-    .select("tokenUrl,accessCode")
+    .select("tokenUrl,accessCode,accessEmailSentAt")
     .eq("eventbriteAttendeeId", attendee.id)
     .maybeSingle();
 
@@ -53,6 +53,7 @@ export async function upsertEventbriteAttendee(attendee: EventbriteAttendee, app
         tokenUrl,
         accessCode,
         status,
+        alreadyEmailed: Boolean(existing?.accessEmailSentAt),
       };
     }
 

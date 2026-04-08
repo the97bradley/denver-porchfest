@@ -4,6 +4,7 @@ import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { upsertEventbriteAttendee } from "@/lib/attendee-sync";
 import { sendAccessEmail } from "@/lib/email";
 import { notifyAccessEmailFailure } from "@/lib/email-alerts";
+import { enqueueOrderRetries } from "@/lib/retry-jobs";
 
 export async function POST(req: NextRequest) {
   const supabase = getSupabaseAdmin();
@@ -59,6 +60,10 @@ export async function POST(req: NextRequest) {
       { onConflict: "eventbrite_webhook_id" },
     );
 
+    if ((typedPayload.action ?? "").toLowerCase() === "order.placed") {
+      await enqueueOrderRetries(orderId);
+    }
+
     const order = await fetchEventbriteOrder(orderId, eventbriteToken);
     if (order.status && !["placed", "completed"].includes(order.status.toLowerCase())) {
       await supabase
@@ -81,7 +86,7 @@ export async function POST(req: NextRequest) {
       if (result.ok) {
         processed += 1;
 
-        if (result.status !== "active") {
+        if (result.status !== "active" || result.alreadyEmailed) {
           continue;
         }
 

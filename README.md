@@ -118,3 +118,31 @@ Recommended alerting policy:
 - Trigger after **2 consecutive failures**
 - Recovery notification enabled
 - Maintenance windows configured before planned deploys
+
+## Eventbrite access-gating backend (MVP)
+
+Added API routes:
+
+- `POST /api/eventbrite/webhook`
+  - validates webhook auth
+  - pulls order attendees from Eventbrite
+  - upserts attendee rows in Supabase
+  - generates unique `access_code` and `/go/:token` links
+- `GET /go/:token`
+  - validates token and redirects to app or purchase page
+- `POST /api/access/redeem`
+  - validates manual access code and returns attendee access link
+
+### Setup
+
+1. Add env vars from `.env.example`.
+2. Run `docs/supabase-access-schema.sql` in Supabase SQL editor.
+3. Configure Eventbrite webhook target:
+   - URL: `https://<your-domain>/api/eventbrite/webhook`
+   - Header: `Authorization: Bearer <EVENTBRITE_WEBHOOK_SECRET>`
+   - Event: `order.placed` (and optionally order updates)
+
+### Important
+
+- This MVP stores unique links/codes and handles gate checks.
+- Next step is wiring outbound email delivery for links/codes (Resend/Postmark/Supabase Auth magic-link email).

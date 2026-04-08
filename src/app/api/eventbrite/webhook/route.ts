@@ -55,23 +55,50 @@ export async function POST(req: NextRequest) {
         .eq('eventbriteAttendeeId', a.id)
         .maybeSingle();
 
-      const token = existing?.tokenUrl?.split("/go/")[1] ?? generateToken(24);
-      const tokenUrl = `${appBase.replace(/\/$/, "")}/go/${token}`;
-      const accessCode = existing?.accessCode ?? generateAccessCode(8);
+      const base = appBase.replace(/\/$/, "");
+      const maxAttempts = 5;
+      let wrote = false;
+      let lastError: unknown = null;
 
-      await supabase.from("attendees").upsert(
-        {
-          firstName,
-          lastName,
-          email,
-          tokenUrl,
-          accessCode,
-          eventbriteAttendeeId: a.id,
-          eventbriteOrderId: a.order_id,
-          status: "active",
-        },
-        { onConflict: "eventbriteAttendeeId" },
-      );
+      for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+        const token = existing?.tokenUrl?.split("/go/")[1] ?? generateToken(24);
+        const tokenUrl = `${base}/go/${token}`;
+        const accessCode = existing?.accessCode ?? generateAccessCode(8);
+
+        const { error } = await supabase.from("attendees").upsert(
+          {
+            firstName,
+            lastName,
+            email,
+            tokenUrl,
+            accessCode,
+            eventbriteAttendeeId: a.id,
+            eventbriteOrderId: a.order_id,
+            status: "active",
+          },
+          { onConflict: "eventbriteAttendeeId" },
+        );
+
+        if (!error) {
+          wrote = true;
+          break;
+        }
+
+        lastError = error;
+        const code = (error as { code?: string }).code;
+        const details = `${(error as { message?: string }).message ?? ""} ${(error as { details?: string }).details ?? ""}`;
+        const isUniqueViolation = code === "23505" || /duplicate key|unique/i.test(details);
+
+        // Retry only for generated value collisions on new rows.
+        if (!isUniqueViolation || existing) {
+          break;
+        }
+      }
+
+      if (!wrote) {
+        console.error("Failed to upsert attendee", { attendeeId: a.id, lastError });
+        return NextResponse.json({ error: "Failed to write attendee row" }, { status: 500 });
+      }
     }
 
     return NextResponse.json({ ok: true, action: payload.action ?? null, attendeesProcessed: attendees.length });

@@ -11,7 +11,11 @@ export async function POST(req: NextRequest) {
     }
 
     const auth = req.headers.get("authorization") ?? "";
-    if (auth !== `Bearer ${webhookSecret}`) {
+    const querySecret = req.nextUrl.searchParams.get("secret") ?? "";
+    const headerOk = auth === `Bearer ${webhookSecret}`;
+    const queryOk = querySecret === webhookSecret;
+
+    if (!headerOk && !queryOk) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

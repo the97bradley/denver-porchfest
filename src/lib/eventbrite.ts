@@ -13,21 +13,52 @@ export type EventbriteAttendee = {
 
 const BASE = "https://www.eventbriteapi.com/v3";
 
-export async function fetchEventbriteAttendeesByOrder(
-  orderId: string,
-  token: string,
-): Promise<EventbriteAttendee[]> {
-  const url = `${BASE}/orders/${orderId}/attendees/`;
-  const res = await fetch(url, {
+async function ebFetch<T>(path: string, token: string): Promise<T> {
+  const res = await fetch(`${BASE}${path}`, {
     headers: { Authorization: `Bearer ${token}` },
     cache: "no-store",
   });
 
   if (!res.ok) {
     const body = await res.text();
-    throw new Error(`Eventbrite attendees fetch failed (${res.status}): ${body}`);
+    throw new Error(`Eventbrite fetch failed (${res.status}) ${path}: ${body}`);
   }
 
-  const data = (await res.json()) as { attendees?: EventbriteAttendee[] };
+  return (await res.json()) as T;
+}
+
+export async function fetchEventbriteAttendeesByOrder(
+  orderId: string,
+  token: string,
+): Promise<EventbriteAttendee[]> {
+  const data = await ebFetch<{ attendees?: EventbriteAttendee[] }>(`/orders/${orderId}/attendees/`, token);
   return data.attendees ?? [];
+}
+
+export async function fetchEventbriteOrder(orderId: string, token: string) {
+  return ebFetch<{ id: string; status?: string }>(`/orders/${orderId}/`, token);
+}
+
+export async function fetchRecentEventbriteAttendees(
+  eventId: string,
+  token: string,
+  changedSinceIso: string,
+): Promise<EventbriteAttendee[]> {
+  const all: EventbriteAttendee[] = [];
+  let continuation: string | null = null;
+
+  do {
+    const qs = new URLSearchParams({ changed_since: changedSinceIso, page_size: "50" });
+    if (continuation) qs.set("continuation", continuation);
+
+    const data = await ebFetch<{
+      attendees?: EventbriteAttendee[];
+      pagination?: { continuation?: string | null; has_more_items?: boolean };
+    }>(`/events/${eventId}/attendees/?${qs.toString()}`, token);
+
+    all.push(...(data.attendees ?? []));
+    continuation = data.pagination?.has_more_items ? data.pagination?.continuation ?? null : null;
+  } while (continuation);
+
+  return all;
 }

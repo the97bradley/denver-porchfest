@@ -127,11 +127,16 @@ Added API routes:
   - validates webhook auth
   - pulls order attendees from Eventbrite
   - upserts attendee rows in Supabase
-  - generates unique `access_code` and `/go/:token` links
+  - generates unique `accessCode` and `/go/:token` links
+  - logs webhook status and dead-letters failures
 - `GET /go/:token`
   - validates token and redirects to app or purchase page
 - `POST /api/access/redeem`
   - validates manual access code and returns attendee access link
+- `POST /api/admin/resync-order`
+  - admin-only endpoint to resync a specific Eventbrite order by `orderId`
+- `POST /api/admin/backfill`
+  - admin-only endpoint to pull recent attendees from Eventbrite and upsert missing records
 
 ### Setup
 
@@ -146,3 +151,5 @@ Added API routes:
 
 - This MVP stores unique links/codes and handles gate checks.
 - Next step is wiring outbound email delivery for links/codes (Resend/Postmark/Supabase Auth magic-link email).
+- Set `EVENTBRITE_EVENT_ID` and `ADMIN_API_SECRET` to use backfill/resync admin endpoints.
+- Admin endpoints require: `Authorization: Bearer <ADMIN_API_SECRET>`.

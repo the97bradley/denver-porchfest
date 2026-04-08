@@ -18,18 +18,31 @@ export async function POST(req: NextRequest) {
 
     const auth = req.headers.get("authorization") ?? "";
     const querySecret = req.nextUrl.searchParams.get("secret") ?? "";
-    const headerOk = auth === `Bearer ${webhookSecret}`;
-    const queryOk = querySecret === webhookSecret;
-
-    if (!headerOk && !queryOk) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
 
     payload = (await req.json()) as {
       api_url?: string;
       action?: string;
       config?: { id?: string };
     };
+
+    const trustedWebhookIds = (process.env.EVENTBRITE_WEBHOOK_IDS ?? "")
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    const typedPayloadForAuth = payload as { api_url?: string; action?: string; config?: { id?: string } };
+    const fromEventbriteApi = String(typedPayloadForAuth.api_url ?? "").startsWith("https://www.eventbriteapi.com/v3/");
+    const headerOk = auth === `Bearer ${webhookSecret}`;
+    const queryOk = querySecret === webhookSecret;
+    const trustedWebhookIdOk =
+      fromEventbriteApi &&
+      Boolean(typedPayloadForAuth.config?.id) &&
+      trustedWebhookIds.includes(String(typedPayloadForAuth.config?.id));
+
+    if (!headerOk && !queryOk && !trustedWebhookIdOk) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
 
     const typedPayload = payload as { api_url?: string; action?: string; config?: { id?: string } };
 

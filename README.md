@@ -119,6 +119,12 @@ Recommended alerting policy:
 - Recovery notification enabled
 - Maintenance windows configured before planned deploys
 
+## Documentation
+
+- API docs: `docs/backend-api.md`
+- System architecture: `docs/architecture.md`
+- Supabase schema: `docs/supabase-access-schema.sql`
+
 ## Eventbrite access-gating backend (MVP)
 
 Added API routes:

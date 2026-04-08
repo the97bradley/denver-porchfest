@@ -36,7 +36,7 @@ export async function fetchEventbriteAttendeesByOrder(
 }
 
 export async function fetchEventbriteOrder(orderId: string, token: string) {
-  return ebFetch<{ id: string; status?: string }>(`/orders/${orderId}/`, token);
+  return ebFetch<{ id: string; status?: string; email?: string }>(`/orders/${orderId}/`, token);
 }
 
 export async function fetchRecentEventbriteAttendees(

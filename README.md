@@ -2,6 +2,12 @@
 
 Next.js site for Denver Porchfest.
 
+## Testing
+
+- Run all tests: `npm test`
+- Watch mode: `npm run test:watch`
+- Testing guide and scenarios: `docs/testing.md`
+
 ## Local development
 
 ```bash

@@ -58,7 +58,10 @@ export async function GET(req: NextRequest) {
 
     const orderRevoked = revokedOrderStatuses.has(orderStatus);
     if (orderRevoked) {
-      await supabase.from("attendees").update({ status: "revoked" }).eq("eventbriteAttendeeId", attendee.id);
+      await supabase
+        .from("attendees")
+        .update({ status: "revoked", tokenUrl: null, accessCode: null })
+        .eq("eventbriteAttendeeId", attendee.id);
       ignored += 1;
       continue;
     }
@@ -126,7 +129,10 @@ export async function GET(req: NextRequest) {
     }
 
     if (revokedOrderStatuses.has(orderStatus)) {
-      await supabase.from("attendees").update({ status: "revoked" }).eq("eventbriteAttendeeId", row.eventbriteAttendeeId);
+      await supabase
+        .from("attendees")
+        .update({ status: "revoked", tokenUrl: null, accessCode: null })
+        .eq("eventbriteAttendeeId", row.eventbriteAttendeeId);
       continue;
     }
 

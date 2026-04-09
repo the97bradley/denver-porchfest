@@ -7,8 +7,8 @@ create table if not exists public.attendees (
   "lastName" text not null,
   email text not null,
 
-  "tokenUrl" text not null unique,
-  "accessCode" text not null unique,
+  "tokenUrl" text unique,
+  "accessCode" text unique,
 
   "eventbriteAttendeeId" text unique,
   "eventbriteOrderId" text,
@@ -25,6 +25,8 @@ create table if not exists public.attendees (
 
 alter table public.attendees add column if not exists "accessEmailSentAt" timestamptz;
 alter table public.attendees add column if not exists "accessEmailError" text;
+alter table public.attendees alter column "tokenUrl" drop not null;
+alter table public.attendees alter column "accessCode" drop not null;
 
 create index if not exists attendees_email_idx on public.attendees (email);
 create index if not exists attendees_order_idx on public.attendees ("eventbriteOrderId");

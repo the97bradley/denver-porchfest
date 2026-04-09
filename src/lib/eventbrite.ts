@@ -47,8 +47,10 @@ export async function fetchRecentEventbriteAttendees(
   const all: EventbriteAttendee[] = [];
   let continuation: string | null = null;
 
+  const changedSince = new Date(changedSinceIso).toISOString().replace(/\.\d{3}Z$/, "Z");
+
   do {
-    const qs = new URLSearchParams({ changed_since: changedSinceIso, page_size: "50" });
+    const qs = new URLSearchParams({ changed_since: changedSince });
     if (continuation) qs.set("continuation", continuation);
 
     const data = await ebFetch<{

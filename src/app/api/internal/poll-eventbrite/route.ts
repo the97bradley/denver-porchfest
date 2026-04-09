@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { fetchRecentEventbriteAttendees } from "@/lib/eventbrite";
+import { fetchEventbriteOrder, fetchRecentEventbriteAttendees } from "@/lib/eventbrite";
 import { upsertEventbriteAttendee } from "@/lib/attendee-sync";
 import { sendAccessEmail } from "@/lib/email";
 import { notifyAccessEmailFailure } from "@/lib/email-alerts";
@@ -26,6 +26,8 @@ export async function GET(req: NextRequest) {
 
   const attendees = await fetchRecentEventbriteAttendees(eventId, token, changedSince);
   const supabase = getSupabaseAdmin();
+  const revokedOrderStatuses = new Set(["refunded", "canceled", "cancelled", "deleted"]);
+  const orderStatusCache = new Map<string, string>();
 
   let processed = 0;
   let ignored = 0;
@@ -46,6 +48,21 @@ export async function GET(req: NextRequest) {
     }
 
     processed += 1;
+
+    let orderStatus = orderStatusCache.get(attendee.order_id);
+    if (!orderStatus) {
+      const order = await fetchEventbriteOrder(attendee.order_id, token);
+      orderStatus = String(order.status ?? "").toLowerCase();
+      orderStatusCache.set(attendee.order_id, orderStatus);
+    }
+
+    const orderRevoked = revokedOrderStatuses.has(orderStatus);
+    if (orderRevoked) {
+      await supabase.from("attendees").update({ status: "revoked" }).eq("eventbriteAttendeeId", attendee.id);
+      ignored += 1;
+      continue;
+    }
+
     if (result.status !== "active" || result.alreadyEmailed) {
       ignored += 1;
       continue;
@@ -100,6 +117,19 @@ export async function GET(req: NextRequest) {
 
   for (const row of pendingEmailRows ?? []) {
     dbSweepFound += 1;
+
+    let orderStatus = orderStatusCache.get(row.eventbriteOrderId);
+    if (!orderStatus) {
+      const order = await fetchEventbriteOrder(row.eventbriteOrderId, token);
+      orderStatus = String(order.status ?? "").toLowerCase();
+      orderStatusCache.set(row.eventbriteOrderId, orderStatus);
+    }
+
+    if (revokedOrderStatuses.has(orderStatus)) {
+      await supabase.from("attendees").update({ status: "revoked" }).eq("eventbriteAttendeeId", row.eventbriteAttendeeId);
+      continue;
+    }
+
     const emailResult = await sendAccessEmail({
       to: row.email,
       firstName: row.firstName ?? "",

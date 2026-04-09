@@ -211,11 +211,11 @@ or
 
 ---
 
-## 7) Internal: Process Retry Jobs (Cron)
+## 7) Internal: Poll Eventbrite (Cron)
 
-### `GET /api/internal/process-retries`
+### `GET /api/internal/poll-eventbrite`
 
-Processes due retry jobs (`retry_jobs`) to handle delayed Eventbrite attendee assignment and missed first-pass sends.
+Primary scheduled ingestion endpoint (runs every 10 minutes in Vercel cron).
 
 ### Auth
 
@@ -223,11 +223,51 @@ Processes due retry jobs (`retry_jobs`) to handle delayed Eventbrite attendee as
 
 ### Behavior
 
-- Loads pending retry jobs where `run_at <= now()`
-- Pulls attendees by order from Eventbrite
-- Upserts missing attendees
-- Sends missing emails only for active attendees not previously emailed
-- Marks job `done` or `failed`
+1. Pulls attendees changed within lookback window (`EVENTBRITE_POLL_LOOKBACK_MINUTES`, default 180).
+2. Upserts attendees from Eventbrite into `public.attendees`.
+3. Checks **order status** and force-revokes rows for refunded/canceled/deleted orders:
+   - `status = revoked`
+   - `tokenUrl = null`
+   - `accessCode = null`
+4. Sends access emails only for active attendees not already emailed.
+5. Performs DB sweep for active rows missing `accessEmailSentAt` and attempts send.
+6. Records run summary in `public.cron_status` for monitoring.
+
+### Success response
+
+```json
+{
+  "ok": true,
+  "lookbackMinutes": 180,
+  "changedSince": "2026-04-09T00:00:00.000Z",
+  "attendeesFound": 12,
+  "attendeesProcessed": 12,
+  "attendeesIgnored": 4,
+  "accessEmailsSent": 8,
+  "dbSweepFound": 2,
+  "dbSweepEmailed": 1
+}
+```
+
+---
+
+## 8) Internal: Cron Health (UptimeRobot target)
+
+### `GET /api/internal/cron-health`
+
+Read-only health/status snapshot for polling pipeline.
+
+### Behavior
+
+- Returns latest run status from `public.cron_status` (`eventbrite_poll`)
+- Returns pending unsent active attendee count
+- Returns dead-letter count in last 24h
+- Marks response stale if last finished run is older than threshold
+
+### Status code
+
+- `200` when fresh
+- `503` when stale (for alerting)
 
 ---
 
@@ -248,6 +288,7 @@ Required for full pipeline:
 - `RESEND_API_KEY`
 - `ACCESS_EMAIL_FROM`
 - `ACCESS_ALERT_TO` (alert recipient for failed attendee emails)
+- `EVENTBRITE_POLL_LOOKBACK_MINUTES` (optional; default `180`)
 
 ---
 

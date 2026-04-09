@@ -69,6 +69,23 @@ create table if not exists public.retry_jobs (
 
 create index if not exists retry_jobs_status_runat_idx on public.retry_jobs (status, run_at);
 
+create table if not exists public.cron_status (
+  id uuid primary key default gen_random_uuid(),
+  job_name text unique not null,
+  last_status text,
+  last_error text,
+  last_started_at timestamptz,
+  last_finished_at timestamptz,
+  attendees_found integer default 0,
+  attendees_processed integer default 0,
+  attendees_ignored integer default 0,
+  emails_sent integer default 0,
+  db_sweep_found integer default 0,
+  db_sweep_emailed integer default 0,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
 create or replace function public.touch_updated_at()
 returns trigger as $$
 begin
@@ -82,8 +99,14 @@ create trigger trg_attendees_updated_at
 before update on public.attendees
 for each row execute function public.touch_updated_at();
 
+drop trigger if exists trg_cron_status_updated_at on public.cron_status;
+create trigger trg_cron_status_updated_at
+before update on public.cron_status
+for each row execute function public.touch_updated_at();
+
 -- Hardening: keep exposed tables closed to anon/authenticated clients.
 alter table public.attendees enable row level security;
 alter table public.webhook_events enable row level security;
 alter table public.webhook_dead_letters enable row level security;
 alter table public.retry_jobs enable row level security;
+alter table public.cron_status enable row level security;

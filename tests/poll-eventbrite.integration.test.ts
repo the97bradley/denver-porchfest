@@ -50,6 +50,9 @@ function createSupabaseMock() {
             },
           };
         },
+        upsert() {
+          return Promise.resolve({ error: null });
+        },
         update(values: Record<string, unknown>) {
           return {
             eq(column: string, value: string) {

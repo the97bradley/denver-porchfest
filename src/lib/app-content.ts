@@ -24,7 +24,7 @@ export async function getAppSchedule() {
   return data ?? [];
 }
 
-const LINEUP_SOURCE_TABLE = process.env.APP_LINEUP_SOURCE_TABLE?.trim() || "app_lineup";
+const LINEUP_SOURCE_TABLE = process.env.APP_BANDS_SOURCE_TABLE?.trim() || process.env.APP_LINEUP_SOURCE_TABLE?.trim() || "app_bands";
 
 export async function getAppLineup() {
   const supabase = getSupabaseAdmin();

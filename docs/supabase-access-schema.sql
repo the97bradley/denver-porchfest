@@ -79,7 +79,7 @@ create table if not exists public.app_schedule (
   created_at timestamptz not null default now()
 );
 
-create table if not exists public.app_lineup (
+create table if not exists public.app_bands (
   id uuid primary key default gen_random_uuid(),
   artist text not null,
   genre text,
@@ -278,7 +278,7 @@ alter table public.cron_status enable row level security;
 alter table public.job_locks enable row level security;
 alter table public.app_info enable row level security;
 alter table public.app_schedule enable row level security;
-alter table public.app_lineup enable row level security;
+alter table public.app_bands enable row level security;
 alter table public.app_map_pins enable row level security;
 alter table public.app_updates enable row level security;
 alter table public.artists enable row level security;

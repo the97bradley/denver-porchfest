@@ -292,6 +292,25 @@ Required for full pipeline:
 
 ---
 
+## 9) Internal: Smoke Access Health
+
+### `GET /api/internal/smoke-access`
+
+Read-only synthetic check endpoint for external uptime monitors.
+
+### Behavior
+
+- Verifies required env vars are configured
+- Runs a lightweight Supabase read (`attendees` count head query)
+- Verifies Eventbrite API token/event by calling `GET /events/:id`
+
+### Status code
+
+- `200` when all checks pass
+- `503` when any check fails
+
+---
+
 ## cURL Examples
 
 ### Test redeem code

@@ -108,6 +108,60 @@ create table if not exists public.app_updates (
   created_at timestamptz not null default now()
 );
 
+create table if not exists public.artists (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  genre text,
+  bio text,
+  email text,
+  phone text,
+  neighborhood text,
+  porch_location text,
+  set_time text,
+  status text not null default 'active',
+  notes text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists artists_name_idx on public.artists (name);
+create index if not exists artists_status_idx on public.artists (status);
+
+create table if not exists public.hosts (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  email text,
+  phone text,
+  address text,
+  neighborhood text,
+  capacity integer,
+  amenities text,
+  status text not null default 'active',
+  notes text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists hosts_name_idx on public.hosts (name);
+create index if not exists hosts_status_idx on public.hosts (status);
+
+create table if not exists public.vendors (
+  id uuid primary key default gen_random_uuid(),
+  business_name text not null,
+  contact_name text,
+  email text,
+  phone text,
+  category text,
+  booth_location text,
+  status text not null default 'active',
+  notes text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists vendors_business_name_idx on public.vendors (business_name);
+create index if not exists vendors_status_idx on public.vendors (status);
+
 create table if not exists public.cron_status (
   id uuid primary key default gen_random_uuid(),
   job_name text unique not null,
@@ -169,6 +223,21 @@ create trigger trg_cron_status_updated_at
 before update on public.cron_status
 for each row execute function public.touch_updated_at();
 
+drop trigger if exists trg_artists_updated_at on public.artists;
+create trigger trg_artists_updated_at
+before update on public.artists
+for each row execute function public.touch_updated_at();
+
+drop trigger if exists trg_hosts_updated_at on public.hosts;
+create trigger trg_hosts_updated_at
+before update on public.hosts
+for each row execute function public.touch_updated_at();
+
+drop trigger if exists trg_vendors_updated_at on public.vendors;
+create trigger trg_vendors_updated_at
+before update on public.vendors
+for each row execute function public.touch_updated_at();
+
 -- Hardening: keep exposed tables closed to anon/authenticated clients.
 alter table public.attendees enable row level security;
 alter table public.pipeline_errors enable row level security;
@@ -180,3 +249,6 @@ alter table public.app_schedule enable row level security;
 alter table public.app_lineup enable row level security;
 alter table public.app_map_pins enable row level security;
 alter table public.app_updates enable row level security;
+alter table public.artists enable row level security;
+alter table public.hosts enable row level security;
+alter table public.vendors enable row level security;

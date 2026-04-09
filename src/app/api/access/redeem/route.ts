@@ -2,15 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 export async function POST(req: NextRequest) {
-  const { code } = (await req.json()) as { code?: string };
+  const { code, deviceId } = (await req.json()) as { code?: string; deviceId?: string };
   if (!code) return NextResponse.json({ error: "Code required" }, { status: 400 });
+  if (!deviceId || deviceId.trim().length < 8) {
+    return NextResponse.json({ error: "Valid deviceId required" }, { status: 400 });
+  }
 
   const normalized = code.trim().toUpperCase();
+  const normalizedDeviceId = deviceId.trim();
   const supabase = getSupabaseAdmin();
 
   const { data: attendee } = await supabase
     .from("attendees")
-    .select("tokenUrl,status")
+    .select("eventbriteAttendeeId,tokenUrl,status,deviceId")
     .eq("accessCode", normalized)
     .maybeSingle();
 
@@ -18,5 +22,25 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid code" }, { status: 404 });
   }
 
-  return NextResponse.json({ ok: true, accessLink: attendee.tokenUrl });
+  if (attendee.deviceId && attendee.deviceId !== normalizedDeviceId) {
+    return NextResponse.json(
+      { error: "Access already activated on another device" },
+      { status: 409 },
+    );
+  }
+
+  const nowIso = new Date().toISOString();
+
+  const updatePayload: { deviceId: string; deviceBoundAt?: string; lastSeenAt: string } = {
+    deviceId: normalizedDeviceId,
+    lastSeenAt: nowIso,
+  };
+  if (!attendee.deviceId) updatePayload.deviceBoundAt = nowIso;
+
+  await supabase
+    .from("attendees")
+    .update(updatePayload)
+    .eq("eventbriteAttendeeId", attendee.eventbriteAttendeeId);
+
+  return NextResponse.json({ ok: true, accessLink: attendee.tokenUrl, deviceBound: true });
 }

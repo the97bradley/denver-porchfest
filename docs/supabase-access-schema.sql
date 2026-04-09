@@ -25,6 +25,9 @@ create table if not exists public.attendees (
 
 alter table public.attendees add column if not exists "accessEmailSentAt" timestamptz;
 alter table public.attendees add column if not exists "accessEmailError" text;
+alter table public.attendees add column if not exists "deviceId" text;
+alter table public.attendees add column if not exists "deviceBoundAt" timestamptz;
+alter table public.attendees add column if not exists "lastSeenAt" timestamptz;
 alter table public.attendees alter column "tokenUrl" drop not null;
 alter table public.attendees alter column "accessCode" drop not null;
 

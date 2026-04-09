@@ -101,19 +101,29 @@ Validate an access code and return access link.
 ### Request
 
 ```json
-{ "code": "ABC12345" }
+{ "code": "ABC12345", "deviceId": "pf_abcd1234" }
 ```
+
+### Behavior
+
+- First successful redeem binds the attendee to `deviceId`.
+- Future redeems must use the same `deviceId`.
+- Different device attempt returns conflict.
 
 ### Success
 
 ```json
-{ "ok": true, "accessLink": "https://denverporchfest.com/go/...." }
+{ "ok": true, "accessLink": "https://denverporchfest.com/go/....", "deviceBound": true }
 ```
 
 ### Failure
 
 ```json
 { "error": "Invalid code" }
+```
+
+```json
+{ "error": "Access already activated on another device" }
 ```
 
 ---
@@ -211,7 +221,43 @@ or
 
 ---
 
-## 7) Internal: Poll Eventbrite (Cron)
+## 7) Admin: Reset Device Binding
+
+### `POST /api/admin/reset-device-binding`
+
+Clears single-device binding for an attendee so they can activate on a new phone.
+
+### Auth
+
+- Header: `Authorization: Bearer <ADMIN_API_SECRET>`
+
+### Request (one required)
+
+```json
+{ "attendeeId": "123456789" }
+```
+
+or
+
+```json
+{ "email": "person@example.com" }
+```
+
+or
+
+```json
+{ "accessCode": "ABC12345" }
+```
+
+### Success
+
+```json
+{ "ok": true }
+```
+
+---
+
+## 8) Internal: Poll Eventbrite (Cron)
 
 ### `GET /api/internal/poll-eventbrite`
 

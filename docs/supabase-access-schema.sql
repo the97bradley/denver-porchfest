@@ -127,7 +127,7 @@ create table if not exists public.artists (
 create index if not exists artists_name_idx on public.artists (name);
 create index if not exists artists_status_idx on public.artists (status);
 
-create table if not exists public.hosts (
+create table if not exists public.locations (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   email text,
@@ -142,24 +142,24 @@ create table if not exists public.hosts (
   updated_at timestamptz not null default now()
 );
 
-create index if not exists hosts_name_idx on public.hosts (name);
-create index if not exists hosts_status_idx on public.hosts (status);
+create index if not exists locations_name_idx on public.locations (name);
+create index if not exists locations_status_idx on public.locations (status);
 
-create table if not exists public.host_artists (
+create table if not exists public.location_artists (
   id uuid primary key default gen_random_uuid(),
-  host_id uuid not null references public.hosts(id) on delete cascade,
+  location_id uuid not null references public.locations(id) on delete cascade,
   artist_id uuid not null references public.artists(id) on delete cascade,
   slot_label text,
   sort_order integer not null default 0,
   status text not null default 'active',
   notes text,
   created_at timestamptz not null default now(),
-  unique(host_id, artist_id)
+  unique(location_id, artist_id)
 );
 
-create index if not exists host_artists_host_id_idx on public.host_artists (host_id);
-create index if not exists host_artists_artist_id_idx on public.host_artists (artist_id);
-create index if not exists host_artists_status_idx on public.host_artists (status);
+create index if not exists location_artists_location_id_idx on public.location_artists (location_id);
+create index if not exists location_artists_artist_id_idx on public.location_artists (artist_id);
+create index if not exists location_artists_status_idx on public.location_artists (status);
 
 create table if not exists public.vendors (
   id uuid primary key default gen_random_uuid(),
@@ -244,9 +244,9 @@ create trigger trg_artists_updated_at
 before update on public.artists
 for each row execute function public.touch_updated_at();
 
-drop trigger if exists trg_hosts_updated_at on public.hosts;
-create trigger trg_hosts_updated_at
-before update on public.hosts
+drop trigger if exists trg_locations_updated_at on public.locations;
+create trigger trg_locations_updated_at
+before update on public.locations
 for each row execute function public.touch_updated_at();
 
 drop trigger if exists trg_vendors_updated_at on public.vendors;
@@ -266,6 +266,6 @@ alter table public.app_lineup enable row level security;
 alter table public.app_map_pins enable row level security;
 alter table public.app_updates enable row level security;
 alter table public.artists enable row level security;
-alter table public.hosts enable row level security;
-alter table public.host_artists enable row level security;
+alter table public.locations enable row level security;
+alter table public.location_artists enable row level security;
 alter table public.vendors enable row level security;

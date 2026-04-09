@@ -231,7 +231,9 @@ Primary scheduled ingestion endpoint (runs every 10 minutes in Vercel cron).
    - `accessCode = null`
 4. Sends access emails only for active attendees not already emailed.
 5. Performs DB sweep for active rows missing `accessEmailSentAt` and attempts send.
-6. Records run summary in `public.cron_status` for monitoring.
+6. Uses DB job lock (`acquire_job_lock`) to avoid overlapping concurrent cron runs.
+7. Uses bounded retries/backoff for Eventbrite API calls.
+8. Records run summary in `public.cron_status` for monitoring.
 
 ### Success response
 
@@ -308,6 +310,25 @@ Read-only synthetic check endpoint for external uptime monitors.
 
 - `200` when all checks pass
 - `503` when any check fails
+
+---
+
+## 10) Internal: Nightly Self-Test (Cron)
+
+### `GET /api/internal/nightly-self-test`
+
+Runs nightly production self-checks and sends ops email alert if failures are detected.
+
+### Auth
+
+- Header: `Authorization: Bearer <CRON_SECRET>`
+
+### Behavior
+
+- Calls `/api/internal/cron-health`
+- Calls `/api/internal/smoke-access`
+- If either fails/stale, sends alert email to `ACCESS_ALERT_TO` (fallback `info@denverporchfest.com`)
+- Returns `503` on failure, `200` on pass
 
 ---
 

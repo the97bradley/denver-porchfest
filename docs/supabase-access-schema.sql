@@ -86,6 +86,32 @@ create table if not exists public.cron_status (
   updated_at timestamptz not null default now()
 );
 
+create table if not exists public.job_locks (
+  job_name text primary key,
+  locked_until timestamptz not null,
+  updated_at timestamptz not null default now()
+);
+
+create or replace function public.acquire_job_lock(p_job text, p_seconds integer default 600)
+returns boolean
+language plpgsql
+as $$
+declare
+  v_rows integer;
+begin
+  insert into public.job_locks (job_name, locked_until)
+  values (p_job, now() + make_interval(secs => p_seconds))
+  on conflict (job_name)
+  do update
+    set locked_until = now() + make_interval(secs => p_seconds),
+        updated_at = now()
+  where public.job_locks.locked_until < now();
+
+  get diagnostics v_rows = row_count;
+  return v_rows > 0;
+end;
+$$;
+
 create or replace function public.touch_updated_at()
 returns trigger as $$
 begin
@@ -110,3 +136,4 @@ alter table public.webhook_events enable row level security;
 alter table public.webhook_dead_letters enable row level security;
 alter table public.retry_jobs enable row level security;
 alter table public.cron_status enable row level security;
+alter table public.job_locks enable row level security;

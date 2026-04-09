@@ -4,6 +4,10 @@
     {
       "path": "/api/internal/poll-eventbrite",
       "schedule": "*/10 * * * *"
+    },
+    {
+      "path": "/api/internal/nightly-self-test",
+      "schedule": "15 9 * * *"
     }
   ]
 }

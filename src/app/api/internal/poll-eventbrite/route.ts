@@ -7,6 +7,27 @@ import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 const JOB_NAME = "eventbrite_poll";
 
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function withRetry<T>(label: string, fn: () => Promise<T>, attempts = 3): Promise<T> {
+  let lastError: unknown = null;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await fn();
+    } catch (error) {
+      lastError = error;
+      if (attempt >= attempts) break;
+      const backoffMs = 400 * 2 ** (attempt - 1) + Math.floor(Math.random() * 250);
+      await sleep(backoffMs);
+    }
+  }
+
+  throw new Error(`${label} failed after ${attempts} attempts: ${lastError instanceof Error ? lastError.message : String(lastError)}`);
+}
+
 export async function GET(req: NextRequest) {
   const secret = process.env.CRON_SECRET ?? process.env.INTERNAL_CRON_SECRET;
   if (!secret || req.headers.get("authorization") !== `Bearer ${secret}`) {
@@ -24,6 +45,20 @@ export async function GET(req: NextRequest) {
   }
 
   const supabase = getSupabaseAdmin();
+
+  const { data: lockAcquired, error: lockError } = await supabase.rpc("acquire_job_lock", {
+    p_job: JOB_NAME,
+    p_seconds: 540,
+  });
+
+  if (lockError) {
+    return NextResponse.json({ error: "Failed to acquire job lock", details: lockError.message }, { status: 500 });
+  }
+
+  if (!lockAcquired) {
+    return NextResponse.json({ ok: true, skipped: true, reason: "lock_not_acquired" });
+  }
+
   const runStartedAt = new Date().toISOString();
 
   await supabase.from("cron_status").upsert(
@@ -40,7 +75,9 @@ export async function GET(req: NextRequest) {
     const lookbackMinutes = Math.max(30, Math.min(24 * 60, Number(process.env.EVENTBRITE_POLL_LOOKBACK_MINUTES ?? 180)));
     const changedSince = new Date(Date.now() - lookbackMinutes * 60 * 1000).toISOString();
 
-    const attendees = await fetchRecentEventbriteAttendees(eventId, token, changedSince);
+    const attendees = await withRetry("fetchRecentEventbriteAttendees", () =>
+      fetchRecentEventbriteAttendees(eventId, token, changedSince),
+    );
     const revokedOrderStatuses = new Set(["refunded", "canceled", "cancelled", "deleted"]);
     const orderStatusCache = new Map<string, string>();
 
@@ -66,7 +103,7 @@ export async function GET(req: NextRequest) {
 
       let orderStatus = orderStatusCache.get(attendee.order_id);
       if (!orderStatus) {
-        const order = await fetchEventbriteOrder(attendee.order_id, token);
+        const order = await withRetry("fetchEventbriteOrder", () => fetchEventbriteOrder(attendee.order_id, token));
         orderStatus = String(order.status ?? "").toLowerCase();
         orderStatusCache.set(attendee.order_id, orderStatus);
       }
@@ -138,7 +175,7 @@ export async function GET(req: NextRequest) {
 
       let orderStatus = orderStatusCache.get(row.eventbriteOrderId);
       if (!orderStatus) {
-        const order = await fetchEventbriteOrder(row.eventbriteOrderId, token);
+        const order = await withRetry("fetchEventbriteOrder", () => fetchEventbriteOrder(row.eventbriteOrderId, token));
         orderStatus = String(order.status ?? "").toLowerCase();
         orderStatusCache.set(row.eventbriteOrderId, orderStatus);
       }

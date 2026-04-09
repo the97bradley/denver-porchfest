@@ -33,6 +33,9 @@ function resetState() {
 
 function createSupabaseMock() {
   return {
+    rpc() {
+      return Promise.resolve({ data: true, error: null });
+    },
     from(table: string) {
       return {
         select() {

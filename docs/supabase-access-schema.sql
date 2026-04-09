@@ -129,10 +129,10 @@ create index if not exists artists_status_idx on public.artists (status);
 
 create table if not exists public.locations (
   id uuid primary key default gen_random_uuid(),
-  name text not null,
+  name text,
   email text,
   phone text,
-  address text,
+  address text not null,
   neighborhood text,
   capacity integer,
   amenities text,
@@ -177,6 +177,22 @@ create table if not exists public.vendors (
 
 create index if not exists vendors_business_name_idx on public.vendors (business_name);
 create index if not exists vendors_status_idx on public.vendors (status);
+
+create table if not exists public.location_vendors (
+  id uuid primary key default gen_random_uuid(),
+  location_id uuid not null references public.locations(id) on delete cascade,
+  vendor_id uuid not null references public.vendors(id) on delete cascade,
+  slot_label text,
+  sort_order integer not null default 0,
+  status text not null default 'active',
+  notes text,
+  created_at timestamptz not null default now(),
+  unique(location_id, vendor_id)
+);
+
+create index if not exists location_vendors_location_id_idx on public.location_vendors (location_id);
+create index if not exists location_vendors_vendor_id_idx on public.location_vendors (vendor_id);
+create index if not exists location_vendors_status_idx on public.location_vendors (status);
 
 create table if not exists public.cron_status (
   id uuid primary key default gen_random_uuid(),
@@ -269,3 +285,4 @@ alter table public.artists enable row level security;
 alter table public.locations enable row level security;
 alter table public.location_artists enable row level security;
 alter table public.vendors enable row level security;
+alter table public.location_vendors enable row level security;

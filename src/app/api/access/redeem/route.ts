@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
+const ADMIN_CODE = "PORCHFEST-ADMIN-2026";
+
 export async function POST(req: NextRequest) {
   const { code, deviceId } = (await req.json()) as { code?: string; deviceId?: string };
   if (!code) return NextResponse.json({ error: "Code required" }, { status: 400 });
@@ -10,6 +12,12 @@ export async function POST(req: NextRequest) {
 
   const normalized = code.trim().toUpperCase();
   const normalizedDeviceId = deviceId.trim();
+
+  if (normalized === ADMIN_CODE) {
+    const appBase = process.env.APP_BASE_URL?.replace(/\/$/, "") ?? "https://www.denverporchfest.com";
+    return NextResponse.json({ ok: true, accessLink: `${appBase}/app`, deviceBound: true, admin: true });
+  }
+
   const supabase = getSupabaseAdmin();
 
   const { data: attendee } = await supabase

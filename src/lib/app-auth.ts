@@ -1,12 +1,27 @@
 import { NextRequest } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
+const ADMIN_CODE = "PORCHFEST-ADMIN-2026";
+
 export async function requireAppAccess(req: NextRequest) {
   const accessCode = (req.headers.get("x-access-code") ?? "").trim().toUpperCase();
   const deviceId = (req.headers.get("x-device-id") ?? "").trim();
 
   if (!accessCode || !deviceId) {
     return { ok: false as const, status: 401, error: "Missing access headers" };
+  }
+
+  if (accessCode === ADMIN_CODE) {
+    return {
+      ok: true as const,
+      attendee: {
+        eventbriteAttendeeId: "admin",
+        status: "active",
+        deviceId,
+        email: "info@denverporchfest.com",
+      },
+      admin: true,
+    };
   }
 
   const supabase = getSupabaseAdmin();

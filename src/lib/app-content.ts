@@ -49,7 +49,7 @@ export async function getAppMapPins() {
   const [{ data: locations }, { data: vendors }] = await Promise.all([
     supabase
       .from("locations")
-      .select("id,name,address")
+      .select("id,name,address,lat,lng")
       .eq("status", "active")
       .order("name", { ascending: true }),
     supabase
@@ -64,8 +64,8 @@ export async function getAppMapPins() {
     name: l.name || l.address,
     type: "porch",
     address: l.address,
-    lat: null,
-    lng: null,
+    lat: l.lat ?? null,
+    lng: l.lng ?? null,
   }));
 
   const vendorPins = (vendors ?? []).map((v) => ({

@@ -24,12 +24,19 @@ export async function getAppSchedule() {
   return data ?? [];
 }
 
+const LINEUP_SOURCE_TABLE = process.env.APP_LINEUP_SOURCE_TABLE?.trim() || "app_lineup";
+
 export async function getAppLineup() {
   const supabase = getSupabaseAdmin();
-  const { data } = await supabase
-    .from("app_lineup")
+  const { data, error } = await supabase
+    .from(LINEUP_SOURCE_TABLE)
     .select("id,artist,genre,porch,time,sort_order")
     .order("sort_order", { ascending: true });
+
+  if (error) {
+    throw new Error(`Failed to load lineup from ${LINEUP_SOURCE_TABLE}: ${error.message}`);
+  }
+
   return data ?? [];
 }
 

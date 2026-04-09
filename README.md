@@ -2,6 +2,12 @@
 
 Next.js site for Denver Porchfest.
 
+## Testing
+
+- Run all tests: `npm test`
+- Watch mode: `npm run test:watch`
+- Testing guide and scenarios: `docs/testing.md`
+
 ## Local development
 
 ```bash
@@ -118,3 +124,52 @@ Recommended alerting policy:
 - Trigger after **2 consecutive failures**
 - Recovery notification enabled
 - Maintenance windows configured before planned deploys
+
+## Documentation
+
+- API docs: `docs/backend-api.md`
+- System architecture: `docs/architecture.md`
+- Supabase schema: `docs/supabase-access-schema.sql`
+
+## Eventbrite access-gating backend (MVP)
+
+Added API routes:
+
+- `GET /api/internal/poll-eventbrite`
+  - primary scheduled ingestion from Eventbrite
+  - upserts attendee rows in Supabase
+  - generates/maintains unique `accessCode` and `/go/:token` links
+  - revokes refunded/canceled/deleted orders
+  - logs pipeline errors to `pipeline_errors`
+- `GET /api/internal/cron-health`
+  - health/readiness for polling pipeline
+- `GET /api/internal/smoke-access`
+  - synthetic runtime check (Supabase + Eventbrite + env)
+- `GET /api/internal/nightly-self-test`
+  - nightly self-check and ops alerting
+- `GET /go/:token`
+  - validates token and redirects to app or purchase page
+- `POST /api/access/redeem`
+  - validates manual access code and enforces single-device binding
+- `POST /api/admin/resync-order`
+  - admin-only endpoint to resync a specific Eventbrite order by `orderId`
+- `POST /api/admin/backfill`
+  - admin-only endpoint to pull recent attendees from Eventbrite and upsert missing records
+- `POST /api/admin/resend-access-email`
+  - admin-only endpoint to resend attendee access email by attendeeId/email
+- `POST /api/admin/reset-device-binding`
+  - admin-only endpoint to reset single-device binding
+
+### Setup
+
+1. Add env vars from `.env.example`.
+2. Run `docs/supabase-access-schema.sql` in Supabase SQL editor.
+3. Ensure Vercel cron includes `/api/internal/poll-eventbrite`.
+
+### Important
+
+- This MVP stores unique links/codes and handles gate checks.
+- Next step is wiring outbound email delivery for links/codes (Resend/Postmark/Supabase Auth magic-link email).
+- Set `EVENTBRITE_EVENT_ID` and `ADMIN_API_SECRET` to use backfill/resync admin endpoints.
+- Set `CRON_SECRET` for internal retry cron auth.
+- Admin endpoints require: `Authorization: Bearer <ADMIN_API_SECRET>`.

@@ -145,6 +145,22 @@ create table if not exists public.hosts (
 create index if not exists hosts_name_idx on public.hosts (name);
 create index if not exists hosts_status_idx on public.hosts (status);
 
+create table if not exists public.host_artists (
+  id uuid primary key default gen_random_uuid(),
+  host_id uuid not null references public.hosts(id) on delete cascade,
+  artist_id uuid not null references public.artists(id) on delete cascade,
+  slot_label text,
+  sort_order integer not null default 0,
+  status text not null default 'active',
+  notes text,
+  created_at timestamptz not null default now(),
+  unique(host_id, artist_id)
+);
+
+create index if not exists host_artists_host_id_idx on public.host_artists (host_id);
+create index if not exists host_artists_artist_id_idx on public.host_artists (artist_id);
+create index if not exists host_artists_status_idx on public.host_artists (status);
+
 create table if not exists public.vendors (
   id uuid primary key default gen_random_uuid(),
   business_name text not null,
@@ -251,4 +267,5 @@ alter table public.app_map_pins enable row level security;
 alter table public.app_updates enable row level security;
 alter table public.artists enable row level security;
 alter table public.hosts enable row level security;
+alter table public.host_artists enable row level security;
 alter table public.vendors enable row level security;

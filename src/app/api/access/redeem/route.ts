@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
-const ADMIN_CODE = "PORCHFESTADMIN2026";
+const ADMIN_CODE = "PORCHFESTADMIN2026!";
 
 export async function POST(req: NextRequest) {
   const { code, deviceId } = (await req.json()) as { code?: string; deviceId?: string };

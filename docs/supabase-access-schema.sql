@@ -122,6 +122,8 @@ create table if not exists public.locations (
   email text,
   phone text,
   address text not null,
+  lat double precision,
+  lng double precision,
   neighborhood text,
   capacity integer,
   amenities text,

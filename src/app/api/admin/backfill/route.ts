@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
     const result = await upsertEventbriteAttendee(attendee, appBase);
     if (result.ok) {
       processed += 1;
-      if (result.status !== "active") {
+      if (result.status !== "active" || result.alreadyEmailed) {
         continue;
       }
       const emailResult = await sendAccessEmail({
@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
           .update({ accessEmailError: emailResult.error })
           .eq("eventbriteAttendeeId", attendee.id);
 
-        await supabase.from("webhook_dead_letters").insert({
+        await supabase.from("pipeline_errors").insert({
           source: "admin_backfill_email",
           reference_id: `${attendee.order_id}:${attendee.id}`,
           reason: "email_send_failed",
@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
         });
       }
     } else {
-      await supabase.from("webhook_dead_letters").insert({
+      await supabase.from("pipeline_errors").insert({
         source: "admin_backfill",
         reference_id: `${attendee.order_id}:${attendee.id}`,
         reason: result.reason,

@@ -292,7 +292,7 @@ describe("GET /api/internal/poll-eventbrite", () => {
     expect(attendeeErrorUpdate).toBeTruthy();
 
     const deadLetter = state.insertCalls.find(
-      (c) => c.table === "webhook_dead_letters" && c.values.reason === "email_send_failed",
+      (c) => c.table === "pipeline_errors" && c.values.reason === "email_send_failed",
     );
     expect(deadLetter).toBeTruthy();
 

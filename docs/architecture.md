@@ -1,29 +1,32 @@
 # Denver PorchFest Website Architecture
 
-This is a practical system overview of the current PorchFest platform.
+Practical overview of the current PorchFest platform (polling-based ingestion, webhook-free).
 
 ## 1) High-Level Stack
 
 - **Frontend + API host:** Next.js on Vercel
 - **Database:** Supabase (Postgres)
 - **Ticket source:** Eventbrite
-- **Inbound integration:** Eventbrite webhooks + API pulls
+- **Inbound integration:** Scheduled Eventbrite API polling (`/api/internal/poll-eventbrite`)
 - **Email delivery:** Resend API (attendee-specific token/code emails)
-- **Access model:** token link + access code gate
+- **Access model:** token link + access code + single-device binding
 
-## 2) System Diagram (logical)
+## 2) System Flow
 
 1. Attendee buys ticket on Eventbrite.
-2. Eventbrite sends webhook to:
-   - `POST /api/eventbrite/webhook`
-3. Backend fetches order/attendees from Eventbrite API.
-4. Backend upserts attendee rows into Supabase, generates:
+2. Vercel cron runs `GET /api/internal/poll-eventbrite` every 10 minutes.
+3. Backend fetches changed attendees/orders from Eventbrite API.
+4. Backend upserts attendee rows into Supabase and maintains:
    - unique `tokenUrl`
    - unique `accessCode`
-5. User enters via:
+5. Refunded/canceled/deleted orders are forced to:
+   - `status = revoked`
+   - `tokenUrl = null`
+   - `accessCode = null`
+6. Access emails are sent only to active attendees not already emailed.
+7. App users enter via:
    - `/go/:token` or
-   - `/api/access/redeem` code flow
-6. Invalid/unpaid path redirects to Eventbrite purchase URL.
+   - `/api/access/redeem` code flow (device-bound)
 
 ## 3) Data Model
 
@@ -33,98 +36,86 @@ Key fields:
 - identity: `firstName`, `lastName`, `email`
 - eventbrite refs: `eventbriteAttendeeId`, `eventbriteOrderId`
 - access: `tokenUrl`, `accessCode`, `status`
-- ops: `created_at`, `updated_at`, `lastAccessedAt`
+- device binding: `deviceId`, `deviceBoundAt`, `lastSeenAt`
+- ops: `accessEmailSentAt`, `accessEmailError`, `created_at`, `updated_at`
 
 Operational tables:
-- `public.webhook_events` (delivery + processing status)
-- `public.webhook_dead_letters` (failed sync rows and exceptions)
+- `public.retry_jobs`
+- `public.cron_status`
+- `public.job_locks`
+- `public.pipeline_errors`
 
 ## 4) API Surface
 
-Public-ish routes:
-- `POST /api/eventbrite/webhook` (secret protected)
+Public/app routes:
 - `GET /go/:token`
 - `POST /api/access/redeem`
+- `GET /api/app/info`
+- `GET /api/app/schedule`
+- `GET /api/app/lineup`
+- `GET /api/app/map`
+- `GET /api/app/updates`
+
+Internal routes:
+- `GET /api/internal/poll-eventbrite`
+- `GET /api/internal/cron-health`
+- `GET /api/internal/smoke-access`
+- `GET /api/internal/nightly-self-test`
 
 Admin routes (secret protected):
 - `POST /api/admin/resync-order`
 - `POST /api/admin/backfill`
+- `POST /api/admin/resend-access-email`
+- `POST /api/admin/reset-device-binding`
 
 Detailed request/response docs:
 - `docs/backend-api.md`
 
 ## 5) Security Model
 
-- Webhook auth by secret (header or query secret)
+- Internal cron endpoints protected by `CRON_SECRET`
 - Admin endpoints protected by `ADMIN_API_SECRET`
-- Supabase service key used server-side only
-- No service keys exposed in client bundle
-
-Recommended hardening next:
-- Rotate webhook/admin secrets quarterly
-- Restrict admin endpoints by IP allowlist (optional)
-- Add request signature verification layer if available
+- Supabase secret/service key used server-side only
+- Single-device enforcement on redeem (`deviceId` binding)
+- RLS enabled on pipeline tables
 
 ## 6) Reliability / Recovery
 
 Implemented:
-- Unique constraints on access identifiers
-- Retry logic on token/code uniqueness collisions
-- Dead-letter capture for failed attendee writes/emails
-- Automatic delayed order retries (2m/10m/30m) via retry job queue + cron processor
-- Manual resync endpoint by order
-- Backfill endpoint for missed webhook deliveries
-- Manual resend-access-email admin endpoint
-- Auto-revocation when order/attendee status indicates refund/cancel
-- RLS enabled on access pipeline tables
+- Idempotent attendee upsert by Eventbrite attendee ID
+- Retry/backoff for Eventbrite fetches
+- DB lock (`acquire_job_lock`) to prevent overlapping poll runs
+- DB sweep for unsent active attendee emails
+- Auto-revocation for refunded/canceled/deleted orders
+- Nightly self-test with email alerting on failure
+- UptimeRobot monitors for health/cron/smoke
 
-Recommended next:
-- Scheduled cron backfill every 15–30 min
-- Alerting on dead-letter inserts
-- Dashboard for webhook health metrics
-
-## 7) Website Design System Notes
-
-Brand direction currently in use:
-- Primary blue: `#1D4ED8`
-- Light backgrounds: `#F8FBFF`, `#EEF6FF`
-- Accent orange: `#EA580C`
-- Body text: `#1F2937`
-
-UI characteristics:
-- Friendly civic/community tone
-- Mobile-first sections for lineup and participation
-- Clear CTA hierarchy for applications and neighborhood actions
-
-## 8) Environment / Config Contract
+## 7) Environment / Config Contract
 
 Required envs for access pipeline:
 - `EVENTBRITE_PRIVATE_TOKEN`
-- `EVENTBRITE_WEBHOOK_SECRET`
 - `EVENTBRITE_EVENT_URL`
 - `EVENTBRITE_EVENT_ID`
+- `EVENTBRITE_POLL_LOOKBACK_MINUTES`
 - `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `APP_BASE_URL`
 - `APP_SUCCESS_URL`
 - `ADMIN_API_SECRET`
+- `CRON_SECRET`
+- `RESEND_API_KEY`
+- `ACCESS_EMAIL_FROM`
+- `ACCESS_ALERT_TO`
 
-## 9) Deployment Model
+## 8) Deployment Model
 
 - Vercel hosts Next.js app and API routes
 - Supabase hosts Postgres tables
-- Eventbrite calls Vercel webhook endpoint
+- Vercel cron drives Eventbrite polling
 
 Release checklist:
 1. Add/update env vars in Vercel.
 2. Run DB schema SQL in Supabase.
 3. Deploy Vercel production.
-4. Verify webhook receives 200.
-5. Run one manual `resync-order` test.
-
-## 10) Near-Term Roadmap
-
-1. Add outbound email sender (Resend/Postmark) for token/code delivery.
-2. Add app-auth session exchange (beyond redirect with email hint).
-3. Add admin UI page for dead-letter replay and order resync.
-4. Add analytics on conversion from ticket purchase -> app access.
+4. Force one poll run and verify `/api/internal/cron-health`.
+5. Confirm `/api/internal/smoke-access` is `ok: true`.

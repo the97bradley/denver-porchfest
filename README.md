@@ -135,33 +135,36 @@ Recommended alerting policy:
 
 Added API routes:
 
-- `POST /api/eventbrite/webhook`
-  - validates webhook auth
-  - pulls order attendees from Eventbrite
+- `GET /api/internal/poll-eventbrite`
+  - primary scheduled ingestion from Eventbrite
   - upserts attendee rows in Supabase
-  - generates unique `accessCode` and `/go/:token` links
-  - logs webhook status and dead-letters failures
+  - generates/maintains unique `accessCode` and `/go/:token` links
+  - revokes refunded/canceled/deleted orders
+  - logs pipeline errors to `pipeline_errors`
+- `GET /api/internal/cron-health`
+  - health/readiness for polling pipeline
+- `GET /api/internal/smoke-access`
+  - synthetic runtime check (Supabase + Eventbrite + env)
+- `GET /api/internal/nightly-self-test`
+  - nightly self-check and ops alerting
 - `GET /go/:token`
   - validates token and redirects to app or purchase page
 - `POST /api/access/redeem`
-  - validates manual access code and returns attendee access link
+  - validates manual access code and enforces single-device binding
 - `POST /api/admin/resync-order`
   - admin-only endpoint to resync a specific Eventbrite order by `orderId`
 - `POST /api/admin/backfill`
   - admin-only endpoint to pull recent attendees from Eventbrite and upsert missing records
 - `POST /api/admin/resend-access-email`
   - admin-only endpoint to resend attendee access email by attendeeId/email
-- `GET /api/internal/process-retries`
-  - internal cron endpoint for delayed order retry processing (2m/10m/30m)
+- `POST /api/admin/reset-device-binding`
+  - admin-only endpoint to reset single-device binding
 
 ### Setup
 
 1. Add env vars from `.env.example`.
 2. Run `docs/supabase-access-schema.sql` in Supabase SQL editor.
-3. Configure Eventbrite webhook target:
-   - URL: `https://<your-domain>/api/eventbrite/webhook`
-   - Header: `Authorization: Bearer <EVENTBRITE_WEBHOOK_SECRET>`
-   - Event: `order.placed` (and optionally order updates)
+3. Ensure Vercel cron includes `/api/internal/poll-eventbrite`.
 
 ### Important
 

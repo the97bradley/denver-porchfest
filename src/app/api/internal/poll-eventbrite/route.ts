@@ -89,7 +89,7 @@ export async function GET(req: NextRequest) {
       const result = await upsertEventbriteAttendee(attendee, appBase);
       if (!result.ok) {
         ignored += 1;
-        await supabase.from("webhook_dead_letters").insert({
+        await supabase.from("pipeline_errors").insert({
           source: "eventbrite_poll",
           reference_id: `${attendee.order_id}:${attendee.id}`,
           reason: result.reason,
@@ -142,7 +142,7 @@ export async function GET(req: NextRequest) {
           .update({ accessEmailError: emailResult.error })
           .eq("eventbriteAttendeeId", attendee.id);
 
-        await supabase.from("webhook_dead_letters").insert({
+        await supabase.from("pipeline_errors").insert({
           source: "eventbrite_poll_email",
           reference_id: `${attendee.order_id}:${attendee.id}`,
           reason: "email_send_failed",
@@ -207,7 +207,7 @@ export async function GET(req: NextRequest) {
           .update({ accessEmailError: emailResult.error })
           .eq("eventbriteAttendeeId", row.eventbriteAttendeeId);
 
-        await supabase.from("webhook_dead_letters").insert({
+        await supabase.from("pipeline_errors").insert({
           source: "eventbrite_poll_db_sweep_email",
           reference_id: `${row.eventbriteOrderId}:${row.eventbriteAttendeeId}`,
           reason: "email_send_failed",

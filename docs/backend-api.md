@@ -10,66 +10,37 @@ All endpoints return JSON unless noted.
 
 ---
 
-## 1) Eventbrite Webhook
+## 1) Eventbrite Ingestion (Polling)
 
-### `POST /api/eventbrite/webhook`
+### `GET /api/internal/poll-eventbrite`
 
-Receives Eventbrite webhook events and syncs order attendees into Supabase.
+Primary ingestion endpoint used by scheduled cron polling (webhook delivery is disabled).
 
 ### Auth
 
-One of the following must match `EVENTBRITE_WEBHOOK_SECRET`:
-
-- Header: `Authorization: Bearer <secret>`
-- Query param: `?secret=<secret>`
-
-### Request body (from Eventbrite)
-
-Typical payload fields used:
-
-```json
-{
-  "api_url": "https://www.eventbriteapi.com/v3/orders/1234567890/",
-  "action": "order.placed",
-  "config": { "id": "15771420" }
-}
-```
+- Header: `Authorization: Bearer <CRON_SECRET>`
 
 ### Behavior
 
-1. Validates webhook auth.
-2. Extracts `orderId` from `api_url`.
-3. Pulls order + attendees from Eventbrite API.
-4. For each attendee, upserts into `public.attendees`:
-   - `firstName`, `lastName`, `email`
-   - `eventbriteAttendeeId`, `eventbriteOrderId`
-   - `tokenUrl`, `accessCode`, `status`
-5. Sends attendee-specific access email (token link + code) via Resend.
-6. Logs webhook processing status in `public.webhook_events`.
-7. Writes failed attendee sync/email records to `public.webhook_dead_letters`.
+1. Pulls changed attendees from Eventbrite (`changed_since` lookback).
+2. Upserts attendee records into `public.attendees`.
+3. Enforces order-status revocation (refund/cancel/delete → `revoked`, clears token/code).
+4. Sends access emails for active attendees not yet emailed.
+5. Performs DB sweep for unsent active attendees.
+6. Logs pipeline failures to `public.pipeline_errors`.
 
 ### Success response
 
 ```json
 {
   "ok": true,
-  "attendeesProcessed": 10,
-  "attendeesTotal": 10
+  "attendeesFound": 12,
+  "attendeesProcessed": 12,
+  "attendeesIgnored": 4,
+  "accessEmailsSent": 8,
+  "dbSweepFound": 2,
+  "dbSweepEmailed": 1
 }
-```
-
-### Error response examples
-
-```json
-{ "error": "Unauthorized" }
-```
-
-```json
-{ "error": "No order id in payload.api_url" }
-```
-
-```json
-{ "error": "Webhook processing failed" }
 ```
 
 ---
@@ -324,7 +295,6 @@ Read-only health/status snapshot for polling pipeline.
 Required for full pipeline:
 
 - `EVENTBRITE_PRIVATE_TOKEN`
-- `EVENTBRITE_WEBHOOK_SECRET`
 - `EVENTBRITE_EVENT_URL`
 - `EVENTBRITE_EVENT_ID`
 - `SUPABASE_URL`

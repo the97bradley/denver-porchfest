@@ -35,17 +35,7 @@ create index if not exists attendees_email_idx on public.attendees (email);
 create index if not exists attendees_order_idx on public.attendees ("eventbriteOrderId");
 create index if not exists attendees_status_idx on public.attendees (status);
 
-create table if not exists public.webhook_events (
-  id uuid primary key default gen_random_uuid(),
-  eventbrite_webhook_id text unique not null,
-  event_type text not null,
-  payload jsonb not null,
-  status text not null default 'received',
-  processed_at timestamptz,
-  created_at timestamptz not null default now()
-);
-
-create table if not exists public.webhook_dead_letters (
+create table if not exists public.pipeline_errors (
   id uuid primary key default gen_random_uuid(),
   source text not null,
   reference_id text,
@@ -55,8 +45,8 @@ create table if not exists public.webhook_dead_letters (
   created_at timestamptz not null default now()
 );
 
-create index if not exists webhook_dead_letters_source_idx on public.webhook_dead_letters (source);
-create index if not exists webhook_dead_letters_reference_idx on public.webhook_dead_letters (reference_id);
+create index if not exists pipeline_errors_source_idx on public.pipeline_errors (source);
+create index if not exists pipeline_errors_reference_idx on public.pipeline_errors (reference_id);
 
 create table if not exists public.retry_jobs (
   id uuid primary key default gen_random_uuid(),
@@ -135,8 +125,7 @@ for each row execute function public.touch_updated_at();
 
 -- Hardening: keep exposed tables closed to anon/authenticated clients.
 alter table public.attendees enable row level security;
-alter table public.webhook_events enable row level security;
-alter table public.webhook_dead_letters enable row level security;
+alter table public.pipeline_errors enable row level security;
 alter table public.retry_jobs enable row level security;
 alter table public.cron_status enable row level security;
 alter table public.job_locks enable row level security;

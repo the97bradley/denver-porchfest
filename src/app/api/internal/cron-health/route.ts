@@ -14,7 +14,7 @@ export async function GET() {
       .eq("status", "active")
       .is("accessEmailSentAt", null),
     supabase
-      .from("webhook_dead_letters")
+      .from("pipeline_errors")
       .select("id", { count: "exact", head: true })
       .gte("created_at", new Date(Date.now() - 24 * 3600 * 1000).toISOString()),
   ]);

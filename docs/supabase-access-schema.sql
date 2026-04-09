@@ -122,6 +122,7 @@ create table if not exists public.locations (
   email text,
   phone text,
   address text not null,
+  description text,
   lat double precision,
   lng double precision,
   status text not null default 'active',

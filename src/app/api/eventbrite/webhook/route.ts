@@ -78,7 +78,6 @@ export async function POST(req: NextRequest) {
     }
 
     const order = await fetchEventbriteOrder(orderId, eventbriteToken);
-    const purchaserEmail = String((order as { email?: string }).email ?? "").trim().toLowerCase();
     if (order.status && !["placed", "completed"].includes(order.status.toLowerCase())) {
       await supabase
         .from("attendees")
@@ -94,15 +93,8 @@ export async function POST(req: NextRequest) {
 
     const attendees = await fetchEventbriteAttendeesByOrder(orderId, eventbriteToken);
     let processed = 0;
-    let skippedPurchaser = 0;
 
     for (const attendee of attendees) {
-      const attendeeEmail = String(attendee.profile?.email ?? "").trim().toLowerCase();
-      if (purchaserEmail && attendeeEmail && attendeeEmail === purchaserEmail) {
-        skippedPurchaser += 1;
-        continue;
-      }
-
       const result = await upsertEventbriteAttendee(attendee, appBase);
       if (result.ok) {
         processed += 1;
@@ -165,7 +157,6 @@ export async function POST(req: NextRequest) {
       ok: true,
       attendeesProcessed: processed,
       attendeesTotal: attendees.length,
-      skippedPurchaser,
     });
   } catch (error) {
     console.error(error);

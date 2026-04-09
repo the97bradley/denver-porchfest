@@ -89,17 +89,6 @@ create table if not exists public.bands (
   created_at timestamptz not null default now()
 );
 
-create table if not exists public.map_pins (
-  id uuid primary key default gen_random_uuid(),
-  name text not null,
-  type text not null,
-  address text not null,
-  lat double precision,
-  lng double precision,
-  sort_order integer not null default 0,
-  created_at timestamptz not null default now()
-);
-
 create table if not exists public.updates (
   id uuid primary key default gen_random_uuid(),
   ts timestamptz not null default now(),
@@ -279,7 +268,6 @@ alter table public.job_locks enable row level security;
 alter table public.info enable row level security;
 alter table public.schedule enable row level security;
 alter table public.bands enable row level security;
-alter table public.map_pins enable row level security;
 alter table public.updates enable row level security;
 alter table public.artists enable row level security;
 alter table public.locations enable row level security;

@@ -9,7 +9,6 @@ export type AppInfo = {
 const INFO_SOURCE_TABLE = process.env.INFO_SOURCE_TABLE?.trim() || "info";
 const SCHEDULE_SOURCE_TABLE = process.env.SCHEDULE_SOURCE_TABLE?.trim() || "schedule";
 const LINEUP_SOURCE_TABLE = process.env.BANDS_SOURCE_TABLE?.trim() || process.env.APP_BANDS_SOURCE_TABLE?.trim() || process.env.APP_LINEUP_SOURCE_TABLE?.trim() || "bands";
-const MAP_PINS_SOURCE_TABLE = process.env.MAP_PINS_SOURCE_TABLE?.trim() || "map_pins";
 const UPDATES_SOURCE_TABLE = process.env.UPDATES_SOURCE_TABLE?.trim() || "updates";
 
 export async function getAppInfo() {
@@ -46,11 +45,39 @@ export async function getAppLineup() {
 
 export async function getAppMapPins() {
   const supabase = getSupabaseAdmin();
-  const { data } = await supabase
-    .from(MAP_PINS_SOURCE_TABLE)
-    .select("id,name,type,address,lat,lng,sort_order")
-    .order("sort_order", { ascending: true });
-  return data ?? [];
+
+  const [{ data: locations }, { data: vendors }] = await Promise.all([
+    supabase
+      .from("locations")
+      .select("id,name,address")
+      .eq("status", "active")
+      .order("name", { ascending: true }),
+    supabase
+      .from("vendors")
+      .select("id,business_name,booth_location")
+      .eq("status", "active")
+      .order("business_name", { ascending: true }),
+  ]);
+
+  const locationPins = (locations ?? []).map((l) => ({
+    id: `location-${l.id}`,
+    name: l.name || l.address,
+    type: "porch",
+    address: l.address,
+    lat: null,
+    lng: null,
+  }));
+
+  const vendorPins = (vendors ?? []).map((v) => ({
+    id: `vendor-${v.id}`,
+    name: v.business_name,
+    type: "vendor",
+    address: v.booth_location || "Address TBD",
+    lat: null,
+    lng: null,
+  }));
+
+  return [...locationPins, ...vendorPins];
 }
 
 export async function getAppUpdates() {

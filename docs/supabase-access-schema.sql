@@ -62,7 +62,7 @@ create table if not exists public.retry_jobs (
 
 create index if not exists retry_jobs_status_runat_idx on public.retry_jobs (status, run_at);
 
-create table if not exists public.app_info (
+create table if not exists public.info (
   id uuid primary key default gen_random_uuid(),
   title text not null,
   body text not null,
@@ -70,7 +70,7 @@ create table if not exists public.app_info (
   created_at timestamptz not null default now()
 );
 
-create table if not exists public.app_schedule (
+create table if not exists public.schedule (
   id uuid primary key default gen_random_uuid(),
   time text not null,
   title text not null,
@@ -79,7 +79,7 @@ create table if not exists public.app_schedule (
   created_at timestamptz not null default now()
 );
 
-create table if not exists public.app_bands (
+create table if not exists public.bands (
   id uuid primary key default gen_random_uuid(),
   artist text not null,
   genre text,
@@ -89,7 +89,7 @@ create table if not exists public.app_bands (
   created_at timestamptz not null default now()
 );
 
-create table if not exists public.app_map_pins (
+create table if not exists public.map_pins (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   type text not null,
@@ -100,7 +100,7 @@ create table if not exists public.app_map_pins (
   created_at timestamptz not null default now()
 );
 
-create table if not exists public.app_updates (
+create table if not exists public.updates (
   id uuid primary key default gen_random_uuid(),
   ts timestamptz not null default now(),
   text text not null,
@@ -276,11 +276,11 @@ alter table public.pipeline_errors enable row level security;
 alter table public.retry_jobs enable row level security;
 alter table public.cron_status enable row level security;
 alter table public.job_locks enable row level security;
-alter table public.app_info enable row level security;
-alter table public.app_schedule enable row level security;
-alter table public.app_bands enable row level security;
-alter table public.app_map_pins enable row level security;
-alter table public.app_updates enable row level security;
+alter table public.info enable row level security;
+alter table public.schedule enable row level security;
+alter table public.bands enable row level security;
+alter table public.map_pins enable row level security;
+alter table public.updates enable row level security;
 alter table public.artists enable row level security;
 alter table public.locations enable row level security;
 alter table public.location_artists enable row level security;

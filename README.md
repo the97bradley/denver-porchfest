@@ -173,3 +173,19 @@ Added API routes:
 - Set `EVENTBRITE_EVENT_ID` and `ADMIN_API_SECRET` to use backfill/resync admin endpoints.
 - Set `CRON_SECRET` for internal retry cron auth.
 - Admin endpoints require: `Authorization: Bearer <ADMIN_API_SECRET>`.
+
+## Generic environment flipping (Vercel CLI)
+
+Use one local env file per Vercel target and bulk-sync with CLI.
+
+1. Copy templates (kept in repo) and fill real values locally:
+   - `.env.vercel.preview.example` -> `.env.vercel.preview`
+   - `.env.vercel.production.example` -> `.env.vercel.production`
+2. Apply all vars to each target:
+
+```bash
+node scripts/vercel-sync-env.mjs --env preview --file .env.vercel.preview --yes
+node scripts/vercel-sync-env.mjs --env production --file .env.vercel.production --yes
+```
+
+This is generic (not lineup-specific): any key in those files is synced in one shot.

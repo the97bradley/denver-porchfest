@@ -62,6 +62,52 @@ create table if not exists public.retry_jobs (
 
 create index if not exists retry_jobs_status_runat_idx on public.retry_jobs (status, run_at);
 
+create table if not exists public.app_info (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  body text not null,
+  sort_order integer not null default 0,
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.app_schedule (
+  id uuid primary key default gen_random_uuid(),
+  time text not null,
+  title text not null,
+  location text not null,
+  sort_order integer not null default 0,
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.app_lineup (
+  id uuid primary key default gen_random_uuid(),
+  artist text not null,
+  genre text,
+  porch text,
+  time text,
+  sort_order integer not null default 0,
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.app_map_pins (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  type text not null,
+  address text not null,
+  lat double precision,
+  lng double precision,
+  sort_order integer not null default 0,
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.app_updates (
+  id uuid primary key default gen_random_uuid(),
+  ts timestamptz not null default now(),
+  text text not null,
+  pinned boolean not null default false,
+  created_at timestamptz not null default now()
+);
+
 create table if not exists public.cron_status (
   id uuid primary key default gen_random_uuid(),
   job_name text unique not null,
@@ -129,3 +175,8 @@ alter table public.pipeline_errors enable row level security;
 alter table public.retry_jobs enable row level security;
 alter table public.cron_status enable row level security;
 alter table public.job_locks enable row level security;
+alter table public.app_info enable row level security;
+alter table public.app_schedule enable row level security;
+alter table public.app_lineup enable row level security;
+alter table public.app_map_pins enable row level security;
+alter table public.app_updates enable row level security;

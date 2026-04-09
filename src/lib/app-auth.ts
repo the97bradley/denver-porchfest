@@ -1,17 +1,18 @@
 import { NextRequest } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
-const ADMIN_CODE = "PORCHFEST-ADMIN-2026";
+const ADMIN_CODE = "porchfestadmin2026";
 
 export async function requireAppAccess(req: NextRequest) {
-  const accessCode = (req.headers.get("x-access-code") ?? "").trim().toUpperCase();
+  const rawAccessCode = (req.headers.get("x-access-code") ?? "").trim();
+  const accessCode = rawAccessCode.toUpperCase();
   const deviceId = (req.headers.get("x-device-id") ?? "").trim();
 
-  if (!accessCode || !deviceId) {
+  if (!rawAccessCode || !deviceId) {
     return { ok: false as const, status: 401, error: "Missing access headers" };
   }
 
-  if (accessCode === ADMIN_CODE) {
+  if (rawAccessCode === ADMIN_CODE) {
     return {
       ok: true as const,
       attendee: {

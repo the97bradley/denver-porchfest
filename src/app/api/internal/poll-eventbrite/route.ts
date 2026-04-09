@@ -88,6 +88,55 @@ export async function GET(req: NextRequest) {
     }
   }
 
+  const { data: pendingEmailRows } = await supabase
+    .from("attendees")
+    .select("eventbriteAttendeeId,eventbriteOrderId,email,firstName,tokenUrl,accessCode")
+    .eq("status", "active")
+    .is("accessEmailSentAt", null)
+    .limit(500);
+
+  let dbSweepFound = 0;
+  let dbSweepEmailed = 0;
+
+  for (const row of pendingEmailRows ?? []) {
+    dbSweepFound += 1;
+    const emailResult = await sendAccessEmail({
+      to: row.email,
+      firstName: row.firstName ?? "",
+      tokenUrl: row.tokenUrl,
+      accessCode: row.accessCode,
+    });
+
+    if (emailResult.ok) {
+      dbSweepEmailed += 1;
+      await supabase
+        .from("attendees")
+        .update({ accessEmailSentAt: new Date().toISOString(), accessEmailError: null })
+        .eq("eventbriteAttendeeId", row.eventbriteAttendeeId);
+    } else {
+      await supabase
+        .from("attendees")
+        .update({ accessEmailError: emailResult.error })
+        .eq("eventbriteAttendeeId", row.eventbriteAttendeeId);
+
+      await supabase.from("webhook_dead_letters").insert({
+        source: "eventbrite_poll_db_sweep_email",
+        reference_id: `${row.eventbriteOrderId}:${row.eventbriteAttendeeId}`,
+        reason: "email_send_failed",
+        payload: row,
+        error: emailResult.error,
+      });
+
+      await notifyAccessEmailFailure({
+        attendeeEmail: row.email,
+        attendeeName: row.firstName ?? row.email,
+        eventbriteOrderId: row.eventbriteOrderId,
+        eventbriteAttendeeId: row.eventbriteAttendeeId,
+        reason: emailResult.error,
+      });
+    }
+  }
+
   return NextResponse.json({
     ok: true,
     lookbackMinutes,
@@ -96,5 +145,7 @@ export async function GET(req: NextRequest) {
     attendeesProcessed: processed,
     attendeesIgnored: ignored,
     accessEmailsSent: emailed,
+    dbSweepFound,
+    dbSweepEmailed,
   });
 }

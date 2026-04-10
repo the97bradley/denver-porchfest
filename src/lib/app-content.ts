@@ -10,6 +10,7 @@ const INFO_SOURCE_TABLE = process.env.INFO_SOURCE_TABLE?.trim() || "info";
 const SCHEDULE_SOURCE_TABLE = process.env.SCHEDULE_SOURCE_TABLE?.trim() || "schedule";
 const LINEUP_SOURCE_TABLE = process.env.BANDS_SOURCE_TABLE?.trim() || process.env.APP_BANDS_SOURCE_TABLE?.trim() || process.env.APP_LINEUP_SOURCE_TABLE?.trim() || "bands";
 const UPDATES_SOURCE_TABLE = process.env.UPDATES_SOURCE_TABLE?.trim() || "updates";
+const COUPONS_SOURCE_TABLE = process.env.COUPONS_SOURCE_TABLE?.trim() || "coupons";
 
 export async function getAppInfo() {
   const supabase = getSupabaseAdmin();
@@ -98,6 +99,89 @@ export async function getNeighborhoodSpots() {
     .order("name", { ascending: true });
 
   return (data ?? []) as NeighborhoodSpot[];
+}
+
+
+export async function getAppCoupons(deviceId?: string) {
+  const supabase = getSupabaseAdmin();
+  const { data: coupons } = await supabase
+    .from(COUPONS_SOURCE_TABLE)
+    .select("id,deal,location_id,location:locations!coupons_location_id_fkey(id,name,address,image,description)")
+    .order("id", { ascending: true });
+
+  const normalized = (coupons ?? [])
+    .filter((c) => c.location)
+    .map((c) => ({
+      id: c.id,
+      deal: c.deal,
+      location_id: c.location_id,
+      location: c.location,
+    }));
+
+  const couponIds = normalized.map((c) => c.id);
+  if (!couponIds.length) return [];
+
+  if (!deviceId) {
+    return normalized.map((c) => ({ ...c, has_been_used: false }));
+  }
+
+  const { data: redemptions } = await supabase
+    .from("coupon_redemptions")
+    .select("coupon_id")
+    .eq("device_id", deviceId)
+    .in("coupon_id", couponIds);
+
+  const usedSet = new Set((redemptions ?? []).map((r) => r.coupon_id));
+
+  return normalized.map((c) => ({
+    ...c,
+    has_been_used: usedSet.has(c.id),
+  }));
+}
+
+export async function getAppArtists() {
+  const supabase = getSupabaseAdmin();
+
+  const [{ data: artists }, { data: slots }] = await Promise.all([
+    supabase
+      .from("artists")
+      .select("id,name,genre,description,bio,image,social_url,spotify_url,status")
+      .eq("status", "active")
+      .order("name", { ascending: true }),
+    supabase
+      .from("location_artists")
+      .select("artist_id,slot_label,sort_order,location:locations(id,name,address,image)")
+      .eq("status", "active")
+      .order("sort_order", { ascending: true }),
+  ]);
+
+  const slotsByArtist = new Map<string, Array<{ time: string; sort_order: number | null; location: { id: string; name: string; address: string | null; image: string | null } }>>();
+
+  for (const slot of slots ?? []) {
+    const key = slot.artist_id;
+    const loc = Array.isArray(slot.location) ? slot.location[0] : slot.location;
+    if (!loc) continue;
+
+    if (!slotsByArtist.has(key)) slotsByArtist.set(key, []);
+    slotsByArtist.get(key)!.push({
+      time: slot.slot_label || "Time TBD",
+      sort_order: slot.sort_order ?? null,
+      location: {
+        id: loc.id,
+        name: loc.name,
+        address: loc.address ?? null,
+        image: loc.image ?? null,
+      },
+    });
+  }
+
+  return (artists ?? []).map((artist) => ({
+    ...artist,
+    sets: (slotsByArtist.get(artist.id) ?? []).map((s) => ({
+      time: s.time,
+      location: s.location,
+    })),
+  }));
 }
 
 export async function getAppUpdates() {

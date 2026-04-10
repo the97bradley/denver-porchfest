@@ -80,6 +80,26 @@ export async function getAppMapPins() {
   return [...locationPins, ...vendorPins];
 }
 
+export type NeighborhoodSpot = {
+  id: string;
+  name: string;
+  type: string | null;
+  address: string | null;
+  description: string | null;
+  image: string | null;
+};
+
+export async function getNeighborhoodSpots() {
+  const supabase = getSupabaseAdmin();
+  const { data } = await supabase
+    .from("locations")
+    .select("id,name,type,address,description,image")
+    .eq("status", "active")
+    .order("name", { ascending: true });
+
+  return (data ?? []) as NeighborhoodSpot[];
+}
+
 export async function getAppUpdates() {
   const supabase = getSupabaseAdmin();
   const { data } = await supabase

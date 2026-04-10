@@ -15,19 +15,19 @@ const IS_TEST_ENV = /test/i.test(`${process.env.DATA_ENV ?? ""} ${process.env.AP
 
 
 export async function getAppInfo() {
-  const supabase = getSupabaseAdmin();
-  const { data } = await supabase
-    .from(INFO_SOURCE_TABLE)
-    .select("title,body,sort_order")
-    .order("sort_order", { ascending: true });
-  const rows = data ?? [];
-  if (rows.length === 0 && IS_TEST_ENV) {
+  if (IS_TEST_ENV) {
     return [
       { title: "Welcome", body: "Welcome to Denver PorchFest app access.", sort_order: 1 },
       { title: "Testing Mode", body: "This preview environment is using testing defaults.", sort_order: 2 },
     ];
   }
-  return rows;
+
+  const supabase = getSupabaseAdmin();
+  const { data } = await supabase
+    .from(INFO_SOURCE_TABLE)
+    .select("title,body,sort_order")
+    .order("sort_order", { ascending: true });
+  return data ?? [];
 }
 
 export async function getAppSchedule() {
@@ -40,6 +40,14 @@ export async function getAppSchedule() {
 }
 
 export async function getAppLineup() {
+  if (IS_TEST_ENV) {
+    return [
+      { id: "test-1", artist: "The Sidewalk Saints", genre: "Indie Folk", porch: "Porch A", time: "12:00 PM", sort_order: 1 },
+      { id: "test-2", artist: "Mile High Brass", genre: "Brass Funk", porch: "Porch B", time: "1:15 PM", sort_order: 2 },
+      { id: "test-3", artist: "Cherry Creek Revival", genre: "Alt Country", porch: "Porch C", time: "2:30 PM", sort_order: 3 },
+    ];
+  }
+
   const supabase = getSupabaseAdmin();
 
   const tableCandidates = [
@@ -84,14 +92,6 @@ export async function getAppLineup() {
   }
 
   console.error(`Lineup fallback query failed for location_artists: ${slotsError.message}`);
-
-  if (IS_TEST_ENV) {
-    return [
-      { id: "test-1", artist: "The Sidewalk Saints", genre: "Indie Folk", porch: "Porch A", time: "12:00 PM", sort_order: 1 },
-      { id: "test-2", artist: "Mile High Brass", genre: "Brass Funk", porch: "Porch B", time: "1:15 PM", sort_order: 2 },
-      { id: "test-3", artist: "Cherry Creek Revival", genre: "Alt Country", porch: "Porch C", time: "2:30 PM", sort_order: 3 },
-    ];
-  }
 
   return [];
 }

@@ -11,8 +11,6 @@ const vendorApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSdGGqud2IjV89O56-1SNxvxg5SW1Ubai81aGt7Ucf4IgLAdmw/viewform?usp=publish-editor";
 const volunteerApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSckxCBSKunojnMD4xJ6aPeT5kTfH2zpEGIpAtIogYNvz8yVhQ/viewform?usp=publish-editor";
-const EVENTBRITE_URL = "https://www.eventbrite.com/e/1987013595152";
-
 const eventSettings = {
   eventName: "Denver PorchFest",
   eventDateLabel: "Saturday, October 3 · Denver, CO",
@@ -168,7 +166,7 @@ export default async function Home() {
               Welcome to the inaugural Denver PorchFest, a great opportunity to
               meet your neighbors, discover local artists and spend the day
               outside. Denver PorchFest is community first and family friendly.
-              Tickets are $15, with all revenue going towards supporting local musicians.
+              Tickets are $15 per person, with all revenue going directly toward paying local musicians.
               We will also be
               collecting donations and raising awareness for{" "}
               <a
@@ -197,14 +195,6 @@ export default async function Home() {
               </a>
             </div>
 
-            <a
-              href={EVENTBRITE_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-[#1f2937] px-6 py-4 text-lg font-extrabold text-white transition hover:bg-[#111827] sm:w-auto sm:min-w-[280px]"
-            >
-              Get Tickets
-            </a>
           </div>
 
           <div className="rounded-2xl border border-[#cfe0ff] bg-white p-6 shadow-sm">
@@ -214,7 +204,7 @@ export default async function Home() {
             <ul className="space-y-3 text-sm text-[#374151]">
               <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Date</span>
-                <span className="font-semibold">Saturday, October 3 · 12 PM - 7 PM</span>
+                <span className="font-semibold">Saturday, October 3 · 12 PM - 7 PM · $15 ticket</span>
               </li>
               <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Estimated Acts</span>

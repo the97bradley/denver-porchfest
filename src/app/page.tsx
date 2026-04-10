@@ -204,7 +204,7 @@ export default async function Home() {
             <ul className="space-y-3 text-sm text-[#374151]">
               <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Date</span>
-                <span className="font-semibold">Saturday, October 3 · 12 PM - 7 PM · $15 ticket</span>
+                <span className="font-semibold">Saturday, October 3 · 12 PM - 7 PM</span>
               </li>
               <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Estimated Acts</span>

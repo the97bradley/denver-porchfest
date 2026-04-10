@@ -32,16 +32,50 @@ export async function getAppSchedule() {
 
 export async function getAppLineup() {
   const supabase = getSupabaseAdmin();
-  const { data, error } = await supabase
-    .from(LINEUP_SOURCE_TABLE)
-    .select("id,artist,genre,porch,time,sort_order")
-    .order("sort_order", { ascending: true });
 
-  if (error) {
-    throw new Error(`Failed to load lineup from ${LINEUP_SOURCE_TABLE}: ${error.message}`);
+  const tableCandidates = [
+    process.env.APP_LINEUP_SOURCE_TABLE?.trim(),
+    process.env.APP_BANDS_SOURCE_TABLE?.trim(),
+    process.env.BANDS_SOURCE_TABLE?.trim(),
+    "bands",
+  ].filter(Boolean) as string[];
+
+  for (const tableName of [...new Set(tableCandidates)]) {
+    const { data, error } = await supabase
+      .from(tableName)
+      .select("id,artist,genre,porch,time,sort_order")
+      .order("sort_order", { ascending: true });
+
+    if (!error) return data ?? [];
+
+    console.error(`Lineup query failed for table ${tableName}: ${error.message}`);
   }
 
-  return data ?? [];
+  // Fallback schema used by newer app tables.
+  const { data: slots, error: slotsError } = await supabase
+    .from("location_artists")
+    .select("id,slot_label,sort_order,artist:artists(name,genre),location:locations(name)")
+    .eq("status", "active")
+    .order("sort_order", { ascending: true });
+
+  if (!slotsError) {
+    return (slots ?? []).map((row) => {
+      const artist = Array.isArray(row.artist) ? row.artist[0] : row.artist;
+      const location = Array.isArray(row.location) ? row.location[0] : row.location;
+
+      return {
+        id: row.id,
+        artist: artist?.name ?? "Artist TBD",
+        genre: artist?.genre ?? "",
+        porch: location?.name ?? "Location TBD",
+        time: row.slot_label ?? "Time TBD",
+        sort_order: row.sort_order ?? null,
+      };
+    });
+  }
+
+  console.error(`Lineup fallback query failed for location_artists: ${slotsError.message}`);
+  return [];
 }
 
 export async function getAppMapPins() {

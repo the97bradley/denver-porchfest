@@ -11,6 +11,8 @@ const SCHEDULE_SOURCE_TABLE = process.env.SCHEDULE_SOURCE_TABLE?.trim() || "sche
 const LINEUP_SOURCE_TABLE = process.env.APP_LINEUP_SOURCE_TABLE?.trim() || process.env.APP_BANDS_SOURCE_TABLE?.trim() || process.env.BANDS_SOURCE_TABLE?.trim() || "bands";
 const UPDATES_SOURCE_TABLE = process.env.UPDATES_SOURCE_TABLE?.trim() || "updates";
 const COUPONS_SOURCE_TABLE = process.env.COUPONS_SOURCE_TABLE?.trim() || "coupons";
+const IS_TEST_ENV = /test/i.test(`${process.env.DATA_ENV ?? ""} ${process.env.APP_ENV ?? ""}`);
+
 
 export async function getAppInfo() {
   const supabase = getSupabaseAdmin();
@@ -18,7 +20,14 @@ export async function getAppInfo() {
     .from(INFO_SOURCE_TABLE)
     .select("title,body,sort_order")
     .order("sort_order", { ascending: true });
-  return data ?? [];
+  const rows = data ?? [];
+  if (rows.length === 0 && IS_TEST_ENV) {
+    return [
+      { title: "Welcome", body: "Welcome to Denver PorchFest app access.", sort_order: 1 },
+      { title: "Testing Mode", body: "This preview environment is using testing defaults.", sort_order: 2 },
+    ];
+  }
+  return rows;
 }
 
 export async function getAppSchedule() {
@@ -75,6 +84,15 @@ export async function getAppLineup() {
   }
 
   console.error(`Lineup fallback query failed for location_artists: ${slotsError.message}`);
+
+  if (IS_TEST_ENV) {
+    return [
+      { id: "test-1", artist: "The Sidewalk Saints", genre: "Indie Folk", porch: "Porch A", time: "12:00 PM", sort_order: 1 },
+      { id: "test-2", artist: "Mile High Brass", genre: "Brass Funk", porch: "Porch B", time: "1:15 PM", sort_order: 2 },
+      { id: "test-3", artist: "Cherry Creek Revival", genre: "Alt Country", porch: "Porch C", time: "2:30 PM", sort_order: 3 },
+    ];
+  }
+
   return [];
 }
 

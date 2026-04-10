@@ -1,6 +1,7 @@
 import Image from "next/image";
 import EventSnapshotMap from "@/components/EventSnapshotMap";
-import NeighborhoodCarousel from "@/components/NeighborhoodCarousel";
+import NeighborhoodCarousel, { type Spot } from "@/components/NeighborhoodCarousel";
+import { getNeighborhoodSpots } from "@/lib/app-content";
 
 const hostApplicationUrl =
   "https://docs.google.com/forms/d/1hZONc8KKvk603YW_So8A-0rJE1hCDzx5L_8iI3HjKRs/viewform";
@@ -10,6 +11,7 @@ const vendorApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSdGGqud2IjV89O56-1SNxvxg5SW1Ubai81aGt7Ucf4IgLAdmw/viewform?usp=publish-editor";
 const volunteerApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSckxCBSKunojnMD4xJ6aPeT5kTfH2zpEGIpAtIogYNvz8yVhQ/viewform?usp=publish-editor";
+const EVENTBRITE_URL = "https://www.eventbrite.com/e/1987013595152";
 
 const eventSettings = {
   eventName: "Denver PorchFest",
@@ -24,14 +26,14 @@ const eventSettings = {
 
 const faqItems = [
   {
-    question: "Is Denver PorchFest free to attend?",
+    question: "What does it cost to attend?",
     answer:
-      "Yes. The event is free for everyone. We do encourage a suggested $10 donation per attendee to help pay musicians and support event operations.",
+      "Your PorchFest ticket is $15 for the full day. It includes access to the official PorchFest app with full schedule and location listings, a free sticker and lanyard (while supplies last), plus day-of coupons to local restaurants and bars. Every ticket directly supports local musicians and helps keep Denver’s music scene thriving.",
   },
   {
-    question: "The festival is free. Will artists be paid??",
+    question: "Will the artists be paid??",
     answer:
-      "We know how important it is to pay musicians a fair wage. The festival is free but attendees are encouraged to donate $10 - the entirety of this money will be split between artists. We are also working on additional sponsorships which will guarantee artist payment.",
+      "We know how important it is to pay musicians a fair wage. 100% of PorchFest ticket revenue goes towards artist payouts, ensuring local music is alive and well in Denver.",
   },
   {
     question: "When and where is PorchFest happening?",
@@ -103,8 +105,18 @@ const eventJsonLd = {
   url: "https://denverporchfest.com",
 };
 
-export default function Home() {
+export default async function Home() {
   const s = eventSettings;
+  const neighborhoodRows = await getNeighborhoodSpots();
+  const neighborhoodSpots: Spot[] = neighborhoodRows.map((row) => ({
+    id: row.id,
+    name: row.name,
+    type: row.type || "Neighborhood Spot",
+    note: row.description || "Local neighborhood business.",
+    mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${row.name} ${row.address ?? "Denver"}`)}`,
+    photoQuery: `${row.name} Denver`,
+    imageUrl: row.image || undefined,
+  }));
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f3f8ff] via-[#eef6ff] to-[#eaf4ff] text-[#1f2937]">
@@ -113,6 +125,17 @@ export default function Home() {
           <p className="text-base font-bold tracking-[0.08em] text-[#1d4ed8]">
             {s.eventName.toUpperCase()}
           </p>
+          <a
+            href="https://www.instagram.com/denverporchfest/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Follow Denver PorchFest on Instagram"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#dbe7ff] bg-white text-[#e1306c] transition hover:bg-[#fff1f7] hover:text-[#c2255c]"
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
+              <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm0 2h10c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3zm11.5 1a1.5 1.5 0 100 3 1.5 1.5 0 000-3zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z" />
+            </svg>
+          </a>
         </div>
       </header>
 
@@ -144,9 +167,9 @@ export default function Home() {
             <p className="max-w-xl text-lg text-[#4b5563]">
               Welcome to the inaugural Denver PorchFest, a great opportunity to
               meet your neighbors, discover local artists and spend the day
-              outside. Denver PorchFest is community first, family friendly and
-              completely free, with a suggested $10 donation per attendee
-              (all proceeds go towards paying musicians). We will also be
+              outside. Denver PorchFest is community first and family friendly.
+              Tickets are $15, with all revenue going towards supporting local musicians.
+              We will also be
               collecting donations and raising awareness for{" "}
               <a
                 href="https://www.east7tharts.org/"
@@ -173,6 +196,15 @@ export default function Home() {
                 Join the Neighborhood Team
               </a>
             </div>
+
+            <a
+              href={EVENTBRITE_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-[#1f2937] px-6 py-4 text-lg font-extrabold text-white transition hover:bg-[#111827] sm:w-auto sm:min-w-[280px]"
+            >
+              Get Tickets
+            </a>
           </div>
 
           <div className="rounded-2xl border border-[#cfe0ff] bg-white p-6 shadow-sm">
@@ -198,7 +230,7 @@ export default function Home() {
               </li>
               <li className="flex justify-between">
                 <span>Admission</span>
-                <span className="font-semibold text-[#3b7a57]">Free ($10 donation encouraged)</span>
+                <span className="font-semibold text-[#3b7a57]">$15</span>
               </li>
             </ul>
             <EventSnapshotMap />
@@ -331,7 +363,7 @@ export default function Home() {
             </p>
 
             <div className="mt-6">
-              <NeighborhoodCarousel />
+              <NeighborhoodCarousel spots={neighborhoodSpots} />
             </div>
           </div>
         </section>

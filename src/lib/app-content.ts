@@ -8,7 +8,7 @@ export type AppInfo = {
 
 const INFO_SOURCE_TABLE = process.env.INFO_SOURCE_TABLE?.trim() || "info";
 const SCHEDULE_SOURCE_TABLE = process.env.SCHEDULE_SOURCE_TABLE?.trim() || "schedule";
-const LINEUP_SOURCE_TABLE = process.env.BANDS_SOURCE_TABLE?.trim() || process.env.APP_BANDS_SOURCE_TABLE?.trim() || process.env.APP_LINEUP_SOURCE_TABLE?.trim() || "bands";
+const LINEUP_SOURCE_TABLE = process.env.APP_LINEUP_SOURCE_TABLE?.trim() || process.env.APP_BANDS_SOURCE_TABLE?.trim() || process.env.BANDS_SOURCE_TABLE?.trim() || "bands";
 const UPDATES_SOURCE_TABLE = process.env.UPDATES_SOURCE_TABLE?.trim() || "updates";
 const COUPONS_SOURCE_TABLE = process.env.COUPONS_SOURCE_TABLE?.trim() || "coupons";
 

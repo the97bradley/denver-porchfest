@@ -34,7 +34,7 @@ export default function OgImage() {
             for Denver neighbors.
           </div>
           <div style={{ fontSize: 30, color: "#3b7a57" }}>
-            Saturday, October 3 · Free · 50+ artists
+            Saturday, September 5th · Free · 50+ artists
           </div>
         </div>
       </div>

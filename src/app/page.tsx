@@ -16,7 +16,7 @@ const eventSettings = {
   eventDateLabel: "Saturday, September 5th · Denver, CO",
   heroHeadline: "A front-porch music day for Denver neighbors.",
   heroBody:
-    "Walk the blocks, meet your neighbors, discover local artists, and spend the day outside. Denver PorchFest is community-first, family-friendly, and free for everyone.",
+    "Walk the blocks, meet your neighbors, discover local artists, and spend the day outside. Denver PorchFest is community-first and family-friendly.",
   estimatedActs: "50+ artists",
   porchesStages: "15+ neighborhood sites",
   areaLabel: "Inside 1st–5th, Broadway to Santa Fe",
@@ -24,14 +24,14 @@ const eventSettings = {
 
 const faqItems = [
   {
-    question: "Is Denver PorchFest free to attend?",
+    question: "What does it cost to attend?",
     answer:
-      "Yes. The event is free for everyone. We do encourage a suggested $10 donation per attendee to help pay musicians and support event operations.",
+      "Tickets are $15 per person. Ticket revenue helps fund artist payouts and event operations.",
   },
   {
-    question: "The festival is free. Will artists be paid??",
+    question: "Will artists be paid?",
     answer:
-      "We know how important it is to pay musicians a fair wage. The festival is free but attendees are encouraged to donate $10 - the entirety of this money will be split between artists. We are also working on additional sponsorships which will guarantee artist payment.",
+      "Yes. Paying artists is a core priority for PorchFest.",
   },
   {
     question: "When and where is PorchFest happening?",
@@ -84,7 +84,7 @@ const eventJsonLd = {
   eventStatus: "https://schema.org/EventScheduled",
   startDate: "2026-09-05T12:00:00-06:00",
   endDate: "2026-09-05T20:00:00-06:00",
-  isAccessibleForFree: true,
+  isAccessibleForFree: false,
   location: {
     "@type": "Place",
     name: "Denver PorchFest Footprint",
@@ -144,9 +144,9 @@ export default function Home() {
             <p className="max-w-xl text-lg text-[#4b5563]">
               Welcome to the inaugural Denver PorchFest, a great opportunity to
               meet your neighbors, discover local artists and spend the day
-              outside. Denver PorchFest is community first, family friendly and
-              completely free, with a suggested $10 donation per attendee
-              (all proceeds go towards paying musicians). We will also be
+              outside. Denver PorchFest is community first and family friendly.
+              Tickets are $15 per person, with revenue helping fund artist
+              payouts and event operations. We will also be
               collecting donations and raising awareness for{" "}
               <a
                 href="https://www.east7tharts.org/"
@@ -198,7 +198,7 @@ export default function Home() {
               </li>
               <li className="flex justify-between">
                 <span>Admission</span>
-                <span className="font-semibold text-[#3b7a57]">Free ($10 donation encouraged)</span>
+                <span className="font-semibold text-[#3b7a57]">$15</span>
               </li>
             </ul>
             <EventSnapshotMap />

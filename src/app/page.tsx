@@ -1,6 +1,5 @@
 import Image from "next/image";
 import EventSnapshotMap from "@/components/EventSnapshotMap";
-import NeighborhoodCarousel from "@/components/NeighborhoodCarousel";
 
 const hostApplicationUrl =
   "https://docs.google.com/forms/d/1hZONc8KKvk603YW_So8A-0rJE1hCDzx5L_8iI3HjKRs/viewform";
@@ -10,33 +9,32 @@ const vendorApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSdGGqud2IjV89O56-1SNxvxg5SW1Ubai81aGt7Ucf4IgLAdmw/viewform?usp=publish-editor";
 const volunteerApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSckxCBSKunojnMD4xJ6aPeT5kTfH2zpEGIpAtIogYNvz8yVhQ/viewform?usp=publish-editor";
-
 const eventSettings = {
   eventName: "Denver PorchFest",
   eventDateLabel: "Saturday, September 5th · Denver, CO",
   heroHeadline: "A front-porch music day for Denver neighbors.",
   heroBody:
-    "Walk the blocks, meet your neighbors, discover local artists, and spend the day outside. Denver PorchFest is community-first and family-friendly.",
+    "Walk the blocks, meet your neighbors, discover local artists, and spend the day outside. Denver PorchFest is community-first, family-friendly, and free for everyone.",
   estimatedActs: "50+ artists",
   porchesStages: "15+ neighborhood sites",
-  areaLabel: "Fox to Acoma, 3rd to Ellsworth",
+  areaLabel: "Baker neighborhood"
 };
 
 const faqItems = [
   {
     question: "What does it cost to attend?",
     answer:
-      "Tickets are $15 per person. Ticket revenue helps fund artist payouts and event operations.",
+      "Your PorchFest ticket is $15 for the full day. It includes access to the official PorchFest app with full schedule and location listings, a free sticker and lanyard (while supplies last), plus day-of coupons to local restaurants and bars. Every ticket directly supports local musicians and helps keep Denver’s music scene thriving.",
   },
   {
-    question: "Will artists be paid?",
+    question: "Will the artists be paid??",
     answer:
-      "Yes. Paying artists is a core priority for PorchFest.",
+      "We know how important it is to pay musicians a fair wage. 100% of PorchFest ticket revenue goes towards artist payouts, ensuring local music is alive and well in Denver.",
   },
   {
     question: "When and where is PorchFest happening?",
     answer:
-      "PorchFest takes place on Saturday, September 5th across the Baker neighborhood footprint from Fox to Acoma and 3rd to Ellsworth.",
+      "PorchFest takes place on Saturday, September 5th in the Baker neighborhood.",
   },
   {
     question: "When will the lineup and set times be announced?",
@@ -84,7 +82,7 @@ const eventJsonLd = {
   eventStatus: "https://schema.org/EventScheduled",
   startDate: "2026-09-05T12:00:00-06:00",
   endDate: "2026-09-05T20:00:00-06:00",
-  isAccessibleForFree: false,
+  isAccessibleForFree: true,
   location: {
     "@type": "Place",
     name: "Denver PorchFest Footprint",
@@ -103,7 +101,7 @@ const eventJsonLd = {
   url: "https://denverporchfest.com",
 };
 
-export default function Home() {
+export default async function Home() {
   const s = eventSettings;
 
   return (
@@ -113,6 +111,17 @@ export default function Home() {
           <p className="text-base font-bold tracking-[0.08em] text-[#1d4ed8]">
             {s.eventName.toUpperCase()}
           </p>
+          <a
+            href="https://www.instagram.com/denverporchfest/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Follow Denver PorchFest on Instagram"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#dbe7ff] bg-white text-[#e1306c] transition hover:bg-[#fff1f7] hover:text-[#c2255c]"
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
+              <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm0 2h10c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3zm11.5 1a1.5 1.5 0 100 3 1.5 1.5 0 000-3zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z" />
+            </svg>
+          </a>
         </div>
       </header>
 
@@ -145,8 +154,8 @@ export default function Home() {
               Welcome to the inaugural Denver PorchFest, a great opportunity to
               meet your neighbors, discover local artists and spend the day
               outside. Denver PorchFest is community first and family friendly.
-              Tickets are $15 per person, with revenue helping fund artist
-              payouts and event operations. We will also be
+              Tickets are $15 per person, with all revenue going directly toward paying local musicians.
+              We will also be
               collecting donations and raising awareness for{" "}
               <a
                 href="https://www.east7tharts.org/"
@@ -173,6 +182,7 @@ export default function Home() {
                 Join the Neighborhood Team
               </a>
             </div>
+
           </div>
 
           <div className="rounded-2xl border border-[#cfe0ff] bg-white p-6 shadow-sm">
@@ -234,8 +244,7 @@ export default function Home() {
           <h2 className="mb-2 text-2xl font-bold text-[#1f2937]">Neighborhood Porches</h2>
           <p className="mb-6 text-[#6b7280]">
             Think of each porch as a mini stage hosted by your neighbors,
-            across the Baker neighborhood. Full map and timing will be posted
-            closer to event day.
+            across the Baker neighborhood. Festival map coming soon.
           </p>
           <div className="rounded-xl border border-[#dbe7ff] bg-white p-6 text-center">
             <p className="text-lg font-semibold text-[#1f2937]">TBA</p>
@@ -316,23 +325,6 @@ export default function Home() {
                 Sign Up to Volunteer
               </a>
             </article>
-          </div>
-        </section>
-
-        <section
-          id="neighborhood"
-          className="border-y border-[#e3d8c5] bg-[#fffdf8]"
-        >
-          <div className="mx-auto w-full max-w-6xl px-6 py-14">
-            <h2 className="text-2xl font-bold text-[#1f2937]">The Neighborhood</h2>
-            <p className="mt-3 max-w-3xl text-[#4b5563]">
-              Bars, restaurants, and local hangouts in and around the event
-              area.
-            </p>
-
-            <div className="mt-6">
-              <NeighborhoodCarousel />
-            </div>
           </div>
         </section>
 

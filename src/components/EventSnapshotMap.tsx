@@ -1,31 +1,12 @@
-"use client";
-
-const PUBLIC_BOUNDARY_MAP_URL =
-  "https://www.google.com/maps/d/viewer?mid=1kMz1441dwvdGMiIVmdIYmaqobOUzFQ4&ll=39.7185376%2C-104.9923145&z=15";
-
-const EMBED_BOUNDARY_MAP_URL =
-  "https://www.google.com/maps/d/embed?mid=1kMz1441dwvdGMiIVmdIYmaqobOUzFQ4&ll=39.7185376%2C-104.9923145&z=15";
-
 export default function EventSnapshotMap() {
   return (
-    <div className="mt-4 overflow-hidden rounded-xl border border-[#dbe7ff] bg-white">
-      <iframe
-        title="Denver PorchFest Full Map"
-        src={EMBED_BOUNDARY_MAP_URL}
-        className="h-80 w-full border-0"
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      />
-      <div className="border-t border-[#dbe7ff] bg-[#f8fbff] p-3">
-        <a
-          href={PUBLIC_BOUNDARY_MAP_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex rounded-full border border-[#bfdbfe] bg-white px-4 py-2 text-xs font-semibold text-[#1f2937] transition hover:bg-[#eef5ff]"
-        >
-          Open Full Map
-        </a>
-      </div>
+    <div className="mt-4 rounded-xl border border-[#dbe7ff] bg-[#f8fbff] p-5 text-center">
+      <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[#2563eb]">
+        Festival map coming soon
+      </p>
+      <p className="mt-2 text-sm text-[#4b5563]">
+        We&apos;ll share the full Baker neighborhood festival map before event day.
+      </p>
     </div>
   );
 }

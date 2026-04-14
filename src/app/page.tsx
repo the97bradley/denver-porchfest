@@ -19,7 +19,7 @@ const eventSettings = {
     "Walk the blocks, meet your neighbors, discover local artists, and spend the day outside. Denver PorchFest is community-first and family-friendly.",
   estimatedActs: "50+ artists",
   porchesStages: "15+ neighborhood sites",
-  areaLabel: "Inside 1st–5th, Broadway to Santa Fe",
+  areaLabel: "Fox to Acoma, 3rd to Ellsworth",
 };
 
 const faqItems = [
@@ -36,7 +36,7 @@ const faqItems = [
   {
     question: "When and where is PorchFest happening?",
     answer:
-      "PorchFest takes place on Saturday, September 5th across the Baker neighborhood footprint between 1st and 5th Ave from Broadway to Santa Fe.",
+      "PorchFest takes place on Saturday, September 5th across the Baker neighborhood footprint from Fox to Acoma and 3rd to Ellsworth.",
   },
   {
     question: "When will the lineup and set times be announced?",

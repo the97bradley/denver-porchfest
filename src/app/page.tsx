@@ -24,7 +24,7 @@ const faqItems = [
   {
     question: "What does it cost to attend?",
     answer:
-      "Your PorchFest ticket is $15 for the full day. It includes access to the official PorchFest app with full schedule and location listings, a free sticker and lanyard (while supplies last), plus day-of coupons to local restaurants and bars. Every ticket directly supports local musicians and helps keep Denver’s music scene thriving.",
+      "Your PorchFest ticket is $20 for the full day. It includes access to the official PorchFest app with full schedule and location listings, a free sticker and lanyard (while supplies last), plus day-of coupons to local restaurants and bars. Every ticket directly supports local musicians and helps keep Denver’s music scene thriving."
   },
   {
     question: "Will the artists be paid??",
@@ -208,7 +208,7 @@ export default async function Home() {
               </li>
               <li className="flex justify-between">
                 <span>Admission</span>
-                <span className="font-semibold text-[#3b7a57]">$15</span>
+                <span className="font-semibold text-[#3b7a57]">$20</span>
               </li>
             </ul>
             <EventSnapshotMap />

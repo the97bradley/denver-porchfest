@@ -1,7 +1,5 @@
 import Image from "next/image";
 import EventSnapshotMap from "@/components/EventSnapshotMap";
-import NeighborhoodCarousel, { type Spot } from "@/components/NeighborhoodCarousel";
-import { getNeighborhoodSpots } from "@/lib/app-content";
 
 const hostApplicationUrl =
   "https://docs.google.com/forms/d/1hZONc8KKvk603YW_So8A-0rJE1hCDzx5L_8iI3HjKRs/viewform";
@@ -19,7 +17,7 @@ const eventSettings = {
     "Walk the blocks, meet your neighbors, discover local artists, and spend the day outside. Denver PorchFest is community-first, family-friendly, and free for everyone.",
   estimatedActs: "50+ artists",
   porchesStages: "15+ neighborhood sites",
-  areaLabel: "Fox to Acoma, 3rd to Ellsworth",
+  areaLabel: "Baker neighborhood"
 };
 
 const faqItems = [
@@ -36,7 +34,7 @@ const faqItems = [
   {
     question: "When and where is PorchFest happening?",
     answer:
-      "PorchFest takes place on Saturday, September 5th across the Baker neighborhood footprint from Fox to Acoma and 3rd to Ellsworth.",
+      "PorchFest takes place on Saturday, September 5th in the Baker neighborhood.",
   },
   {
     question: "When will the lineup and set times be announced?",
@@ -105,16 +103,6 @@ const eventJsonLd = {
 
 export default async function Home() {
   const s = eventSettings;
-  const neighborhoodRows = await getNeighborhoodSpots();
-  const neighborhoodSpots: Spot[] = neighborhoodRows.map((row) => ({
-    id: row.id,
-    name: row.name,
-    type: row.type || "Neighborhood Spot",
-    note: row.description || "Local neighborhood business.",
-    mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${row.name} ${row.address ?? "Denver"}`)}`,
-    photoQuery: `${row.name} Denver`,
-    imageUrl: row.image || undefined,
-  }));
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f3f8ff] via-[#eef6ff] to-[#eaf4ff] text-[#1f2937]">
@@ -256,8 +244,7 @@ export default async function Home() {
           <h2 className="mb-2 text-2xl font-bold text-[#1f2937]">Neighborhood Porches</h2>
           <p className="mb-6 text-[#6b7280]">
             Think of each porch as a mini stage hosted by your neighbors,
-            across the Baker neighborhood. Full map and timing will be posted
-            closer to event day.
+            across the Baker neighborhood. Festival map coming soon.
           </p>
           <div className="rounded-xl border border-[#dbe7ff] bg-white p-6 text-center">
             <p className="text-lg font-semibold text-[#1f2937]">TBA</p>
@@ -338,23 +325,6 @@ export default async function Home() {
                 Sign Up to Volunteer
               </a>
             </article>
-          </div>
-        </section>
-
-        <section
-          id="neighborhood"
-          className="border-y border-[#e3d8c5] bg-[#fffdf8]"
-        >
-          <div className="mx-auto w-full max-w-6xl px-6 py-14">
-            <h2 className="text-2xl font-bold text-[#1f2937]">The Neighborhood</h2>
-            <p className="mt-3 max-w-3xl text-[#4b5563]">
-              Bars, restaurants, and local hangouts in and around the event
-              area.
-            </p>
-
-            <div className="mt-6">
-              <NeighborhoodCarousel spots={neighborhoodSpots} />
-            </div>
           </div>
         </section>
 

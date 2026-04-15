@@ -152,7 +152,7 @@ export default async function Home() {
               Welcome to the inaugural Denver PorchFest, a great opportunity to
               meet your neighbors, discover local artists and spend the day
               outside. Denver PorchFest is community first and family friendly.
-              Tickets are $15 per person, with all revenue going directly toward paying local musicians.
+              Tickets are $20 per person, with all revenue going directly toward paying local musicians.
               We will also be
               collecting donations and raising awareness for{" "}
               <a

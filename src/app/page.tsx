@@ -238,20 +238,6 @@ export default async function Home() {
           </div>
         </section>
 
-        <section id="schedule" className="mx-auto w-full max-w-6xl px-6 py-14">
-          <h2 className="mb-2 text-2xl font-bold text-[#1f2937]">Neighborhood Porches</h2>
-          <p className="mb-6 text-[#6b7280]">
-            Think of each porch as a mini stage hosted by your neighbors,
-            across the Baker neighborhood. Festival map coming soon.
-          </p>
-          <div className="rounded-xl border border-[#dbe7ff] bg-white p-6 text-center">
-            <p className="text-lg font-semibold text-[#1f2937]">TBA</p>
-            <p className="mt-1 text-sm text-[#6b7280]">
-              Porch locations and neighborhood stage details coming soon.
-            </p>
-          </div>
-        </section>
-
         <section id="applications" className="mx-auto w-full max-w-6xl px-6 py-14">
           <h2 className="text-2xl font-bold text-[#1f2937]">Be Part of PorchFest</h2>
           <p className="mt-3 max-w-3xl text-[#4b5563]">

@@ -27,7 +27,7 @@ const faqItems = [
   {
     question: "Will the artists be paid??",
     answer:
-      "We know how important it is to pay musicians a fair wage. 100% of PorchFest ticket revenue goes towards artist payouts, ensuring local music is alive and well in Denver.",
+      "We have a pay sharing structure and are guaranteeing each individual musician who participates a minimum of $100 for their time and talent.",
   },
   {
     question: "When and where is PorchFest happening?",

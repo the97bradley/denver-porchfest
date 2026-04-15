@@ -260,7 +260,7 @@ export default async function Home() {
             involved.
           </p>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Artist Application</h3>
               <p className="mt-2 flex-1 text-sm text-[#4b5563]">

@@ -9,7 +9,7 @@ const volunteerApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSckxCBSKunojnMD4xJ6aPeT5kTfH2zpEGIpAtIogYNvz8yVhQ/viewform?usp=publish-editor";
 const eventSettings = {
   eventName: "Denver PorchFest",
-  eventDateLabel: "Fall 2026 · Denver, CO",
+  eventDateLabel: "Saturday, October 3rd · Denver, CO",
   heroHeadline: "A front-porch music day for Denver neighbors.",
   heroBody:
     "Walk the blocks, meet your neighbors, discover local artists, and spend the day outside. Denver PorchFest is community-first, family-friendly, and free for everyone.",
@@ -32,12 +32,12 @@ const faqItems = [
   {
     question: "When and where is PorchFest happening?",
     answer:
-      "PorchFest takes place in Fall 2026 in the Baker neighborhood. Exact date will be announced soon.",
+      "PorchFest takes place on Saturday, October 3rd in the Baker neighborhood.",
   },
   {
     question: "When will the lineup and set times be announced?",
     answer:
-      "The lineup will be announced soon. Check back on this site for updates.",
+      "The lineup will be announced on August 7th. Check back on this site for updates.",
   },
   {
     question: "Can I apply as an artist, host, vendor, or volunteer?",
@@ -78,6 +78,8 @@ const eventJsonLd = {
     "A front-porch music day for Denver neighbors with local artists, neighborhood porches, and community partners.",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
+  startDate: "2026-10-03T12:00:00-06:00",
+  endDate: "2026-10-03T20:00:00-06:00",
   isAccessibleForFree: true,
   location: {
     "@type": "Place",
@@ -188,7 +190,7 @@ export default async function Home() {
             <ul className="space-y-3 text-sm text-[#374151]">
               <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Date</span>
-                <span className="font-semibold">Fall 2026 · Exact date/time coming soon</span>
+                <span className="font-semibold">Saturday, October 3rd · 12 PM - 7 PM</span>
               </li>
               <li className="flex justify-between border-b border-[#dbe7ff] pb-2">
                 <span>Estimated Acts</span>

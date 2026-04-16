@@ -299,7 +299,7 @@ export default async function Home() {
             <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Volunteer Sign Up</h3>
               <p className="mt-2 flex-1 text-sm text-[#4b5563]">
-                Join the day-of team for setup, wayfinding, artist support, and cleanup.
+                Add yourself to the volunteer pool for ad hoc help before the festival and day-of support during the event.
               </p>
               <a
                 href={volunteerApplicationUrl}

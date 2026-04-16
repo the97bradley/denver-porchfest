@@ -5,6 +5,8 @@ const hostApplicationUrl =
   "https://docs.google.com/forms/d/1hZONc8KKvk603YW_So8A-0rJE1hCDzx5L_8iI3HjKRs/viewform";
 const bandApplicationUrl =
   "https://docs.google.com/forms/d/1S-mjWFTPde5L7l3qbkOzy-jtTKCzqIQLMw0alEM5zAE/viewform";
+const vendorApplicationUrl =
+  "https://docs.google.com/forms/d/e/1FAIpQLSdGGqud2IjV89O56-1SNxvxg5SW1Ubai81aGt7Ucf4IgLAdmw/viewform?usp=publish-editor";
 const volunteerApplicationUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSckxCBSKunojnMD4xJ6aPeT5kTfH2zpEGIpAtIogYNvz8yVhQ/viewform?usp=publish-editor";
 const eventSettings = {
@@ -246,7 +248,7 @@ export default async function Home() {
             involved.
           </p>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
               <h3 className="text-lg font-semibold text-[#1f2937]">Artist Application</h3>
               <p className="mt-2 flex-1 text-sm text-[#4b5563]">
@@ -276,6 +278,22 @@ export default async function Home() {
                 className="mt-6 inline-flex w-fit self-center rounded-full bg-[#1f2937] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#111827]"
               >
                 Apply as a Host
+              </a>
+            </article>
+
+            <article className="flex h-full flex-col rounded-xl border border-[#dbe7ff] bg-white p-5">
+              <h3 className="text-lg font-semibold text-[#1f2937]">Vendor Application</h3>
+              <p className="mt-2 flex-1 text-sm text-[#4b5563]">
+                Food, art, or pop-up experiences that fit PorchFest?
+                Apply to be a vendor.
+              </p>
+              <a
+                href={vendorApplicationUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex w-fit self-center rounded-full bg-[#ea580c] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#c2410c]"
+              >
+                Apply as a Vendor
               </a>
             </article>
 
